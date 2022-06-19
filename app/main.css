@@ -1,12 +1,5 @@
-.j-hidden {
-    opacity: 0;
-}
 
-#circle-canvas {
-    cursor: none;
-}
-
-.blog-entry {
+#viewContainer {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
