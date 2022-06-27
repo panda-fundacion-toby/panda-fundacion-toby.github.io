@@ -2,3 +2,53 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.navbar {
+    background-color: white;
+}
+
+.home-encabezado {
+    background-color: #9DD2D6;
+    margin: 0;
+}
+
+.home-logo-container {
+    display: flex;
+}
+
+.home-encabezado-logo {
+    max-height: 160px;
+    margin-left: auto;
+}
+
+.home-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-button-title {
+    margin-top: 1rem;
+    border-bottom: 2px solid #FFBA69;
+}
+
+.home-button-text {
+    margin-top: 1rem;
+}
+
+.home-button-card {
+    display: flex;
+    border: 10px solid #A57196;
+    border-radius: 50%;
+    height: 12.5rem;
+    width: 12.5rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
+}

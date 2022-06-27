@@ -20,6 +20,12 @@
 </head>
 
 <body id="knockout-app">
+    <div class="row home-encabezado">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 home-logo-container">
+            <img class="home-encabezado-logo" src="./resources/images/logo-blanco-01.jpg" alt="" srcset="">
+        </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
         </a>
@@ -32,26 +38,38 @@
             <div class="row p-2" style="width: 100%">
                 <div class="col p-2">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <!-- <li class="nav-item active">
                             <a class="nav-link" href="./">Inicio <span class="sr-only">(current)</span></a>
+                        </li> -->
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Nosotros
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Blog
+                                Adopciones
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#blog/01/inicio">Quiénes somos</a>
-                            </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Acerca de nosotros
+                                Donaciones
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#about">Acerca de nosotros</a>
-                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Rehabilitación
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Preguntas frecuentes
+                            </a>
                         </li>
                     </ul>
                 </div>
