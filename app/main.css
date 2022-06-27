@@ -7,9 +7,17 @@
     background-color: white;
 }
 
+.app-header {
+    margin: 0;
+}
+
+.app-footer {
+    margin: 0;
+}
+
 .home-encabezado {
     background-color: #9DD2D6;
-    margin: 0;
+
 }
 
 .home-logo-container {
