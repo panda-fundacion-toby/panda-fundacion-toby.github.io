@@ -13,6 +13,7 @@
 
 .app-footer {
     margin: 0;
+    min-height: 4rem;
 }
 
 .home-encabezado {
@@ -36,12 +37,12 @@
 }
 
 .home-button-title {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     border-bottom: 2px solid #FFBA69;
 }
 
 .home-button-text {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .home-button-card {
@@ -54,9 +55,38 @@
     justify-content: center;
     overflow: hidden;
     background-position: center;
-    /* Center the image */
     background-repeat: no-repeat;
-    /* Do not repeat the image */
     background-size: cover;
-    /* Resize the background image to cover the entire container */
+}
+
+.dotted {
+    outline: 1px dotted green;
+}
+
+.blue {
+    outline: 1px solid blue;
+}
+
+.card-body-home {
+    background-color: #F5F5F5;
+    min-height: 7rem;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid green;
+}
+
+.card-footer-home {
+    border: 0;
+}
+
+.index-mapa-sitio-element {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
 }
