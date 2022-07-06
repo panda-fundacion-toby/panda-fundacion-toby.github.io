@@ -7,22 +7,24 @@ import { agua } from './agua.js';
 class Main {
     constructor() {
         const navigation = new Navigation();
-        this.navigateTo(navigation.viewName);
         this.wire();
+        this.navigateTo(navigation.viewName);
     }
 
     /**
      * Select a group of elements in html and 
      * @param {string} selector 
      */
-    wire(selector = '.dropdown-item') {
-        const links = Array.from(document.querySelectorAll(selector)).
-            filter(e => !e.getAttribute('data-bind'));
+    wire(selector = 'a') {
+        const links = Array.from(document.querySelectorAll(selector));
         links.forEach(element => {
-            element.onclick = (e) => {
-                const moduleNameWithHash = e.target.getAttribute('href');
-                this.navigateTo(moduleNameWithHash);
-            };
+            const href = element.getAttribute('href');
+            if (href.startsWith('#')) {
+                element.onclick = (e) => {
+                    const moduleNameWithHash = e.target.getAttribute('href');
+                    this.navigateTo(moduleNameWithHash);
+                };
+            }
         });
     }
 
@@ -38,6 +40,7 @@ class Main {
             newView.setAttribute('id', 'view');
             newView.innerHTML = template;
             viewContainer.appendChild(newView);
+            this.wire('#viewContainer a');
             const viewModelScriptId = 'view-model-script';
             let viewModelScript = document.getElementById(viewModelScriptId);
             if (viewModelScript) {

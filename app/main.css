@@ -38,7 +38,7 @@
 
 .home-button-title {
     margin-top: 1.5rem;
-    border-bottom: 2px solid #FFBA69;
+    /* border-bottom: 2px solid #FFBA69; */
 }
 
 .home-button-text {
@@ -106,7 +106,10 @@
     text-align: end
 }
 
-
 .home-card {
     padding: 1rem;
+}
+
+.adopta-init {
+    display: none;
 }
