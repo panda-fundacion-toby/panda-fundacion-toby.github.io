@@ -1,10 +1,9 @@
-import { Card } from './card.js';
 import { Datos } from './datos.js';
 const { createApp } = Vue;
 
 const datosPerritos = new Datos();
 datosPerritos.load().then(() => {
-    const element = document.getElementById('adopta-app');
+    const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 100;
     createApp({
@@ -14,6 +13,7 @@ datosPerritos.load().then(() => {
                 cards: datosPerritos.getCards(currentPage, pageSize),
                 currentPage: 0,
                 pageSize: 3,
+                ready: true
             }
         },
         methods: {
@@ -26,6 +26,13 @@ datosPerritos.load().then(() => {
                 this.cards = datosPerritos.getCards(this.currentPage, pageSize);
             }
         }
-    }).mount(element);
-    element.classList.remove('adopta-init');
+    }).mount(adoptaAppElement);
+    adoptaAppElement.classList.remove('adopta-init');
+}).catch(error => {
+    console.trace(error);
+    const elements = document.getElementsByClassName('cargando');
+    console.log(elements);
+    Array.from(elements).forEach(e => {
+        e.classList.add('app-hide');
+    });
 });

@@ -8,29 +8,33 @@ import { DataTable } from './dataTable.js';
 export class Datos {
 
     load() {
-        google.charts.load('current', { 'packages': ['corechart'] });
-        return new Promise((accept) => {
-            google.charts.setOnLoadCallback(() => {
-                const query = new google.visualization.Query(config.docUrl);
-                query.send((response) => {
-                    const data = response.getDataTable();
-                    this.dataTable = new DataTable(data);
-                    const cards = [];
-                    for (let index = 0; index < this.dataTable.count(); index++) {
-                        const perrito = this.dataTable.getElement(index);
-                        const nombre = perrito.c[1].v;
-                        const historia = perrito.c[2].v;
-                        cards.push(new Card({
-                            key: index,
-                            nombre,
-                            pictureurl: './resources/images/mockita-01.jpeg',
-                            historia
-                        }));
-                    }
-                    this.cards = cards;
-                    accept(this.dataTable);
+        return new Promise((accept, reject) => {
+            try {
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(() => {
+                    const query = new google.visualization.Query(config.docUrl);
+                    query.send((response) => {
+                        const data = response.getDataTable();
+                        this.dataTable = new DataTable(data);
+                        const cards = [];
+                        for (let index = 0; index < this.dataTable.count(); index++) {
+                            const perrito = this.dataTable.getElement(index);
+                            const nombre = perrito.c[1].v;
+                            const historia = perrito.c[2].v;
+                            cards.push(new Card({
+                                key: index,
+                                nombre,
+                                pictureurl: './resources/images/mockita-01.jpeg',
+                                historia
+                            }));
+                        }
+                        this.cards = cards;
+                        accept(this.dataTable);
+                    });
                 });
-            });
+            } catch (error) {
+                reject(error);
+            }
         });
     }
 

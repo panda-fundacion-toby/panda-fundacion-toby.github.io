@@ -109,8 +109,12 @@
     padding: 1rem;
 }
 
-.adopta-init {
+.app-hide {
     display: none;
+}
+
+.app-show {
+    display: block;
 }
 
 .adopta-remove {

@@ -1,50 +1,55 @@
-<div id="adopta-app" class="adopta-init">
-    <h5 class="text-muted">
-        Total de perritos en adopcion: {{total}}
-    </h5>
-    <div class="row adopta-card-container" v-for="card in cards" style="justify-content: center; margin: 1rem 0;">
-        <div :key="card.key" class="col-xs-12">
-            <div class="card adopta-card" style="max-width: 320px">
-                <div class="card-body">
-                    <h5 class="card-title adopta-header">
-                        <div
-                            style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
-                            {{card.nombre}}
-                        </div>
-                    </h5>
-                    <div class="row adopta-body-1">
-                        <div class="col-sm-6 adopta-stats" style="display: flex; flex-direction: column;">
-                            <div style="margin: 0.2rem 0">
-                                <div class="text-secondary">
-                                    nivel de energia
-                                </div>
-                                <div>starts</div>
+<div id="adopta-app">
+    <div class="cargando" :class="{ 'app-hide': ready }">
+        Cargando...
+    </div>
+    <div class="app-hide" :class="{ 'app-show': ready }">
+        <h5 class="text-muted">
+            Total de perritos en adopcion: {{total}}
+        </h5>
+        <div class="row adopta-card-container" v-for="card in cards" style="justify-content: center; margin: 1rem 0;">
+            <div :key="card.key" class="col-xs-12">
+                <div class="card adopta-card" style="max-width: 320px">
+                    <div class="card-body">
+                        <h5 class="card-title adopta-header">
+                            <div
+                                style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
+                                {{card.nombre}}
                             </div>
-                            <div style="margin: 0.2rem 0">
-                                <div class="text-secondary">
-                                    tamaño
+                        </h5>
+                        <div class="row adopta-body-1">
+                            <div class="col-sm-6 adopta-stats" style="display: flex; flex-direction: column;">
+                                <div style="margin: 0.2rem 0">
+                                    <div class="text-secondary">
+                                        nivel de energia
+                                    </div>
+                                    <div>starts</div>
                                 </div>
-                                <div>huellitas</div>
+                                <div style="margin: 0.2rem 0">
+                                    <div class="text-secondary">
+                                        tamaño
+                                    </div>
+                                    <div>huellitas</div>
+                                </div>
+                                <div style="margin: 0.2rem 0">
+                                    <div class="text-secondary">
+                                        sexo
+                                    </div>
+                                    <div>up</div>
+                                </div>
                             </div>
-                            <div style="margin: 0.2rem 0">
-                                <div class="text-secondary">
-                                    sexo
-                                </div>
-                                <div>up</div>
+                            <div class="col-sm-6 adopta-picture-container">
+                                <!-- https://dev.to/temmietope/embedding-a-google-drive-image-in-html-3mm9 -->
+                                <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" width="120">
                             </div>
                         </div>
-                        <div class="col-sm-6 adopta-picture-container">
-                            <!-- https://dev.to/temmietope/embedding-a-google-drive-image-in-html-3mm9 -->
-                            <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" width="120">
+                        <div class="adopta-historia" style="margin: 0.3rem 0">
+                            {{card.historia}}
                         </div>
-                    </div>
-                    <div class="adopta-historia" style="margin: 0.3rem 0">
-                        {{card.historia}}
-                    </div>
-                    <div>
-                        <a href="#mas-informacion">
-                            más información
-                        </a>
+                        <div>
+                            <a href="#mas-informacion">
+                                más información
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
