@@ -1,5 +1,6 @@
 import { config } from './config.js';
 import { Card } from './card.js';
+import { DataTable } from './dataTable.js';
 
 /**
  * https://developers.google.com/chart/interactive/docs/reference#DataTable
@@ -13,20 +14,28 @@ export class Datos {
                 const query = new google.visualization.Query(config.docUrl);
                 query.send((response) => {
                     const data = response.getDataTable();
-                    this.data = JSON.parse(data.toJSON());
-                    accept(data);
+                    this.dataTable = new DataTable(data);
                     const cards = [];
-                    for (let index = 0; index < 50; index++) {
-                        cards.push(new Card({ key: index, nombre: `nombre ${index}`, pictureurl: 'https://drive.google.com/file/d/1HXq1h4DlUzffEjVnj8T3kJns8ahWuTS-/preview' }));
+                    for (let index = 0; index < this.dataTable.count(); index++) {
+                        const perrito = this.dataTable.getElement(index);
+                        const nombre = perrito.c[1].v;
+                        const historia = perrito.c[2].v;
+                        cards.push(new Card({
+                            key: index,
+                            nombre,
+                            pictureurl: './resources/images/mockita-01.jpeg',
+                            historia
+                        }));
                     }
                     this.cards = cards;
+                    accept(this.dataTable);
                 });
             });
         });
     }
 
     count() {
-        return this.data.rows.length;
+        return this.dataTable.count();
     }
 
     getCards(page, pageSize) {

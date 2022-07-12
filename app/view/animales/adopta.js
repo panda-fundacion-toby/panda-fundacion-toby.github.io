@@ -6,7 +6,7 @@ const datosPerritos = new Datos();
 datosPerritos.load().then(() => {
     const element = document.getElementById('adopta-app');
     const currentPage = 0;
-    const pageSize = 50;
+    const pageSize = 100;
     createApp({
         data() {
             return {
@@ -19,15 +19,7 @@ datosPerritos.load().then(() => {
         methods: {
             previewPage() {
                 this.currentPage--;
-                // this.cards = [];
-                // const elements = document.getElementsByClassName('adopta-card');
-                // Array.from(elements).forEach(e => {
-                //     e.classList.add('adopta-remove');
-                // });
-                // setTimeout(() => {
                 this.cards = datosPerritos.getCards(this.currentPage, pageSize);
-                // }, 200);
-
             },
             nextPage() {
                 this.currentPage++;

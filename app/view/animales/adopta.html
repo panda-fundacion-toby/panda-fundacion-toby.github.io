@@ -1,64 +1,53 @@
 <div id="adopta-app" class="adopta-init">
-    <div class="row">
-        <div class="col-md-4 adopta-botones-tarjetas"
-            style="display: flex; align-items: center; justify-content: flex-end;">
-            <!-- <button class="btn btn-primary" v-on:click="previewPage">Izquierda</button> -->
-        </div>
-        <div class="col-md-4">
-            <h5 class="text-muted">
-                Total de perritos en adopcion: {{total}}
-            </h5>
-            <div class="row adopta-card-container">
-                <div v-for="card in cards" :key="card.key" class="offset-md-2 col-md-8">
-                    <div class="card adopta-card">
-                        <div class="card-body">
-                            <h5 class="card-title adopta-header">
-                                <div style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem;">
-                                    {{card.nombre}}
+    <h5 class="text-muted">
+        Total de perritos en adopcion: {{total}}
+    </h5>
+    <div class="row adopta-card-container" v-for="card in cards" style="justify-content: center; margin: 1rem 0;">
+        <div :key="card.key" class="col-xs-12">
+            <div class="card adopta-card" style="max-width: 320px">
+                <div class="card-body">
+                    <h5 class="card-title adopta-header">
+                        <div
+                            style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
+                            {{card.nombre}}
+                        </div>
+                    </h5>
+                    <div class="row adopta-body-1">
+                        <div class="col-sm-6 adopta-stats" style="display: flex; flex-direction: column;">
+                            <div style="margin: 0.2rem 0">
+                                <div class="text-secondary">
+                                    nivel de energia
                                 </div>
-                            </h5>
-                            <div class="row adopta-body-1">
-                                <div class="col-sm-6 adopta-stats" style="display: flex; flex-direction: column;">
-                                    <div>
-                                        <div>
-                                            nivel de energia
-                                        </div>
-                                        <div>starts</div>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            tamaño
-                                        </div>
-                                        <div>huellitas</div>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            sexo
-                                        </div>
-                                        <div>up</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 adopta-picture-container">
-                                    <iframe class="img-thumbnail adopta-picture-frame" width="100px"
-                                        :src="card.pictureurl"></iframe>
-                                </div>
+                                <div>starts</div>
                             </div>
-                            <div class="adopta-historia">
-                                Vivió en una pensión cercana a F. Toby. Una persona horrible llegó a nuestra puerta a
-                                amenazrnos, diciendo que si no lo recibamos lo iba a matar.
+                            <div style="margin: 0.2rem 0">
+                                <div class="text-secondary">
+                                    tamaño
+                                </div>
+                                <div>huellitas</div>
                             </div>
-                            <div>
-                                <a href="#mas-informacion">
-                                    más información
-                                </a>
+                            <div style="margin: 0.2rem 0">
+                                <div class="text-secondary">
+                                    sexo
+                                </div>
+                                <div>up</div>
                             </div>
                         </div>
+                        <div class="col-sm-6 adopta-picture-container">
+                            <!-- https://dev.to/temmietope/embedding-a-google-drive-image-in-html-3mm9 -->
+                            <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" width="120">
+                        </div>
+                    </div>
+                    <div class="adopta-historia" style="margin: 0.3rem 0">
+                        {{card.historia}}
+                    </div>
+                    <div>
+                        <a href="#mas-informacion">
+                            más información
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2 adopta-botones-tarjetas" style="display: flex; align-items: center">
-            <!-- <button class="btn btn-primary" @click="nextPage">Derecha</button> -->
         </div>
     </div>
 </div>
