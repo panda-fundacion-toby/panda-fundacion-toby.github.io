@@ -8,7 +8,12 @@ class Main {
     constructor() {
         const navigation = new Navigation();
         this.wire();
-        this.navigateTo(navigation.viewName);
+        this.navigateTo(navigation.viewName, true);
+        window.addEventListener('popstate', event => {
+            if (event.state) {
+                this.navigateTo(event.state.moduleName, false);
+            }
+        });
     }
 
     /**
@@ -22,16 +27,21 @@ class Main {
             if (href.startsWith('#')) {
                 element.onclick = (e) => {
                     const moduleNameWithHash = e.target.getAttribute('href');
-                    this.navigateTo(moduleNameWithHash);
+                    this.navigateTo(moduleNameWithHash, true);
+                    return false;
                 };
             }
         });
     }
 
-    navigateTo(moduleName) {
+    navigateTo(moduleName, pushState) {
         if (moduleName.startsWith('#')) {
+            if (pushState) {
+                history.pushState({ moduleName }, '', moduleName);
+            }
             moduleName = moduleName.substring(1);
         }
+
         agua.getTemplate(`${moduleName}.html`).then(template => {
             const viewContainer = document.getElementById('viewContainer');
             const view = document.getElementById('view');
