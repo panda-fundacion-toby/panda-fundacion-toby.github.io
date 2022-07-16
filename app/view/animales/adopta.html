@@ -3,12 +3,14 @@
         Cargando...
     </div>
     <div class="app-hide" :class="{ 'app-show': ready }">
-        <h5 class="text-muted">
+        <h2>Adopciones</h2>
+        <div class="text-muted">
             Total de perritos en adopcion: {{total}}
-        </h5>
-        <div class="row adopta-card-container" v-for="card in cards" style="justify-content: center; margin: 1rem 0;">
-            <div :key="card.key" class="col-xs-12">
-                <div class="card adopta-card" style="max-width: 320px">
+        </div>
+        <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key">
+            <div class="col-xs-12">
+                <div class="card adopta-card" style="max-width: 20rem; margin: 1rem 0;"
+                    :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
                         <h5 class="card-title adopta-header">
                             <div
@@ -22,24 +24,31 @@
                                     <div class="text-secondary">
                                         nivel de energia
                                     </div>
-                                    <div>starts</div>
+                                    <div :class="['adopta-energia-' + card.nivelDeEnergia]">{{card.nivelDeEnergia}}
+                                    </div>
+                                </div>
+                                <div style="margin: 0.2rem 0">
+                                    <div class="text-secondary">
+                                        edad
+                                    </div>
+                                    <div :class="['adopta-edad-' + card.edad]">{{card.edad}}</div>
                                 </div>
                                 <div style="margin: 0.2rem 0">
                                     <div class="text-secondary">
                                         tamaño
                                     </div>
-                                    <div>huellitas</div>
+                                    <div>{{card.tamano}}</div>
                                 </div>
                                 <div style="margin: 0.2rem 0">
                                     <div class="text-secondary">
                                         sexo
                                     </div>
-                                    <div>up</div>
+                                    <div>{{card.sexo}}</div>
                                 </div>
                             </div>
                             <div class="col-sm-6 adopta-picture-container">
-                                <!-- https://dev.to/temmietope/embedding-a-google-drive-image-in-html-3mm9 -->
-                                <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" width="120">
+                                <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" width="120"
+                                    loading="lazy">
                             </div>
                         </div>
                         <div class="adopta-historia" style="margin: 0.3rem 0">

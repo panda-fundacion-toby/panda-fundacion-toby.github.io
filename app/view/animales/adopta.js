@@ -13,11 +13,12 @@ datosPerritos.load().then(() => {
                 cards: datosPerritos.getCards(currentPage, pageSize),
                 currentPage: 0,
                 pageSize: 3,
+                vanish: false,
                 ready: true
             }
         },
         methods: {
-            previewPage() {
+            previousPage() {
                 this.currentPage--;
                 this.cards = datosPerritos.getCards(this.currentPage, pageSize);
             },

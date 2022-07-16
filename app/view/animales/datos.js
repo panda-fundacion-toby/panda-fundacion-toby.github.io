@@ -1,9 +1,14 @@
 import { config } from './config.js';
 import { Card } from './card.js';
-import { DataTable } from './dataTable.js';
+import { getImageFromDriveId, getPictureIdFrom, getPicturesFromCellValue } from './dataHelpers.js';
+// import { DataTable } from './dataTable.js';
 
 /**
+ * DataTable:
  * https://developers.google.com/chart/interactive/docs/reference#DataTable
+ * 
+ * getDataTable:
+ * https://developers.google.com/chart/interactive/docs/reference#QueryResponse_getDataTable
  */
 export class Datos {
 
@@ -12,20 +17,29 @@ export class Datos {
             try {
                 google.charts.load('current', { 'packages': ['corechart'] });
                 google.charts.setOnLoadCallback(() => {
-                    const query = new google.visualization.Query(config.docUrl);
-                    query.send((response) => {
-                        const data = response.getDataTable();
-                        this.dataTable = new DataTable(data);
+                    new google.visualization.Query(config.docUrl).send((response) => {
+                        const dataTable = response.getDataTable();
+                        this.dataTable = dataTable;
                         const cards = [];
-                        for (let index = 0; index < this.dataTable.count(); index++) {
-                            const perrito = this.dataTable.getElement(index);
-                            const nombre = perrito.c[1].v;
-                            const historia = perrito.c[2].v;
+                        for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
+                            const nombre = this.dataTable.getValue(index, 1);
+                            const historia = this.dataTable.getValue(index, 2);
+                            const nivelDeEnergia = this.dataTable.getValue(index, 3) || 1;
+                            const edad = this.dataTable.getValue(index, 4) || 1;
+                            const sexo = this.dataTable.getValue(index, 5) || '?';
+                            const tamano = this.dataTable.getValue(index, 6) || 1;
+                            const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 7));
+                            const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
                             cards.push(new Card({
                                 key: index,
                                 nombre,
-                                pictureurl: './resources/images/mockita-01.jpeg',
-                                historia
+                                pictureurl,
+                                pictures: pictures.map(p => getPictureIdFrom(p)),
+                                historia,
+                                nivelDeEnergia,
+                                edad,
+                                sexo,
+                                tamano
                             }));
                         }
                         this.cards = cards;
@@ -39,11 +53,11 @@ export class Datos {
     }
 
     count() {
-        return this.dataTable.count();
+        return this.dataTable.getNumberOfRows();
     }
 
     getCards(page, pageSize) {
-        const totalPages = Math.floor(this.cards.length / pageSize);
+        // const totalPages = Math.floor(this.cards.length / pageSize);
         const actualPage = Math.min(this.cards.length - 1, Math.max(0, page));
         const start = actualPage * pageSize;
         const cards = [];

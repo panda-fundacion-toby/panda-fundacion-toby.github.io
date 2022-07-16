@@ -117,17 +117,51 @@
     display: block;
 }
 
-.adopta-remove {
+.adopta-vanish {
 
     /* This timing applies on the way OUT */
-    transition-timing-function: ease-in;
+    /* transition-timing-function: ease-in; */
 
     /* Quick on the way out */
     transition: 0.2s;
 
     /* Hide thing by pushing it outside by default */
-    transform: translateX(-100%);
+    /* transform: translateX(-100%); */
 
     opacity: 0;
 
+}
+
+/* .isHidden {
+    display: none;
+    opacity: 0;
+    transition-delay: 0.2s;
+    transition-duration: 1s;
+    transition-property: display opacity;
+    transition-timing-function: ...;
+} */
+
+/* .adopta-isHidden {
+    opacity: 0;
+    transition-delay: 0.1s;
+    transition-duration: 0.254s;
+    transition-property: opacity;
+} */
+
+.adopta-card {
+    transition: left 0.143s, width 2s, height 2s, background-color 2s, transform 2s, opacity 0.143s;
+    top: 0;
+    left: 0;
+}
+
+.adopta-isHidden {
+    /* top: -200px;     */
+    /* position: absolute; */
+    left: -200%;
+    z-index: -1;
+    opacity: 0;
+    /* background-color: #FFCCCC;
+    width: 200px;
+    height: 200px;
+    transform: rotate(180deg); */
 }
