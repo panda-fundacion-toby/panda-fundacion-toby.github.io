@@ -43,7 +43,9 @@
                                     <div class="text-secondary">
                                         sexo
                                     </div>
-                                    <div>{{card.sexo}}</div>
+                                    <div><i class="fas text-muted"
+                                            :class="{'fa-mars': card.sexo === 'M', 'fa-venus': card.sexo === 'H'}"></i>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 adopta-picture-container">
