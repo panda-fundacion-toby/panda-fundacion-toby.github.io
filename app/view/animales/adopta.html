@@ -12,19 +12,17 @@
                 <div class="card adopta-card" style="max-width: 20rem; margin: 1rem 0;"
                     :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
-                        <h5 class="card-title adopta-header">
-                            <div
-                                style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
-                                {{card.nombre}}
-                            </div>
+                        <h5 class="card-title adopta-header" style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
+                            {{card.nombre}}
                         </h5>
-                        <div class="row adopta-body-1">
-                            <div class="col-sm-6 adopta-stats" style="display: flex; flex-direction: column;">
+                        <div class="row">
+                            <div class="col-sm-5" style="display: flex; flex-direction: column;">
                                 <div style="margin: 0.2rem 0">
                                     <div class="text-secondary">
                                         nivel de energia
                                     </div>
-                                    <div :class="['adopta-energia-' + card.nivelDeEnergia]">{{card.nivelDeEnergia}}
+                                    <div :class="['adopta-energia-' + card.nivelDeEnergia]">
+                                        <i class="fas fa-star text-muted" v-for="item in card.nivelDeEnergia"></i>
                                     </div>
                                 </div>
                                 <div style="margin: 0.2rem 0">
@@ -48,8 +46,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 adopta-picture-container">
-                                <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" width="120"
+                            <div class="col-sm-7">
+                                <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl"
                                     loading="lazy">
                             </div>
                         </div>
