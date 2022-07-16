@@ -1,7 +1,7 @@
-import { Datos } from './datos.js';
+import { conejito } from '../../main/src/panda/conejito.js';
+import { datosPerritos } from './datosPerritos.js';
 const { createApp } = Vue;
 
-const datosPerritos = new Datos();
 datosPerritos.load().then(() => {
     const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
@@ -14,7 +14,8 @@ datosPerritos.load().then(() => {
                 currentPage: 0,
                 pageSize: 3,
                 vanish: false,
-                ready: true
+                ready: true,
+                currentDog: {}
             }
         },
         methods: {
@@ -25,7 +26,19 @@ datosPerritos.load().then(() => {
             nextPage() {
                 this.currentPage++;
                 this.cards = datosPerritos.getCards(this.currentPage, pageSize);
+            },
+            showPhoto(key) {
+                const found = datosPerritos.cards.find(c => c.key === key);
+                if (!found) {
+                    return;
+                }
+                this.currentDog = found;
+                $('#perritoModal').modal('toggle');
+                // console.log($('#perritoModal'));
             }
+        },
+        mounted() {
+            conejito.wire('.app-rewire');
         }
     }).mount(adoptaAppElement);
     adoptaAppElement.classList.remove('adopta-init');

@@ -13,6 +13,9 @@ import { getImageFromDriveId, getPictureIdFrom, getPicturesFromCellValue } from 
 export class Datos {
 
     load() {
+        if (this.dataTable) {
+            return Promise.resolve(this.dataTable);
+        }
         return new Promise((accept, reject) => {
             try {
                 google.charts.load('current', { 'packages': ['corechart'] });

@@ -1,7 +1,7 @@
 
 export class Card {
     constructor(data) {
-        this.id = data.id;
+        this.key = data.key;
         this.nombre = data.nombre;
         this.nivelDeEnergia = data.nivelDeEnergia;
         this.edad = data.edad;
@@ -10,5 +10,9 @@ export class Card {
         this.historia = data.historia;
         this.pictureurl = data.pictureurl;
         this.pictures = data.pictures;
+    }
+
+    get masinfo() {
+        return `#animales/show/?id=${this.key}`
     }
 }

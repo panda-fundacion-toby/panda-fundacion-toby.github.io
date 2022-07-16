@@ -143,3 +143,9 @@
     z-index: -1;
     opacity: 0;
 }
+
+.adopta-modal-img {
+    object-fit: cover;
+    width: 40rem;
+    height: 40rem;
+}
