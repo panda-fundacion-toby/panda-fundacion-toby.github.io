@@ -54,9 +54,9 @@
                             {{card.historia}}
                         </div>
                         <div>
-                            <a :href="card.masinfo" class="app-rewire">
+                            <button class="btn btn-link" @click="showPhoto(card.key)">
                                 más información
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
     <!-- Modal -->
     <div class="modal fade" id="perritoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{currentDog.nombre}}</h5>
@@ -75,7 +75,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img class="img-fluid rounded mx-auto adopta-modal-img" :src="currentDog.pictureurl" loading="lazy">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <img class="img-fluid rounded mx-auto adopta-modal-img" :src="currentDog.pictureurl"
+                                loading="lazy">
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="adopta-historia" style="margin: 0.3rem 0">
+                                {{currentDog.historia}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
