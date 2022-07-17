@@ -37,7 +37,6 @@ datosPerritos.load().then(() => {
                 }
                 this.currentDog = found;
                 $('#perritoModal').modal('toggle');
-                // console.log($('#perritoModal'));
             }
         },
         mounted() {
