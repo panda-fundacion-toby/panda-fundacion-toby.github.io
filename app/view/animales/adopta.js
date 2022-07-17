@@ -3,6 +3,9 @@ import { datosPerritos } from './datosPerritos.js';
 const { createApp } = Vue;
 
 datosPerritos.load().then(() => {
+    conejito.onBeforeNavigate(() => {
+        $('#perritoModal').modal('hide');
+    });
     const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 100;

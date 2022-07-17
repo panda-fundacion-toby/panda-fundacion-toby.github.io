@@ -7,6 +7,7 @@ import { parseHash } from './navigationUtils.js';
  */
 class Main {
     constructor() {
+        this.beforeNavigationCallbacks = [];
         const navigation = new Navigation();
         this.wire();
         this.navigateTo(navigation.viewName, true);
@@ -36,6 +37,9 @@ class Main {
     }
 
     navigateTo(hash, pushState) {
+        this.beforeNavigationCallbacks.forEach(callback => {
+            callback();
+        });
         if (pushState) {
             history.pushState({ moduleName: hash }, '', hash);
         }
@@ -61,6 +65,10 @@ class Main {
             viewModelScript.setAttribute('src', `app/view/${moduleName}.js?t=${Date.now()}`);
             document.body.appendChild(viewModelScript);
         });
+    }
+
+    onBeforeNavigate(callback) {
+        this.beforeNavigationCallbacks.push(callback);
     }
 
 }
