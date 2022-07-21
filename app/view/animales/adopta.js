@@ -37,6 +37,12 @@ datosPerritos.load().then(() => {
                 }
                 this.currentDog = found;
                 $('#perritoModal').modal('toggle');
+            },
+            preview() {
+                this.currentDog.preview();
+            },
+            next() {
+                this.currentDog.next();
             }
         },
         mounted() {

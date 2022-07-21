@@ -31,18 +31,20 @@ export class Datos {
                             const edad = this.dataTable.getValue(index, 4) || 1;
                             const sexo = this.dataTable.getValue(index, 5) || '?';
                             const tamano = this.dataTable.getValue(index, 6) || 1;
-                            const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 7));
+                            const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 7)) || [];
                             const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
                             cards.push(new Card({
                                 key: index,
                                 nombre,
                                 pictureurl,
-                                pictures: pictures.map(p => getPictureIdFrom(p)),
+                                pictures: pictures.map(p => getImageFromDriveId(getPictureIdFrom(p))),
                                 historia,
                                 nivelDeEnergia,
                                 edad,
                                 sexo,
-                                tamano
+                                tamano,
+                                demoPictureUrl: pictureurl,
+                                demoPictureIndex: 0
                             }));
                         }
                         this.cards = cards;

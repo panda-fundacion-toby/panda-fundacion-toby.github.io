@@ -77,8 +77,21 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <img class="img-fluid rounded mx-auto adopta-modal-img" :src="currentDog.pictureurl"
-                                loading="lazy">
+                            <div style="position: relative;">
+                                <img class="img-fluid rounded mx-auto adopta-modal-img" :src="currentDog.demoPictureUrl"
+                                    loading="lazy">
+                                <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
+                                    <i class="fas fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-secondary adopta-modal-btn-right" @click="next">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-dot-circle" v-for="(item, index) in currentDog.pictures"
+                                    :class="{'text-primary': currentDog.demoPictureIndex === index, 'text-secondary': currentDog.demoPictureIndex !== index}">
+                                </i>
+                            </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="adopta-historia" style="margin: 0.3rem 0">

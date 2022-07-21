@@ -149,3 +149,23 @@
     width: 40rem;
     height: 40rem;
 }
+
+.adopta-modal-btn-left {
+    border-radius: 1rem;
+    height: 2rem;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    width: 2rem;
+}
+
+.adopta-modal-btn-right {
+    border-radius: 1rem;
+    height: 2rem;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 2rem;
+}
