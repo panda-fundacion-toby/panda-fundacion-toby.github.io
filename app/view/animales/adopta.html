@@ -7,17 +7,17 @@
             Total de perritos en adopcion: {{total}}
         </div>
         <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key">
-            <div class="col-xs-12">
-                <div class="card adopta-card" style="max-width: 20rem; margin: 1rem 0;"
-                    :class="{'adopta-isHidden': vanish}">
+            <div class="col-sm-12 col-md-4 com-lg-3 mt-2 mb-2 p-0">
+                <div class="card adopta-card" style="padding: 1rem 0;" :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
                         <h5 class="card-title adopta-header"
                             style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
                             {{card.nombre}}
                         </h5>
                         <div class="row">
+                            <!-- columna de datos -->
                             <div class="col-sm-5" style="display: flex; flex-direction: column;">
-                                <div style="margin: 0.2rem 0">
+                                <div style="padding: 0.2rem 0">
                                     <div class="text-secondary">
                                         energia
                                     </div>
@@ -25,19 +25,19 @@
                                         <i class="fas fa-star text-muted" v-for="item in card.nivelDeEnergia"></i>
                                     </div>
                                 </div>
-                                <div style="margin: 0.2rem 0">
+                                <div style="padding: 0.2rem 0">
                                     <div class="text-secondary">
                                         edad
                                     </div>
                                     <div :class="['adopta-edad-' + card.edad]">{{card.edad}}</div>
                                 </div>
-                                <div style="margin: 0.2rem 0">
+                                <div style="padding: 0.2rem 0">
                                     <div class="text-secondary">
                                         tamaño
                                     </div>
                                     <div>{{card.tamano}}</div>
                                 </div>
-                                <div style="margin: 0.2rem 0">
+                                <div style="padding: 0.2rem 0">
                                     <div class="text-secondary">
                                         sexo
                                     </div>
@@ -46,11 +46,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- foto -->
                             <div class="col-sm-7" role="button" @click="showPhoto(card.key)">
                                 <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" loading="lazy">
                             </div>
                         </div>
-                        <div class="adopta-historia" style="margin: 0.3rem 0">
+                        <div class="adopta-historia" style="padding: 0.3rem 0">
                             {{card.historia}}
                         </div>
                         <div>

@@ -26,8 +26,7 @@ export class Datos {
                         const cards = [];
                         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
                             const nombre = this.dataTable.getValue(index, 1);
-                            // const nivelDeEnergia = Math.floor(this.dataTable.getValue(index, 3) || 1);
-                            const nivelDeEnergia = 1;
+                            const nivelDeEnergia = Math.floor(this.dataTable.getValue(index, 3) || 1);
                             const edad = this.dataTable.getValue(index, 3) || 1;
                             const tamano = this.dataTable.getValue(index, 4) || 1;
                             const sexo = this.dataTable.getValue(index, 5) || '?';
