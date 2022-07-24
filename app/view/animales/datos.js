@@ -1,6 +1,7 @@
 import { config } from './config.js';
 import { Card } from './card.js';
 import { getImageFromDriveId, getPictureIdFrom, getPicturesFromCellValue } from './dataHelpers.js';
+import { map } from './map-datos-fundacion.js';
 // import { DataTable } from './dataTable.js';
 
 /**
@@ -26,25 +27,25 @@ export class Datos {
                         const cards = [];
                         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
                             const nombre = this.dataTable.getValue(index, 1);
-                            const nivelDeEnergia = Math.floor(this.dataTable.getValue(index, 3) || 1);
                             const edad = this.dataTable.getValue(index, 3) || 1;
                             const tamano = this.dataTable.getValue(index, 4) || 1;
                             const sexo = this.dataTable.getValue(index, 5) || '?';
                             const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 2)) || [];
                             const historia = this.dataTable.getValue(index, 14);
                             const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
+                            const mappings = map(this.dataTable, index);
                             cards.push(new Card({
                                 key: index,
                                 nombre,
                                 pictureurl,
                                 pictures: pictures.map(p => getImageFromDriveId(getPictureIdFrom(p))),
                                 historia,
-                                nivelDeEnergia,
                                 edad,
                                 sexo,
                                 tamano,
                                 demoPictureUrl: pictureurl,
-                                demoPictureIndex: 0
+                                demoPictureIndex: 0,
+                                ...mappings
                             }));
                         }
                         this.cards = cards;

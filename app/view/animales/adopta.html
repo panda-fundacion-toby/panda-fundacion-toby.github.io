@@ -7,11 +7,11 @@
             Total de perritos en adopcion: {{total}}
         </div>
         <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key">
-            <div class="col-sm-12 col-md-4 com-lg-3 mt-2 mb-2 p-0">
+            <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2 p-0">
                 <div class="card adopta-card" style="padding: 1rem 0;" :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
                         <h5 class="card-title adopta-header"
-                            style="border: 1px solid lightblue; border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
+                            style="border-radius: 5px; padding: 1rem; background-color: #458F96; color: #FFFFFF;">
                             {{card.nombre}}
                         </h5>
                         <div class="row">
