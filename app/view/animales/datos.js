@@ -26,12 +26,12 @@ export class Datos {
                         const cards = [];
                         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
                             const nombre = this.dataTable.getValue(index, 1);
-                            const historia = this.dataTable.getValue(index, 2);
-                            const nivelDeEnergia = this.dataTable.getValue(index, 3) || 1;
-                            const edad = this.dataTable.getValue(index, 4) || 1;
+                            const nivelDeEnergia = Math.floor(this.dataTable.getValue(index, 3) || 1);
+                            const edad = this.dataTable.getValue(index, 3) || 1;
+                            const tamano = this.dataTable.getValue(index, 4) || 1;
                             const sexo = this.dataTable.getValue(index, 5) || '?';
-                            const tamano = this.dataTable.getValue(index, 6) || 1;
-                            const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 7)) || [];
+                            const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 2)) || [];
+                            const historia = this.dataTable.getValue(index, 14);
                             const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
                             cards.push(new Card({
                                 key: index,
@@ -62,13 +62,24 @@ export class Datos {
     }
 
     getCards(page, pageSize) {
-        // const totalPages = Math.floor(this.cards.length / pageSize);
-        const actualPage = Math.min(this.cards.length - 1, Math.max(0, page));
-        const start = actualPage * pageSize;
-        const cards = [];
-        for (let index = start; index < (start + pageSize) && (index < this.cards.length); index++) {
-            cards.push(this.cards[index]);
+        if (!(pageSize > 0)) {
+            throw `Illegal pageSize argument. pageSize must be a positive integer. Got ${pageSize} instead.`;
         }
+        const count = this.cards.length;
+        if (count === 0) {
+            return [];
+        }
+        const numberOfCurrentPages = Math.floor(count / pageSize);
+        page = Math.max(0, Math.min(page, numberOfCurrentPages - 1));
+        const cards = [];
+        for (let index = 0; index < pageSize; index++) {
+            let cardIndex = (page * pageSize) + index;
+            if (cardIndex >= this.cards.length) {
+                break;
+            }
+            cards.push(this.cards[cardIndex]);
+        }
+        console.log(cards);
         return cards;
     }
 }
