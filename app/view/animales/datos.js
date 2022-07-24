@@ -79,7 +79,6 @@ export class Datos {
             }
             cards.push(this.cards[cardIndex]);
         }
-        console.log(cards);
         return cards;
     }
 }
