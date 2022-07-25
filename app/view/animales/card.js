@@ -1,3 +1,4 @@
+import { pmod } from "../../main/src/panda/untercio.js";
 
 export class Card {
     constructor(data) {
@@ -14,19 +15,30 @@ export class Card {
         this.demoPictureIndex = data.demoPictureIndex;
     }
 
-    preview() {
-        if(this.pictures.length === 0){
+    get nextDemoPictureUrl() {
+        return this.getPictureUrl(this.demoPictureIndex + 1);
+    }
+
+    getPictureUrl(index) {
+        if (this.pictures.length === 0) {
             return;
         }
-        this.demoPictureIndex = Math.max(0, this.demoPictureIndex - 1);
-        this.demoPictureUrl = this.pictures[this.demoPictureIndex];
+        return this.pictures[pmod(index, this.pictures.length)];
+    }
+
+    preview() {
+        if (this.pictures.length === 0) {
+            return;
+        }
+        this.demoPictureIndex = pmod(this.demoPictureIndex - 1, this.pictures.length)
+        this.demoPictureUrl = this.getPictureUrl(this.demoPictureIndex);
     }
 
     next() {
-        if(this.pictures.length === 0){
+        if (this.pictures.length === 0) {
             return;
         }
-        this.demoPictureIndex = Math.min(this.pictures.length - 1, this.demoPictureIndex + 1);
-        this.demoPictureUrl = this.pictures[this.demoPictureIndex];
+        this.demoPictureIndex = pmod(this.demoPictureIndex + 1, this.pictures.length)
+        this.demoPictureUrl = this.getPictureUrl(this.demoPictureIndex);
     }
 }

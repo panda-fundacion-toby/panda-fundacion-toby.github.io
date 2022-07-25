@@ -21,9 +21,18 @@ const nivelDeEnergiaString = {
     }
 };
 
+const historia = {
+    defaultValue: '',
+    columnNumber: 14,
+    map(value) {
+        return value.trim();
+    }
+};
+
 const mappers = [{
     nivelDeEnergia,
-    nivelDeEnergiaString
+    nivelDeEnergiaString,
+    historia
 }];
 
 export function map(dataTable, index) {
@@ -32,8 +41,8 @@ export function map(dataTable, index) {
         const mapper = mappers[mapperIndex];
         for (const mapperName in mapper) {
             const mapperObject = mapper[mapperName];
-            const value = dataTable.getValue(index, mapperObject.columnNumber);
-            row[mapperName] = mapperObject.map(value) || mapperObject.defaultValue;
+            const value = dataTable.getValue(index, mapperObject.columnNumber) || mapperObject.defaultValue;
+            row[mapperName] = mapperObject.map(value);
         }
     }
     return row;

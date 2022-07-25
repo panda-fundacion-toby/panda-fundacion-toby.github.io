@@ -31,7 +31,6 @@ export class Datos {
                             const tamano = this.dataTable.getValue(index, 4) || 1;
                             const sexo = this.dataTable.getValue(index, 5) || '?';
                             const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 2)) || [];
-                            const historia = this.dataTable.getValue(index, 14);
                             const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
                             const mappings = map(this.dataTable, index);
                             cards.push(new Card({
@@ -39,7 +38,6 @@ export class Datos {
                                 nombre,
                                 pictureurl,
                                 pictures: pictures.map(p => getImageFromDriveId(getPictureIdFrom(p))),
-                                historia,
                                 edad,
                                 sexo,
                                 tamano,

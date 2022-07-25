@@ -81,6 +81,9 @@
                             <div style="position: relative;">
                                 <img class="img-fluid rounded mx-auto adopta-modal-img" :src="currentDog.demoPictureUrl"
                                     loading="lazy">
+                                <img class="img-fluid rounded mx-auto adopta-modal-img"
+                                    :src="currentDog.nextDemoPictureUrl"
+                                    style="position: absolute; opacity: 0; z-index: -1;" loading="lazy">
                                 <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
                                     <i class="fas fa-arrow-left"></i>
                                 </button>
@@ -88,13 +91,14 @@
                                     <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
-                            <div class="text-center">
-                                <i class="fas fa-dot-circle" v-for="(item, index) in currentDog.pictures"
-                                    :class="{'text-primary': currentDog.demoPictureIndex === index, 'text-secondary': currentDog.demoPictureIndex !== index}">
+                            <div class="text-center p-1">
+                                <i class="fas fa-circle" v-for="(item, index) in currentDog.pictures"
+                                    :class="{'text-primary': currentDog.demoPictureIndex === index, 'text-muted': currentDog.demoPictureIndex !== index}">
                                 </i>
                             </div>
                         </div>
                         <div class="col-sm-12">
+
                             <div class="adopta-historia" style="margin: 0.3rem 0">
                                 {{currentDog.historia}}
                             </div>
