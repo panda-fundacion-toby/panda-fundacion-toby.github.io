@@ -79,8 +79,8 @@
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <div style="position: relative;">
-                                <img class="img-fluid rounded mx-auto adopta-modal-img" :src="currentDog.demoPictureUrl"
-                                    loading="lazy">
+                                <img id="adopta-modal-img" class="img-fluid rounded mx-auto adopta-modal-img"
+                                    :src="currentDog.demoPictureUrl" loading="lazy">
                                 <img class="img-fluid rounded mx-auto adopta-modal-img"
                                     :src="currentDog.nextDemoPictureUrl"
                                     style="position: absolute; opacity: 0; z-index: -1; width: 1; height: 1;"
@@ -99,7 +99,6 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-
                             <div class="adopta-historia" style="margin: 0.3rem 0">
                                 {{currentDog.historia}}
                             </div>

@@ -9,7 +9,7 @@ datosPerritos.load().then(() => {
     const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 100;
-    createApp({
+    const app = createApp({
         data() {
             return {
                 total: datosPerritos.count(),
@@ -47,6 +47,14 @@ datosPerritos.load().then(() => {
         },
         mounted() {
             conejito.wire('.app-rewire');
+            const modalImg = document.getElementById('adopta-modal-img');
+            modalImg.addEventListener('swiped', (e) => {
+                if (e.detail.dir === 'left') {
+                    this.currentDog.next();
+                } else if (e.detail.dir === 'right') {
+                    this.currentDog.preview();
+                }
+            });
         }
     }).mount(adoptaAppElement);
     adoptaAppElement.classList.remove('adopta-init');

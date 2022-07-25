@@ -61,10 +61,10 @@
     border-radius: 2rem;
     height: 4rem;
     left: 0;
-    opacity: 0.8;
+    opacity: 0.5;
     padding: 0;
     position: absolute;
-    top: 75%;
+    top: 50%;
     width: 4rem;
 }
 
@@ -74,9 +74,9 @@
     padding: 0;
     position: absolute;
     right: 0;
-    top: 75%;
+    top: 50%;
     width: 4rem;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .arrow-right {
