@@ -135,15 +135,6 @@
     align-items: center;
 }
 
-.home-button-title {
-    margin-top: 1.5rem;
-    /* border-bottom: 2px solid #FFBA69; */
-}
-
-.home-button-text {
-    margin-top: 2rem;
-}
-
 .home-button-card {
     display: flex;
     border: 10px solid #A57196;
@@ -158,8 +149,29 @@
     background-size: cover;
 }
 
+.home-button-v1 {
+    border-color: #F2F6D0;
+}
+
+.home-button-v2 {
+    border-color: #A57197;
+}
+
+.home-button-v3 {
+    border-color: #FFBB6A;
+}
+
 .home-card {
     padding: 1rem;
+}
+
+.home-button-title {
+    margin-top: 1.5rem;
+    /* border-bottom: 2px solid #FFBA69; */
+}
+
+.home-button-text {
+    margin-top: 2rem;
 }
 
 .index-nuestras-redes {
