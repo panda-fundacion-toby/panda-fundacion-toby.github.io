@@ -1,8 +1,6 @@
 class Agua {
 
     getTemplate(templateName) {
-        const prefix = "app/view/";
-        templateName = prefix + templateName;
         return new Promise(function (accept) {
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -10,7 +8,7 @@ class Agua {
                     accept(xhttp.responseText);
                 }
             };
-            xhttp.open("GET", templateName, true);
+            xhttp.open("GET", `app/view/${templateName}?t=${Date.now()}`, true);
             xhttp.send();
         });
     }

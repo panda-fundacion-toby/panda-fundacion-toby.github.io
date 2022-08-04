@@ -41,6 +41,21 @@
     left: 0;
 }
 
+.adopta-header {
+    background-color: #458F96;
+    border-radius: 5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    padding: 1.5rem;
+}
+
+.adopta-historia {
+    background-color: #F4F2E8;
+    border-radius: 5px;
+    margin: 1.5rem 0;
+    padding: 1rem;
+}
+
 .adopta-isHidden {
     left: -200%;
     z-index: -1;
