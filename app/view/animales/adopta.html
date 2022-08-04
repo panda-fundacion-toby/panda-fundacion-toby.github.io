@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div id="adopta-app">
     <div class="cargando" :class="{ 'app-hide': ready }">
         Cargando...
@@ -6,7 +7,7 @@
         <div class="text-muted">
             Total de perritos en adopcion: {{total}}
         </div>
-        <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key">
+        <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key" :id="`card-${card.key}`">
             <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2 p-0">
                 <div class="card adopta-card" style="padding: 1rem 0;" :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
@@ -67,7 +68,7 @@
     <!-- Modal -->
     <div class="modal fade" id="perritoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{currentDog.nombre}}</h5>

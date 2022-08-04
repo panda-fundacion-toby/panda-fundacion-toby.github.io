@@ -18,24 +18,6 @@ class Main {
         });
     }
 
-    /**
-     * Select a group of elements in html and 
-     * @param {string} selector 
-     */
-    wire(selector = 'a') {
-        const links = Array.from(document.querySelectorAll(selector));
-        links.forEach(element => {
-            const href = element.getAttribute('href');
-            if (href?.startsWith('#')) {
-                element.onclick = (e) => {
-                    const moduleNameWithHash = e.target.getAttribute('href');
-                    this.navigateTo(moduleNameWithHash, true);
-                    return false;
-                };
-            }
-        });
-    }
-
     navigateTo(hash, pushState) {
         this.beforeNavigationCallbacks.forEach(callback => {
             callback();
@@ -43,8 +25,9 @@ class Main {
         if (pushState) {
             history.pushState({ moduleName: hash }, '', hash);
         }
-        const hashComponents = parseHash(hash);
-        const { moduleName } = hashComponents;
+        const tenebrito = parseHash(hash);
+        this.tenebrito = tenebrito;
+        const { moduleName } = tenebrito;
         agua.getTemplate(`${moduleName}.html`).then(template => {
             const viewContainer = document.getElementById('viewContainer');
             const view = document.getElementById('view');
@@ -69,6 +52,28 @@ class Main {
 
     onBeforeNavigate(callback) {
         this.beforeNavigationCallbacks.push(callback);
+    }
+
+    pushNavigationPath(path) {
+        history.pushState({ moduleName: path }, '', path);
+    }
+
+    /**
+     * Select a group of elements in html and 
+     * @param {string} selector 
+     */
+     wire(selector = 'a') {
+        const links = Array.from(document.querySelectorAll(selector));
+        links.forEach(element => {
+            const href = element.getAttribute('href');
+            if (href?.startsWith('#')) {
+                element.onclick = (e) => {
+                    const moduleNameWithHash = e.target.getAttribute('href');
+                    this.navigateTo(moduleNameWithHash, true);
+                    return false;
+                };
+            }
+        });
     }
 
 }

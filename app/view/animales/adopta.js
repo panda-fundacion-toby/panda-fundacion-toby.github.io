@@ -32,11 +32,13 @@ datosPerritos.load().then(() => {
             },
             showPhoto(key) {
                 const found = datosPerritos.cards.find(c => c.key === key);
+                console.log(found);
                 if (!found) {
                     return;
                 }
                 this.currentDog = found;
                 $('#perritoModal').modal('toggle');
+                conejito.pushNavigationPath(`#animales/adopta/${key}`);
             },
             preview() {
                 this.currentDog.preview();
@@ -55,6 +57,16 @@ datosPerritos.load().then(() => {
                     this.currentDog.preview();
                 }
             });
+            $('#perritoModal').on('hidden.bs.modal', function (e) {
+                conejito.pushNavigationPath(`#animales/adopta`);
+            })
+            if (conejito.tenebrito.queryString) {
+                this.showPhoto(parseInt(conejito.tenebrito.queryString));
+                const cardElement = document.getElementById(`card-${conejito.tenebrito.queryString}`);
+                if (cardElement) {
+                    cardElement.scrollIntoView(true);
+                }
+            }
         }
     }).mount(adoptaAppElement);
     adoptaAppElement.classList.remove('adopta-init');
