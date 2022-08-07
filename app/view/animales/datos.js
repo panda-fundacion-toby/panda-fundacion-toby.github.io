@@ -27,8 +27,6 @@ export class Datos {
                         const cards = [];
                         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
                             const nombre = this.dataTable.getValue(index, 1);
-                            const edad = this.dataTable.getValue(index, 3) || 1;
-                            const tamano = this.dataTable.getValue(index, 4) || 1;
                             const sexo = this.dataTable.getValue(index, 5) || '?';
                             const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 2)) || [];
                             const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
@@ -38,9 +36,7 @@ export class Datos {
                                 nombre,
                                 pictureurl,
                                 pictures: pictures.map(p => getImageFromDriveId(getPictureIdFrom(p))),
-                                edad,
                                 sexo,
-                                tamano,
                                 demoPictureUrl: pictureurl,
                                 demoPictureIndex: 0,
                                 ...mappings

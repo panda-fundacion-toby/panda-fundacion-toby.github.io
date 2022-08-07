@@ -42,7 +42,7 @@
 }
 
 .adopta-header {
-    background-color: #458F96;
+    background-color: #06858D;
     border-radius: 5px;
     color: #FFFFFF;
     text-transform: uppercase;
@@ -69,25 +69,39 @@
 }
 
 .adopta-modal-btn-left {
-    border-radius: 2rem;
-    height: 4rem;
+    background: lightgrey;
+    border-radius: 1rem;
+    color: darkgray;
+    height: 2rem;
     left: 0;
     opacity: 0.5;
     padding: 0;
     position: absolute;
     top: 50%;
-    width: 4rem;
+    width: 2rem;
 }
 
 .adopta-modal-btn-right {
-    border-radius: 2rem;
-    height: 4rem;
+    background: lightgrey;
+    border-radius: 1rem;
+    color: darkgray;
+    height: 2rem;
+    opacity: 0.5;
     padding: 0;
     position: absolute;
     right: 0;
     top: 50%;
-    width: 4rem;
-    opacity: 0.5;
+    width: 2rem;
+}
+
+.adopta-model-circulo-inactivo {
+    color: #D9D9D9;
+}
+
+.adopta-momdel-img {
+    object-fit: cover;
+    max-width: 67.5rem;
+    max-height: auto;
 }
 
 .arrow-right {

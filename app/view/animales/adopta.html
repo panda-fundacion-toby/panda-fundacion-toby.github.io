@@ -9,7 +9,7 @@
         </div>
         <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key"
             :id="`card-${card.key}`">
-            <div class="col-sm-12 col-md-6 col-lg-4 mt-2 mb-2 p-0">
+            <div class="col-sm-12 col-md-6 col-lg-3 mt-2 mb-2">
                 <div class="card adopta-card" style="padding: 0" :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
                         <div class="card-title h3 text-center adopta-header">
@@ -17,26 +17,12 @@
                         </div>
                         <div class="row">
                             <!-- columna de datos -->
-                            <div class="col-sm-5" style="display: flex; flex-direction: column;">
+                            <div class="col-5" style="display: flex; flex-direction: column;">
                                 <div style="padding: 0.2rem 0">
                                     <div class="text-secondary">
                                         tamaño
                                     </div>
-                                    <div>{{card.tamano}}</div>
-                                </div>
-                                <div style="padding: 0.2rem 0">
-                                    <div class="text-secondary">
-                                        energia
-                                    </div>
-                                    <div :class="['adopta-energia-' + card.nivelDeEnergia]">
-                                        <i class="fas fa-star text-muted" v-for="item in card.nivelDeEnergia"></i>
-                                    </div>
-                                </div>
-                                <div style="padding: 0.2rem 0">
-                                    <div class="text-secondary">
-                                        edad
-                                    </div>
-                                    <div :class="['adopta-edad-' + card.edad]">{{card.edad}}</div>
+                                    <i class="fas fa-paw text-muted" v-for="item in card.tamano"></i>
                                 </div>
                                 <div style="padding: 0.2rem 0">
                                     <div class="text-secondary">
@@ -46,9 +32,15 @@
                                             :class="{'fa-mars': card.sexo === 'Macho', 'fa-venus': card.sexo === 'Hembra'}"></i>
                                     </div>
                                 </div>
+                                <div style="padding: 0.2rem 0">
+                                    <div class="text-secondary">
+                                        edad (años)
+                                    </div>
+                                    <div :class="['adopta-edad-' + card.edad]">{{card.edad}}</div>
+                                </div>
                             </div>
                             <!-- foto -->
-                            <div class="col-sm-7" role="button" @click="showPhoto(card.key)">
+                            <div class="col-7" role="button" @click="showPhoto(card.key)">
                                 <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" loading="lazy">
                             </div>
                         </div>
@@ -70,38 +62,49 @@
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{currentDog.nombre}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <div style="position: relative;">
-                                <img id="adopta-modal-img" class="img-fluid rounded mx-auto adopta-modal-img"
-                                    :src="currentDog.demoPictureUrl" loading="lazy">
-                                <img class="img-fluid rounded mx-auto adopta-modal-img"
-                                    :src="currentDog.nextDemoPictureUrl"
-                                    style="position: absolute; opacity: 0; z-index: -1; width: 1; height: 1;"
-                                    loading="lazy">
-                                <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
-                                    <i class="fas fa-arrow-left"></i>
-                                </button>
-                                <button class="btn btn-secondary adopta-modal-btn-right" @click="next">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                            <div class="text-center p-1">
-                                <i class="fas fa-circle" v-for="(item, index) in currentDog.pictures"
-                                    :class="{'text-primary': currentDog.demoPictureIndex === index, 'text-muted': currentDog.demoPictureIndex !== index}">
-                                </i>
-                            </div>
+                        <div class="col">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="col-sm-12">
-                            <div class="adopta-historia">
-                                {{currentDog.historia}}
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <h5 class="modal-title" id="exampleModalLabel">{{currentDog.nombre}}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-sm-0 col-sm-12 offset-md-3 col-md-6">
+                            <div class="row">
+                                <div class="col">
+                                    <div style="position: relative;">
+                                        <img id="adopta-modal-img" class="img-fluid rounded mx-auto adopta-modal-img"
+                                            :src="currentDog.demoPictureUrl" loading="lazy">
+                                        <img :src="currentDog.nextDemoPictureUrl" style="width: 0px; height: 0px;"
+                                            loading="lazy">
+                                        <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="btn btn-secondary adopta-modal-btn-right" @click="next">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-center m-2">
+                                        <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures"
+                                            :class="{'text-primary': currentDog.demoPictureIndex === index,
+                                            'adopta-model-circulo-inactivo': currentDog.demoPictureIndex !== index}">
+                                        </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="adopta-historia">
+                                        {{currentDog.historia}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

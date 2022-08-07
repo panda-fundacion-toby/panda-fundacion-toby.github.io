@@ -29,10 +29,44 @@ const historia = {
     }
 };
 
+const tamanoMappings = {
+    'Pequeño': 1,
+    'Mediano': 2,
+    'Grande': 3,
+    'Extra grande': 4,
+};
+
+const tamano = {
+    defaultValue: '',
+    columnNumber: 4,
+    map(value) {
+        for (let key in tamanoMappings) {
+            if (value.indexOf(key) >= 0) {
+                return tamanoMappings[key];
+            }
+        }
+        return 0;
+    }
+};
+
+const edad = {
+    defaultValue: '',
+    columnNumber: 3,
+    map(value) {
+        if (typeof value === 'number' && value > 2000) {
+            const currentYear = new Date().getFullYear();
+            return currentYear - value;
+        }
+        return value;
+    }
+};
+
 const mappers = [{
+    historia,
     nivelDeEnergia,
     nivelDeEnergiaString,
-    historia
+    tamano,
+    edad
 }];
 
 export function map(dataTable, index) {

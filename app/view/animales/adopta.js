@@ -32,7 +32,6 @@ datosPerritos.load().then(() => {
             },
             showPhoto(key) {
                 const found = datosPerritos.cards.find(c => c.key === key);
-                console.log(found);
                 if (!found) {
                     return;
                 }
