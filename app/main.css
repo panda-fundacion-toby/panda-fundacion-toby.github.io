@@ -126,6 +126,10 @@
     border: 0;
 }
 
+.donaciones-tarjeta {
+    min-height: 16rem;
+}
+
 .dotted {
     outline: 1px dotted green;
 }

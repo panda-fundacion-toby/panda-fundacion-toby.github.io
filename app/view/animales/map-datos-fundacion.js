@@ -29,6 +29,11 @@ const historia = {
     }
 };
 
+const busca = {
+    defaultValue: 'busca',
+    columnNumber: 16
+};
+
 const tamanoMappings = {
     'Pequeño': 1,
     'Mediano': 2,
@@ -49,6 +54,14 @@ const tamano = {
     }
 };
 
+const temperamento = {
+    defaultValue: '',
+    columnNumber: 6,
+    map(value) {
+        return value.split(',').filter(s => s.length > 0).map(v => v.trim()).sort();
+    }
+};
+
 const edad = {
     defaultValue: '',
     columnNumber: 3,
@@ -66,7 +79,9 @@ const mappers = [{
     nivelDeEnergia,
     nivelDeEnergiaString,
     tamano,
-    edad
+    edad,
+    busca,
+    temperamento
 }];
 
 export function map(dataTable, index) {
@@ -76,7 +91,7 @@ export function map(dataTable, index) {
         for (const mapperName in mapper) {
             const mapperObject = mapper[mapperName];
             const value = dataTable.getValue(index, mapperObject.columnNumber) || mapperObject.defaultValue;
-            row[mapperName] = mapperObject.map(value);
+            row[mapperName] = (mapperObject.map && mapperObject.map(value)) || value;
         }
     }
     return row;

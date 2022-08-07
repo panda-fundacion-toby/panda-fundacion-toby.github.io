@@ -2,7 +2,6 @@ import { config } from './config.js';
 import { Card } from './card.js';
 import { getImageFromDriveId, getPictureIdFrom, getPicturesFromCellValue } from './dataHelpers.js';
 import { map } from './map-datos-fundacion.js';
-// import { DataTable } from './dataTable.js';
 
 /**
  * DataTable:
