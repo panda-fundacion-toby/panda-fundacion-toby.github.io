@@ -59,6 +59,25 @@ datosPerritos.load().then(() => {
             $('#perritoModal').on('hidden.bs.modal', function (e) {
                 conejito.pushNavigationPath(`#animales/adopta`);
             })
+
+
+            document.onkeydown = (e) => {
+                console.log(e);
+                if (!this.currentDog) {
+                    return;
+                }
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        this.currentDog.preview();
+                        break;
+                    case 'ArrowRight':
+                        this.currentDog.next();
+                        break;
+                    default: return;
+                }
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+            };
+
             if (conejito.tenebrito.queryString) {
                 this.showPhoto(parseInt(conejito.tenebrito.queryString));
                 const cardElement = document.getElementById(`card-${conejito.tenebrito.queryString}`);
