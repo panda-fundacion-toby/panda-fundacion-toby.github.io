@@ -62,7 +62,6 @@ datosPerritos.load().then(() => {
 
 
             document.onkeydown = (e) => {
-                console.log(e);
                 if (!this.currentDog) {
                     return;
                 }
