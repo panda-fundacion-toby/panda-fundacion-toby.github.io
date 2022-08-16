@@ -6,16 +6,17 @@ export class Card {
         this.nombre = data.nombre;
         this.nivelDeEnergia = data.nivelDeEnergia;
         this.edad = data.edad;
+        this.talentos = data.talentos;
         this.tamano = data.tamano;
         this.temperamento = data.temperamento;
         this.sexo = data.sexo;
+        this.salud = data.salud;
         this.historia = data.historia;
         this.busca = data.busca;
         this.pictureurl = data.pictureurl;
         this.pictures = data.pictures;
         this.demoPictureUrl = data.demoPictureUrl;
         this.demoPictureIndex = data.demoPictureIndex;
-        console.log(this.temperamento);
     }
 
     get nextDemoPictureUrl() {

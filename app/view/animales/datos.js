@@ -26,6 +26,9 @@ export class Datos {
                         const cards = [];
                         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
                             const nombre = this.dataTable.getValue(index, 1);
+                            if (!nombre || nombre.trim() === '') {
+                                continue;
+                            }
                             const sexo = this.dataTable.getValue(index, 5) || '?';
                             const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 2)) || [];
                             const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';

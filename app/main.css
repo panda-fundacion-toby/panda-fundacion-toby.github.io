@@ -1,3 +1,11 @@
+:root {
+    --espinitas-dorado: #AF9265;
+    --espinitas-naranja: #FFBA69;
+    --espinitas-azulbrillante: #3CA5AC;
+    --espinitas-primary: var(--espinitas-azulbrillante);
+    --espinitas-secondary: var(--espinitas-naranja);
+}
+
 #viewContainer {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -59,6 +67,25 @@
     left: -200%;
     z-index: -1;
     opacity: 0;
+}
+
+.adopta-icon {
+    color: var(--espinitas-dorado);
+}
+
+.adopta-modal-close {
+    float: right;
+    color: var(--espinitas-naranja);
+}
+
+.adopta-modal-nombre {
+    color: var(--espinitas-primary);
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.adopta-modal-fix {
+    border-bottom: 0;
 }
 
 .adopta-modal-img {

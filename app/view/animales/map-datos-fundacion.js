@@ -30,8 +30,26 @@ const historia = {
 };
 
 const busca = {
-    defaultValue: 'busca',
+    defaultValue: '',
     columnNumber: 16
+};
+
+const salud = {
+    defaultValue: 'Ningún problema de salud relevante.',
+    columnNumber: 9
+};
+
+const talentos = {
+    defaultValue: '',
+    columnNumber: 18,
+    map(value) {
+        if (!value || value.trim().length === 0) {
+            return [];
+        }
+        return value.split(',').map(talento => {
+            return talento.trim();
+        });
+    }
 };
 
 const tamanoMappings = {
@@ -81,7 +99,9 @@ const mappers = [{
     tamano,
     edad,
     busca,
-    temperamento
+    temperamento,
+    salud,
+    talentos
 }];
 
 export function map(dataTable, index) {
