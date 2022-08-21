@@ -28,8 +28,10 @@
                                     <div class="text-secondary">
                                         sexo
                                     </div>
-                                    <div><i class="fas adopta-icon"
-                                            :class="{'fa-mars': card.sexo === 'Macho', 'fa-venus': card.sexo === 'Hembra'}"></i>
+                                    <div>
+                                        <i class="fas adopta-icon"
+                                            :class="{'fa-mars': card.sexo === 'Macho', 'fa-venus': card.sexo === 'Hembra'}">
+                                        </i>
                                     </div>
                                 </div>
                                 <div style="padding: 0.2rem 0">
@@ -71,7 +73,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <h2 class="adopta-modal-nombre">{{currentDog.nombre}}</h2>
+                            <h2 class="adopta-modal-nombre"><b>{{currentDog.nombre}}</b></h2>
                         </div>
                     </div>
                     <div class="row">
@@ -89,7 +91,7 @@
                                 </button>
                             </div>
                             <div class="text-center m-2">
-                                <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures" :class="{'text-primary': currentDog.demoPictureIndex === index,
+                                <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures" :class="{'adopta-model-circulo-activo': currentDog.demoPictureIndex === index,
                                             'adopta-model-circulo-inactivo': currentDog.demoPictureIndex !== index}">
                                 </i>
                             </div>
@@ -97,7 +99,67 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h4>Su historia</h4>
+                            <strong>
+                                tamaño
+                            </strong>
+                            <div>
+                                <i class="p-1 fas fa-paw adopta-icon" v-for="item in currentDog.tamano"></i>
+                            </div>
+                            <p class="text-muted">
+                                {{currentDog.tamanoString}}
+                            </p>
+                        </div>
+                        <div class="col">
+                            <strong>
+                                sexo
+                            </strong>
+                            <div>
+                                <i class="fas adopta-icon"
+                                    :class="{'fa-mars': currentDog.sexo === 'Macho', 'fa-venus': currentDog.sexo === 'Hembra'}">
+                                </i>
+                            </div>
+                            <p class="text-muted">
+                                {{currentDog.sexoString}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <strong>
+                                edad
+                            </strong>
+                            <div>
+                                {{currentDog.edad}} (años)
+                            </div>
+                        </div>
+                        <div class="col">
+                            <strong>nivel de energía</strong>
+                            <div>
+                                <i class="p-1 fas fa-star adopta-icon" v-for="item in currentDog.nivelDeEnergia"></i>
+                                <i class="p-1 far fa-star adopta-icon" v-for="item in currentDog.energiaRemain"></i>
+                            </div>
+                            <p class="text-muted">
+                                {{currentDog.energiaString}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <strong>
+                                convive con
+                            </strong>
+                            <p>
+                                <i class="espinitas-icons fas fa-check-circle"></i> {{currentDog.conviveCon}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-secondary">
+                                <strong>
+                                    Su historia
+                                </strong>
+                            </p>
                             <p>
                                 {{currentDog.historia}}
                             </p>
@@ -105,7 +167,11 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h4>Busca a quién (quiénes)</h4>
+                            <p class="text-secondary">
+                                <strong>
+                                    Busca a quién (quiénes)
+                                </strong>
+                            </p>
                             <p>
                                 {{currentDog.busca}}
                             </p>
@@ -113,7 +179,9 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h4><i class="small fas fa-spa"></i> Salud</h4>
+                            <p class="h5">
+                                <i class="espinitas-icons small fas fa-spa"></i> Salud
+                            </p>
                             <p>
                                 {{currentDog.salud}}
                             </p>
@@ -121,19 +189,27 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h4><i class="small fas fa-heart" aria-hidden="true"></i> Temperamento</h4>
+                            <p class="h5">
+                                <i class="espinitas-icons small fas fa-heart" aria-hidden="true"></i> Temperamento
+                            </p>
                             <div style="display: inline-flex; flex-wrap: wrap;">
-                                <h4 class="badge badge-pill badge-primary m-1" v-for="item in currentDog.temperamento">
-                                    {{item}}</h4>
+                                <span class="badge badge-pill m-1 font-weight-light adopta-pill"
+                                    v-for="item in currentDog.temperamento">
+                                    {{item}}
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="row" v-if="currentDog.talentos && (currentDog.talentos.length > 0)">
                         <div class="col">
-                            <h4><i class="fas fa-grin-hearts"></i> Talentos</h4>
+                            <p class="h5">
+                                <i class="espinitas-icons small fas fa-star"></i> Talentos
+                            </p>
                             <div style="display: inline-flex; flex-wrap: wrap;">
-                                <h4 class="badge badge-pill badge-primary m-1" v-for="item in currentDog.talentos">
-                                    {{item}}</h4>
+                                <span class="badge badge-pill m-1 font-weight-light adopta-pill"
+                                    v-for="item in currentDog.talentos">
+                                    {{item}}
+                                </span>
                             </div>
                         </div>
                     </div>

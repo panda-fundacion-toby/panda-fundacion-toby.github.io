@@ -3,13 +3,18 @@ import { pmod } from "../../main/src/panda/untercio.js";
 export class Card {
     constructor(data) {
         this.key = data.key;
+        this.conviveCon = data.conviveCon;
         this.nombre = data.nombre;
         this.nivelDeEnergia = data.nivelDeEnergia;
+        this.energiaString = data.energiaString;
+        this.energiaRemain = data.energiaRemain;
         this.edad = data.edad;
         this.talentos = data.talentos;
         this.tamano = data.tamano;
+        this.tamanoString = data.tamanoString;
         this.temperamento = data.temperamento;
         this.sexo = data.sexo;
+        this.sexoString = data.sexoString;
         this.salud = data.salud;
         this.historia = data.historia;
         this.busca = data.busca;

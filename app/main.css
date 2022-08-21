@@ -1,9 +1,24 @@
 :root {
-    --espinitas-dorado: #AF9265;
-    --espinitas-naranja: #FFBA69;
+    --espinitas-azulclaro: #9ED2D6;
     --espinitas-azulbrillante: #3CA5AC;
+    --espinitas-dorado: #AF9265;
+    --espinitas-grisoscuro: #464646;
+    --espinitas-hueso: #F8F8F0;
+    --espinitas-naranja: #FFBA69;
     --espinitas-primary: var(--espinitas-azulbrillante);
     --espinitas-secondary: var(--espinitas-naranja);
+}
+
+.espinitas-primary {
+    color: var(--espinitas-primary);
+}
+
+.espinitas-secondary {
+    color: var(--espinitas-secondary);
+}
+
+.espinitas-icons {
+    color: var(--espinitas-dorado);
 }
 
 #viewContainer {
@@ -81,7 +96,7 @@
 .adopta-modal-nombre {
     color: var(--espinitas-primary);
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .adopta-modal-fix {
@@ -120,14 +135,23 @@
     width: 2rem;
 }
 
+.adopta-model-circulo-activo {
+    color: var(--espinitas-azulbrillante);
+}
+
 .adopta-model-circulo-inactivo {
-    color: #D9D9D9;
+    color: var(--espinitas-azulclaro);
 }
 
 .adopta-momdel-img {
     object-fit: cover;
     max-width: 67.5rem;
     max-height: auto;
+}
+
+.adopta-pill {
+    color: var(--espinitas-grisoscuro);
+    background-color: var(--espinitas-hueso);
 }
 
 .arrow-right {

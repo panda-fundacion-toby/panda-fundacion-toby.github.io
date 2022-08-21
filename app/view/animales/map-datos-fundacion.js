@@ -1,4 +1,12 @@
 
+const conviveCon = {
+    defaultValue: '',
+    columnNumber: 10,
+    map(value) {
+        return value;
+    }
+};
+
 const nivelEnergiaMappings = {
     'Nivel de energía alto (caminatas, juego y otras actividades extra)': 3,
     'Nivel de energía medio (caminatas diarias y juego)': 2,
@@ -13,11 +21,19 @@ const nivelDeEnergia = {
     }
 };
 
-const nivelDeEnergiaString = {
-    defaultValue: 1,
+const energiaRemain = {
+    defaultValue: 0,
     columnNumber: 7,
     map(value) {
-        return nivelEnergiaMappings[value];
+        return ((Object.keys(nivelEnergiaMappings).length) - nivelEnergiaMappings[value]);
+    }
+};
+
+const energiaString = {
+    defaultValue: '',
+    columnNumber: 7,
+    map(value) {
+        return value;
     }
 };
 
@@ -37,6 +53,11 @@ const busca = {
 const salud = {
     defaultValue: 'Ningún problema de salud relevante.',
     columnNumber: 9
+};
+
+const sexoString = {
+    defaultValue: '',
+    columnNumber: 5
 };
 
 const talentos = {
@@ -72,6 +93,11 @@ const tamano = {
     }
 };
 
+const tamanoString = {
+    defaultValue: '',
+    columnNumber: 4
+};
+
 const temperamento = {
     defaultValue: '',
     columnNumber: 6,
@@ -92,27 +118,28 @@ const edad = {
     }
 };
 
-const mappers = [{
+const mappers = {
+    conviveCon,
     historia,
     nivelDeEnergia,
-    nivelDeEnergiaString,
+    energiaRemain,
+    energiaString,
     tamano,
     edad,
     busca,
+    tamanoString,
     temperamento,
     salud,
+    sexoString,
     talentos
-}];
+};
 
 export function map(dataTable, index) {
     const row = {};
-    for (const mapperIndex in mappers) {
-        const mapper = mappers[mapperIndex];
-        for (const mapperName in mapper) {
-            const mapperObject = mapper[mapperName];
-            const value = dataTable.getValue(index, mapperObject.columnNumber) || mapperObject.defaultValue;
-            row[mapperName] = (mapperObject.map && mapperObject.map(value)) || value;
-        }
+    for (const [mapperName, mapper] of Object.entries(mappers)) {
+        const value = dataTable.getValue(index, mapper.columnNumber) || mapper.defaultValue;
+        const mappedValue = (mapper.map && mapper.map(value)) ?? value;
+        row[mapperName] = mappedValue;
     }
     return row;
 }
