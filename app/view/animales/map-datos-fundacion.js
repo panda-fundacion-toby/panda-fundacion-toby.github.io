@@ -60,6 +60,10 @@ const sexoString = {
     columnNumber: 5
 };
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const talentos = {
     defaultValue: '',
     columnNumber: 18,
@@ -68,7 +72,7 @@ const talentos = {
             return [];
         }
         return value.split(',').map(talento => {
-            return talento.trim();
+            return capitalizeFirstLetter(talento.trim());
         });
     }
 };

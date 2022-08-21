@@ -12,46 +12,57 @@
             <div class="col-sm-12 col-md-4 mt-2 mb-2">
                 <div class="card adopta-card" style="padding: 0" :class="{'adopta-isHidden': vanish}">
                     <div class="card-body">
-                        <div class="card-title h3 text-center adopta-header">
-                            {{card.nombre}}
+                        <div class="card-title h3 text-center adopta-header p-2">
+                            <strong>{{card.nombre}}</strong>
                         </div>
                         <div class="row">
-                            <!-- columna de datos -->
-                            <div class="col-5" style="display: flex; flex-direction: column;">
-                                <div style="padding: 0.2rem 0">
-                                    <div class="text-secondary">
-                                        tamaño
-                                    </div>
-                                    <i class="fas fa-paw adopta-icon" v-for="item in card.tamano"></i>
-                                </div>
-                                <div style="padding: 0.2rem 0">
-                                    <div class="text-secondary">
-                                        sexo
-                                    </div>
-                                    <div>
-                                        <i class="fas adopta-icon"
-                                            :class="{'fa-mars': card.sexo === 'Macho', 'fa-venus': card.sexo === 'Hembra'}">
-                                        </i>
-                                    </div>
-                                </div>
-                                <div style="padding: 0.2rem 0">
-                                    <div class="text-secondary">
-                                        edad (años)
-                                    </div>
-                                    <div class="adopta-icon" :class="['adopta-edad-' + card.edad]">{{card.edad}}</div>
-                                </div>
-                            </div>
-                            <!-- foto -->
-                            <div class="col-7" role="button" @click="showPhoto(card.key)">
+                            <div class="col" role="button" @click="showPhoto(card.key)">
+                                <!-- foto -->
                                 <img class="img-thumbnail adopta-picture-frame" :src="card.pictureurl" loading="lazy">
                             </div>
                         </div>
-                        <div class="adopta-historia">
-                            {{card.historia}}
+                        <div class="row p-2">
+                            <div class="col">
+                                <div class="text-secondary">
+                                    <strong>tamaño</strong>
+                                </div>
+                                <i class="fas fa-paw adopta-icon" v-for="item in card.tamano"></i>
+                            </div>
+                            <div class="col">
+                                <div class="text-secondary">
+                                    <strong>sexo</strong>
+                                </div>
+                                <div>
+                                    <strong>
+                                        <i class="fas adopta-icon"
+                                            :class="{'fa-mars': card.sexo === 'Macho', 'fa-venus': card.sexo === 'Hembra'}">
+                                        </i>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="text-secondary">
+                                    <strong>edad</strong>
+                                </div>
+                                <strong>
+                                    <div class="adopta-icon" :class="['adopta-edad-' + card.edad]">{{card.edad}} (años)</div>
+                                </strong>
+                            </div>
                         </div>
-                        <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
-                            <i class="small fas fa-plus"></i> más detalles
-                        </button>
+                        <div class="row">
+                            <div class="col">
+                                <div class="adopta-historia p-3">
+                                    {{card.historia}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
+                                    <i class="small fas fa-plus"></i> más detalles
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,8 +205,8 @@
                             </p>
                             <div style="display: inline-flex; flex-wrap: wrap;">
                                 <span class="badge badge-pill m-1 font-weight-light adopta-pill"
-                                    v-for="item in currentDog.temperamento">
-                                    {{item}}
+                                    v-for="temp in currentDog.temperamento">
+                                    {{temp}}
                                 </span>
                             </div>
                         </div>
@@ -207,8 +218,8 @@
                             </p>
                             <div style="display: inline-flex; flex-wrap: wrap;">
                                 <span class="badge badge-pill m-1 font-weight-light adopta-pill"
-                                    v-for="item in currentDog.talentos">
-                                    {{item}}
+                                    v-for="talento in currentDog.talentos">
+                                    {{talento}}
                                 </span>
                             </div>
                         </div>
