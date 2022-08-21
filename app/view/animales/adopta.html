@@ -91,8 +91,8 @@
                                 </button>
                             </div>
                             <div class="text-center m-2">
-                                <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures" :class="{'adopta-model-circulo-activo': currentDog.demoPictureIndex === index,
-                                            'adopta-model-circulo-inactivo': currentDog.demoPictureIndex !== index}">
+                                <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures" :class="{'adopta-modal-circulo-activo': currentDog.demoPictureIndex === index,
+                                            'adopta-modal-circulo-inactivo': currentDog.demoPictureIndex !== index}">
                                 </i>
                             </div>
                         </div>
@@ -212,6 +212,41 @@
                                 </span>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="adopta-modal-adopcion">
+                    <p class="pt-2 h5 text-center">
+                        <strong>¿Te interesa adoptar a {{currentDog.nombre}}?</strong>
+                    </p>
+                    <div class="px-4 py-2">
+                        <button class="btn btn-outline-secondary btn-block text-uppercase">
+                            <span class="adopta-modal-btn-icon"><i class="small fas fa-dog"></i></span>
+                            Adopción física
+                        </button>
+                    </div>
+                    <div class="px-4 py-2">
+                        <button class="btn btn-outline-secondary btn-block text-uppercase">
+                            <i class="small fas fa-desktop"></i>
+                            Amigo Virtual
+                        </button>
+                    </div>
+                    <div class="px-4 py-2">
+                        <button class="btn btn-outline-secondary btn-block text-uppercase">
+                            <i class="small fab fa-paypal"></i>
+                            Paypal de {{currentDog.nombre}}
+                        </button>
+                    </div>
+                    <p class="pt-2 h5 text-center">
+                        <strong>comparte a {{currentDog.nombre}}</strong>
+                    </p>
+                    <p class="text-center">
+                        ¡Si compartes en redes sociales también le das una oportunidad!
+                    </p>
+                    <div class="text-center">
+                        <a class="btn btn-light adopta-modal-btn-share mx-2" target="_blank"
+                            :href="currentDog.twitterLink">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="modal-footer">

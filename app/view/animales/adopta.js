@@ -18,7 +18,7 @@ datosPerritos.load().then(() => {
                 pageSize: 3,
                 vanish: false,
                 ready: true,
-                currentDog: {}
+                currentDog: {},
             }
         },
         methods: {

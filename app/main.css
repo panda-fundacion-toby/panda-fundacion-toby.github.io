@@ -88,6 +88,11 @@
     color: var(--espinitas-dorado);
 }
 
+.adopta-modal-adopcion {
+    background-color: var(--espinitas-hueso);
+}
+
+
 .adopta-modal-close {
     float: right;
     color: var(--espinitas-naranja);
@@ -107,6 +112,10 @@
     object-fit: cover;
     width: 40rem;
     height: 40rem;
+}
+
+.adopta-modal-btn-icon {
+    vertical-align: text-bottom;
 }
 
 .adopta-modal-btn-left {
@@ -135,18 +144,16 @@
     width: 2rem;
 }
 
-.adopta-model-circulo-activo {
+.adopta-modal-btn-share {
+    background-color: var(--espinitas-azulbrillante);
+}
+
+.adopta-modal-circulo-activo {
     color: var(--espinitas-azulbrillante);
 }
 
-.adopta-model-circulo-inactivo {
+.adopta-modal-circulo-inactivo {
     color: var(--espinitas-azulclaro);
-}
-
-.adopta-momdel-img {
-    object-fit: cover;
-    max-width: 67.5rem;
-    max-height: auto;
 }
 
 .adopta-pill {

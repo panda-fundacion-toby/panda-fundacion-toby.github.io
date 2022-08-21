@@ -17,11 +17,21 @@ export class Card {
         this.sexoString = data.sexoString;
         this.salud = data.salud;
         this.historia = data.historia;
+        this.historiaEncoded = encodeURI(data.historia);
         this.busca = data.busca;
         this.pictureurl = data.pictureurl;
         this.pictures = data.pictures;
         this.demoPictureUrl = data.demoPictureUrl;
         this.demoPictureIndex = data.demoPictureIndex;
+    }
+
+    get twitterLink() {
+        const href = window.location.href;
+        const locationHref = encodeURIComponent(href);
+        const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
+        const text = `¡Adopta a ${this.nombre}!\n${temperamento}.\n${href}`.trim();
+        const textEncoded = encodeURIComponent(text);
+        return `https://twitter.com/intent/tweet?original_referer=${locationHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
     }
 
     get nextDemoPictureUrl() {
