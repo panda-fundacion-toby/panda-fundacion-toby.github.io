@@ -26,12 +26,12 @@ export class Card {
     }
 
     get twitterLink() {
-        const href = window.location.href;
-        const locationHref = encodeURIComponent(href);
+        const href = `https://fundacion-toby.org/#animales/adopta/${this.key}`;
+        const encodedHref = encodeURIComponent(href);
         const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
-        const text = `¡Adopta a ${this.nombre}!\n${temperamento}.\n${href}`.trim();
+        const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby`;
         const textEncoded = encodeURIComponent(text);
-        return `https://twitter.com/intent/tweet?original_referer=${locationHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
+        return `https://twitter.com/intent/tweet?original_referer=${encodedHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
     }
 
     get nextDemoPictureUrl() {
