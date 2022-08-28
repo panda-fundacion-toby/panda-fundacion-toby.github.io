@@ -49,17 +49,19 @@ export class Card {
         return this.pictures[pmod(index, this.pictures.length)];
     }
 
-    preview() {
-        if (this.pictures.length === 0) {
+    previous() {
+        if (this.pictures.length === 0 || this.loading) {
             return;
         }
+        this.showLoading(true);
         this.demoPictureIndex = pmod(this.demoPictureIndex - 1, this.pictures.length);
     }
 
     next() {
-        if (this.pictures.length === 0) {
+        if (this.pictures.length === 0 || this.loading) {
             return;
         }
+        this.showLoading(true);
         this.demoPictureIndex = pmod(this.demoPictureIndex + 1, this.pictures.length);
     }
 
