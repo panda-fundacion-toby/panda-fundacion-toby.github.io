@@ -39,7 +39,6 @@ export class Datos {
                                 pictureurl,
                                 pictures: pictures.map(p => getImageFromDriveId(getPictureIdFrom(p))),
                                 sexo,
-                                demoPictureUrl: pictureurl,
                                 demoPictureIndex: 0,
                                 ...mappings
                             }));

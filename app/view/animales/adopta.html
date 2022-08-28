@@ -45,7 +45,8 @@
                                     <strong>edad</strong>
                                 </div>
                                 <strong>
-                                    <div class="adopta-icon" :class="['adopta-edad-' + card.edad]">{{card.edad}} (años)</div>
+                                    <div class="adopta-icon" :class="['adopta-edad-' + card.edad]">{{card.edad}} (años)
+                                    </div>
                                 </strong>
                             </div>
                         </div>
@@ -68,7 +69,6 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
     <div class="modal fade" id="perritoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -90,16 +90,29 @@
                     <div class="row">
                         <div class="col">
                             <div style="position: relative;">
-                                <img id="adopta-modal-img" class="img-fluid rounded mx-auto adopta-modal-img"
-                                    :src="currentDog.demoPictureUrl" loading="lazy">
-                                <img :src="currentDog.nextDemoPictureUrl" style="width: 0px; height: 0px;"
-                                    loading="lazy">
-                                <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
-                                    <i class="fas fa-chevron-left"></i>
-                                </button>
-                                <button class="btn btn-secondary adopta-modal-btn-right" @click="next">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
+                                <div v-if="currentDog.loading" class="adopta-modal-cargando">
+                                    <div>
+                                        Cargando
+                                        <div class="text-center">
+                                            <div class="spinner-grow spinner-grow-sm" role="status"
+                                                style="width: 1.2rem; height: 1.2rem;">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img class="img-fluid rounded mx-auto adopta-modal-img" id="adopta-modal-img"
+                                        loading="lazy" :src="currentDog.modalPicture">
+                                    <img loading="lazy" style="width: 0px; height: 0px;"
+                                        :src="currentDog.modalPictureCache">
+                                    <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button class="btn btn-secondary adopta-modal-btn-right" @click="next">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="text-center m-2">
                                 <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures" :class="{'adopta-modal-circulo-activo': currentDog.demoPictureIndex === index,

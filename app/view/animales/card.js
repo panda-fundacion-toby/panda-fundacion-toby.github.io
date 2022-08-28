@@ -21,8 +21,8 @@ export class Card {
         this.busca = data.busca;
         this.pictureurl = data.pictureurl;
         this.pictures = data.pictures;
-        this.demoPictureUrl = data.demoPictureUrl;
         this.demoPictureIndex = data.demoPictureIndex;
+        this.loading = true;
     }
 
     get twitterLink() {
@@ -34,7 +34,11 @@ export class Card {
         return `https://twitter.com/intent/tweet?original_referer=${encodedHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
     }
 
-    get nextDemoPictureUrl() {
+    get modalPicture() {
+        return this.getPictureUrl(this.demoPictureIndex);
+    }
+
+    get modalPictureCache() {
         return this.getPictureUrl(this.demoPictureIndex + 1);
     }
 
@@ -49,15 +53,24 @@ export class Card {
         if (this.pictures.length === 0) {
             return;
         }
-        this.demoPictureIndex = pmod(this.demoPictureIndex - 1, this.pictures.length)
-        this.demoPictureUrl = this.getPictureUrl(this.demoPictureIndex);
+        this.demoPictureIndex = pmod(this.demoPictureIndex - 1, this.pictures.length);
     }
 
     next() {
         if (this.pictures.length === 0) {
             return;
         }
-        this.demoPictureIndex = pmod(this.demoPictureIndex + 1, this.pictures.length)
-        this.demoPictureUrl = this.getPictureUrl(this.demoPictureIndex);
+        this.demoPictureIndex = pmod(this.demoPictureIndex + 1, this.pictures.length);
+    }
+
+    showLoading(value) {
+        clearTimeout(this.loadingTimeoutId);
+        if (value) {
+            this.loadingTimeoutId = setTimeout(() => {
+                this.loading = value;
+            }, 300);
+        } else {
+            this.loading = value;
+        }
     }
 }

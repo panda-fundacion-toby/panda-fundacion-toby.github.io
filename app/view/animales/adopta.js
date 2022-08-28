@@ -40,15 +40,20 @@ datosPerritos.load().then(() => {
                 conejito.pushNavigationPath(`#animales/adopta/${key}`);
             },
             preview() {
+                this.currentDog.showLoading(true);
                 this.currentDog.preview();
             },
             next() {
+                this.currentDog.showLoading(true);
                 this.currentDog.next();
             }
         },
         mounted() {
             conejito.wire('.app-rewire');
             const modalImg = document.getElementById('adopta-modal-img');
+            modalImg.addEventListener('load', () => {
+                this.currentDog.showLoading(false);
+            });
             modalImg.addEventListener('swiped', (e) => {
                 if (e.detail.dir === 'left') {
                     this.currentDog.next();
@@ -59,7 +64,6 @@ datosPerritos.load().then(() => {
             $('#perritoModal').on('hidden.bs.modal', function (e) {
                 conejito.pushNavigationPath(`#animales/adopta`);
             })
-
 
             document.onkeydown = (e) => {
                 if (!this.currentDog) {
@@ -74,7 +78,6 @@ datosPerritos.load().then(() => {
                         break;
                     default: return;
                 }
-                e.preventDefault(); // prevent the default action (scroll / move caret)
             };
 
             if (conejito.tenebrito.queryString) {
