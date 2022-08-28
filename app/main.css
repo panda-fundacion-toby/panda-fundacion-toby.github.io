@@ -57,10 +57,19 @@
     opacity: 0;
 }
 
+.adopta-app {
+    scroll-snap-type: y mandatory;
+}
+
 .adopta-card {
     transition: left 0.143s, width 2s, height 2s, background-color 2s, transform 2s, opacity 0.143s;
     top: 0;
     left: 0;
+}
+
+.adopta-foto-container {
+    position: relative;
+    scroll-snap-align: center;
 }
 
 .adopta-foto {
