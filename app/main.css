@@ -63,6 +63,11 @@
     left: 0;
 }
 
+.adopta-foto {
+    min-height: 26em;
+    width: 100%;
+}
+
 .adopta-header {
     background-color: #06858D;
     border-radius: 5px;
@@ -130,28 +135,28 @@
 
 .adopta-modal-btn-left {
     background: lightgrey;
-    border-radius: 1rem;
+    border-radius: 50%;
     color: darkgray;
-    height: 2rem;
+    height: 3rem;
     left: 0;
     opacity: 0.5;
     padding: 0;
     position: absolute;
     top: 50%;
-    width: 2rem;
+    width: 3rem;
 }
 
 .adopta-modal-btn-right {
     background: lightgrey;
-    border-radius: 1rem;
+    border-radius: 50%;
     color: darkgray;
-    height: 2rem;
+    height: 3rem;
     opacity: 0.5;
     padding: 0;
     position: absolute;
     right: 0;
     top: 50%;
-    width: 2rem;
+    width: 3rem;
 }
 
 .adopta-modal-btn-share {

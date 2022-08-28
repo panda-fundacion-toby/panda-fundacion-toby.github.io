@@ -36,6 +36,7 @@ datosPerritos.load().then(() => {
                     return;
                 }
                 this.currentDog = found;
+                this.currentDog.showLoading(true);
                 $('#perritoModal').modal('toggle');
                 conejito.pushNavigationPath(`#animales/adopta/${key}`);
             },
@@ -76,7 +77,6 @@ datosPerritos.load().then(() => {
                     default: return;
                 }
             };
-
             if (conejito.tenebrito.queryString) {
                 this.showPhoto(parseInt(conejito.tenebrito.queryString));
                 const cardElement = document.getElementById(`card-${conejito.tenebrito.queryString}`);

@@ -49,6 +49,10 @@ export class Card {
         return this.pictures[pmod(index, this.pictures.length)];
     }
 
+    onImageLoaded() {
+        this.showLoading(false);
+    }
+
     previous() {
         if (this.pictures.length === 0 || this.loading) {
             return;
