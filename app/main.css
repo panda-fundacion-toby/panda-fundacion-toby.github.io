@@ -317,3 +317,19 @@
     padding: 1.5rem;
     text-align: end
 }
+
+/* Customizaciones de Bootstrap */
+.table .thead-light th {
+    color: #495057;
+    background-color: var(--espinitas-azulclaro);
+    border-color: var(--espinitas-azulclaro);
+}
+
+.myselector tbody tr td {
+    width: 60%;
+    padding-left: 15%;
+}
+
+.myselector thead tr th {
+    padding-left: 15%;
+}
