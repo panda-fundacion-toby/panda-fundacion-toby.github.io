@@ -333,3 +333,10 @@
 .myselector thead tr th {
     padding-left: 15%;
 }
+
+.button-link {
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    box-shadow: none;
+}
