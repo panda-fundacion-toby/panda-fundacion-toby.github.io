@@ -61,8 +61,8 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#identidad" role="button" aria-haspopup="true"
-                            aria-expanded="false">
-                            Nosotros
+                                aria-expanded="false">
+                                Nosotros
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -78,7 +78,8 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#refugio" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="#refugio" role="button" aria-haspopup="true"
+                                aria-expanded="false">
                                 Refugio
                             </a>
                         </li>
@@ -98,7 +99,8 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="mailto:fundtoby@gmail.com" target="_blank" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="mailto:fundtoby@gmail.com" target="_blank" role="button"
+                                aria-haspopup="true" aria-expanded="false">
                                 Contacto
                             </a>
                         </li>
@@ -110,96 +112,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 offset-md-1 col-md-10" id="viewContainer">
-                <div id="view"></div>
             </div>
         </div>
     </div>
-    <div class="app-footer container-fluid">
-        <div class="row">
-            <div class="col-sm-12 col-md-1">
-                <div class="index-mapa-sitio-element">
-                    <div>
-                        Identidad
-                    </div>
-                    <a href="#identidad/nosotros">Nosotros</a>
-                    <a href="#identidad/mision">Misión</a>
-                    <a href="#identidad/vision">Visión</a>
-                    <a href="#identidad/valores">Valores</a>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-1">
-                <div class="index-mapa-sitio-element">
-                    <div>
-                        <a href="#animales">Adopciones</a>
-                    </div>
-                    <a href="#animales/adopta">Galería</a>
-                    <a href="#animales/adopcionfisica">Adopción física</a>
-                    <a href="#animales/amigovirtual">Amigo virtual</a>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-2">
-                <div class="index-mapa-sitio-element">
-                    <div>
-                        <a href="#donaciones">Donaciones</a>
-                    </div>
-                    <a href="https://www.paypal.com/paypalme/fundaciontoby" target="_blank">PayPal</a>
-    <!-- FALTA quitar con selectores el hover sobre el botón, para que sea un link completamente -->
-                    <button type="button" class="btn btn-link button-link" data-toggle="modal" data-target="#modaltransferbancaria">Transferencia bancaria</button>
-                    <a href="#donaciones/donacionespecie">Donación en especie</a>
-                    <a href="https://www.amazon.com.mx/hz/wishlist/ls/2QBSMT8KDKLUO?ref_=wl_share" target="_blank">Lista de Amazon</a>
-                    <a href="#donaciones/ventapays">Pays</a>
-                    <a href="https://fundacion-toby.myshopify.com/" target="_blank">Mercancia Toby</a>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-2">
-                <div class="index-mapa-sitio-element">
-                    <div>
-                        <a href="#refugio">Refugio</a>
-                    </div>
-                    <a href="#refugio/rescate">Rescate</a>
-                    <a href="#refugio/rehabilitacion">Rehabilitación</a>
-                    <a href="#animales/instalaciones">El Rancho</a>
-                    <a href="#refugio/casosexito">Casos de éxito</a>
-                    <a href="#refugio/homenaje">Salón del recuerdo</a>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-1">
-                <div class="index-mapa-sitio-element">
-                    <div>
-                        Información
-                    </div>
-                    <a href="#preguntasfrecuentes/preguntasfrecuentes">Preguntas frecuentes</a>
-                    <a href="#preguntasfrecuentes/contacto">Contacto</a>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-2">
-                <div class="index-mapa-sitio-nuestras-redes">
-                    Nuestas redes sociales
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3" style="padding: 1.5rem">
-                <a class="btn btn-link" target="_blank" href="https://mobile.twitter.com/fundaciontoby"
-                    aria-label="Twitter">
-                    <h1 class="text-secondary">
-                        <i class="fab fa-twitter" aria-hidden="true"></i>
-                    </h1>
-                </a>
-                <a class="btn btn-link" target="_blank" href="https://www.facebook.com/fundacionToby/"
-                    aria-label="Facebook">
-                    <h1 class="text-secondary">
-                        <i class="fab fa-facebook" aria-hidden="true"></i>
-                    </h1>
-                </a>
-                <a class="btn btn-link" target="_blank" href="https://instagram.com/fundaciontoby"
-                    aria-label="Instagram">
-                    <h1 class="text-secondary">
-                        <i class="fab fa-instagram" aria-hidden="true"></i>
-                    </h1>
-                </a>
-
-            </div>
-        </div>
-    </div>
+    <div data-load-view-component="#!/index/footer" />
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -218,8 +134,6 @@
     <script src="./app/main/src/panda/conejito.js" type="module"></script>
 </body>
 
-
-
 <!-- Inicio de modales -->
 <!-- Modal de Transferencia bancaria -->
 <div id="modaltransferbancaria" class="modal" tabindex="-1" role="dialog">
@@ -233,16 +147,17 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Dona ayuda económica desde tu banca electrónica. Danos de alta en la app de tu banco y haz una transferencia.
+                    Dona ayuda económica desde tu banca electrónica. Danos de alta en la app de tu banco y haz una
+                    transferencia.
                     Escribe en referencia “Aporte Tobys” y avísanos por redes sociales o por WhatsApp.
                 </p>
                 <h5>Banco citibanamex</h5>
-                    <p>Cuenta</p>
-                    <p>60577008001</p>
-                    <p>CLABE</p>
-                    <p>014180605770080014</p>
-                    <p>Tarjeta</p>
-                    <p>5579 0700 828 54475</p>
+                <p>Cuenta</p>
+                <p>60577008001</p>
+                <p>CLABE</p>
+                <p>014180605770080014</p>
+                <p>Tarjeta</p>
+                <p>5579 0700 828 54475</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
