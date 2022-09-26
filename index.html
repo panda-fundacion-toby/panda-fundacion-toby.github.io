@@ -23,8 +23,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./resources/images/bootstrap.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./app/main.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
@@ -116,6 +115,39 @@
         </div>
     </div>
     <div data-load-view-component="#!/index/footer" />
+
+    <!-- Inicio de modales -->
+    <!-- Modal de Transferencia bancaria -->
+    <div id="modaltransferbancaria" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tranferencia electrónica bancaria</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Dona ayuda económica desde tu banca electrónica. Danos de alta en la app de tu banco y haz una
+                        transferencia.
+                        Escribe en referencia “Aporte Tobys” y avísanos por redes sociales o por WhatsApp.
+                    </p>
+                    <h5>Banco citibanamex</h5>
+                    <p>Cuenta</p>
+                    <p>60577008001</p>
+                    <p>CLABE</p>
+                    <p>014180605770080014</p>
+                    <p>Tarjeta</p>
+                    <p>5579 0700 828 54475</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -128,42 +160,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script>
     <!-- <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script>
     <script src="./app/main/src/panda/swiped-events.js" type="module"></script>
     <script src="./app/main/src/panda/conejito.js" type="module"></script>
 </body>
-
-<!-- Inicio de modales -->
-<!-- Modal de Transferencia bancaria -->
-<div id="modaltransferbancaria" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tranferencia electrónica bancaria</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Dona ayuda económica desde tu banca electrónica. Danos de alta en la app de tu banco y haz una
-                    transferencia.
-                    Escribe en referencia “Aporte Tobys” y avísanos por redes sociales o por WhatsApp.
-                </p>
-                <h5>Banco citibanamex</h5>
-                <p>Cuenta</p>
-                <p>60577008001</p>
-                <p>CLABE</p>
-                <p>014180605770080014</p>
-                <p>Tarjeta</p>
-                <p>5579 0700 828 54475</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 </html>

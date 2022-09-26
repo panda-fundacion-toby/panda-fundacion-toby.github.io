@@ -298,6 +298,10 @@
     margin-top: 2rem;
 }
 
+.index-footer {
+    padding: 1rem 0;
+}
+
 .index-nuestras-redes {
     padding: 1rem;
 }
@@ -305,17 +309,14 @@
 .index-mapa-sitio-element {
     display: flex;
     flex-direction: column;
-    margin: 0 1rem;
     padding: 1rem;
 }
 
-.index-mapa-sitio-nuestras-redes {
-    max-height: 7rem;
+.index-footer-nuestras-redes {
     border-radius: 5px;
     background-color: #FFBA69;
     color: #FFFFFF;
-    padding: 1.5rem;
-    text-align: end
+    padding: .5rem;
 }
 
 /* Customizaciones de Bootstrap */
