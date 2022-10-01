@@ -2,10 +2,11 @@ import { conejito } from '../../main/src/panda/conejito.js';
 import { datosPerritos } from './datosPerritos.js';
 const { createApp } = Vue;
 
+conejito.onBeforeNavigate(() => {
+    $('#perritoModal').modal('hide');
+});
+
 datosPerritos.load().then(() => {
-    conejito.onBeforeNavigate(() => {
-        $('#perritoModal').modal('hide');
-    });
     const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 100;
