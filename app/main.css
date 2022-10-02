@@ -341,3 +341,26 @@
     text-align: left;
     box-shadow: none;
 }
+
+.parentbox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #3CA5AC;
+    background-size: 10px 10px;
+    background-image: repeating-linear-gradient(45deg, #AF9265 0, #AF9265 0.25px, white 0, white 50%);
+}
+
+.childrenbox {
+    min-width: 200px;
+    max-width: 300px;
+    padding-left: 30px;
+    margin: 0 30px;
+}
+
+.justify-center {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
