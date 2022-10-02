@@ -39,7 +39,7 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                 this.currentDog = found;
                 this.currentDog.showLoading(true);
                 $('#perritoModal').modal('toggle');
-                conejito.pushNavigationPath(`#animales/adopta/${key}`);
+                conejito.pushNavigationPath(`#/animales/adopta/${key}`);
             },
             preview() {
                 this.currentDog.previous();
@@ -62,7 +62,7 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                 }
             });
             $('#perritoModal').on('hidden.bs.modal', function (e) {
-                conejito.pushNavigationPath(`#animales/adopta`);
+                conejito.pushNavigationPath(`#/animales/adopta`);
             })
             document.onkeydown = (e) => {
                 if (!this.currentDog) {

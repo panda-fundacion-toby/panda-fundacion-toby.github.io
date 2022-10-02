@@ -1,8 +1,8 @@
 export class Navigation {
-    constructor(initialView = '#home') {
+    constructor(initialViewName = '#/home') {
         if (window.location.hash && window.location.hash.length > 0) {
-            initialView = window.location.hash;
+            initialViewName = window.location.hash;
         }
-        this.viewName = initialView;
+        this.viewName = initialViewName;
     }
 }
