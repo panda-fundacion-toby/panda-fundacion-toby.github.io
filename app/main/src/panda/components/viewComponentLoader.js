@@ -7,12 +7,12 @@ function removeAllChildNodes(parent) {
     }
 }
 
-export async function loadViewComponent(viewName, viewContainer) {
+export async function loadViewComponent(viewName, containerElement) {
     const template = await agua.getTemplate(`${viewName}.html`);
-    removeAllChildNodes(viewContainer);
+    removeAllChildNodes(containerElement);
     const newView = document.createElement('div');
     newView.innerHTML = template;
-    viewContainer.appendChild(newView);
+    containerElement.appendChild(newView);
     const viewModelScriptId = 'view-model-script';
     let viewModelScript = document.getElementById(viewModelScriptId);
     if (viewModelScript) {

@@ -1,11 +1,12 @@
 import { conejito } from '../../main/src/panda/conejito.js';
-import { datosPerritos } from './datosPerritos.js';
+import { datosPerritos, TIPO_ADOPCION } from './datosPerritos.js';
 const { createApp } = Vue;
 
-datosPerritos.load().then(() => {
-    conejito.onBeforeNavigate(() => {
-        $('#perritoModal').modal('hide');
-    });
+conejito.onBeforeNavigate(() => {
+    $('#perritoModal').modal('hide');
+});
+
+datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
     const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 100;
