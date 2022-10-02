@@ -2,7 +2,7 @@ import { config } from './config.js';
 
 class Datos {
 
-    load(filtro) {
+    load(query) {
         return new Promise((accept, reject) => {
             try {
                 if (this.dataTable) {
@@ -10,7 +10,12 @@ class Datos {
                 }
                 google.charts.load('current', { 'packages': ['corechart'] });
                 google.charts.setOnLoadCallback(() => {
-                    new google.visualization.Query(config.docUrl).send((response) => {
+                    const queryRequest = new google.visualization.Query(config.docUrl);
+                    console.log(query);
+                    if (query) {
+                        queryRequest.setQuery(query);
+                    }
+                    queryRequest.send((response) => {
                         this.dataTable = response.getDataTable();
                         accept(this.dataTable);
                     });

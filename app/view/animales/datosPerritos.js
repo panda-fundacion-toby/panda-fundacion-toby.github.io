@@ -16,8 +16,15 @@ class DatosPerritos {
         this.datos = datos;
     }
 
-    async load(filtro) {
-        this.dataTable = await this.datos.load(filtro);
+    async load(filtros = []) {
+        let query = 'select *';
+        const whereCondition = filtros.map(filtro => {
+            return `${filtro.COLUMN_ID} ${filtro.OPERATION} ${filtro.VALUE}`;
+        });
+        if (whereCondition.length > 0) {
+            query = `select * where ${whereCondition}`;
+        }
+        this.dataTable = await this.datos.load(query);
         const cards = [];
         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
             const nombre = this.dataTable.getValue(index, 1);
@@ -68,3 +75,11 @@ class DatosPerritos {
 }
 
 export const datosPerritos = new DatosPerritos(datos);
+
+export const TIPO_ADOPCION = {
+    DISPONIBLE: {
+        COLUMN_ID: 'X',
+        OPERATION: '=',
+        VALUE: "'Disponible'"
+    }
+};
