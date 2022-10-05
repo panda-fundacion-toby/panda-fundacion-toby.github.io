@@ -1,5 +1,5 @@
 import { Navigation } from './navigation.js';
-import { parseHash } from './navigationUtils.js';
+import { getLocationHashComponents } from './navigationUtils.js';
 import { loadViewComponent, loadViewComponents } from './components/viewComponentLoader.js';
 
 /**
@@ -9,28 +9,31 @@ class Main {
     constructor() {
         this.beforeNavigationCallbacks = [];
         const navigation = new Navigation();
-        this.wire();
-        this.navigateTo(navigation.viewName, true);
+        this.loadCentralView(navigation.viewName, true);
         window.addEventListener('popstate', event => {
             if (event.state) {
-                this.navigateTo(event.state.moduleName, false);
+                this.loadCentralView(event.state.moduleName, false);
             }
         });
-        loadViewComponents();
+        loadViewComponents((element) => {
+            const links = Array.from(element.querySelectorAll('a'));
+            this.wireNavigationLinks(links);
+        });
+        this.wire();
     }
 
-    async navigateTo(hash, pushState) {
+    async loadCentralView(viewName, pushState) {
         this.beforeNavigationCallbacks.forEach(callback => {
             callback();
         });
         if (pushState) {
-            history.pushState({ moduleName: hash }, '', hash);
+            history.pushState({ moduleName: viewName }, '', viewName);
         }
-        const tenebrito = parseHash(hash);
-        this.tenebrito = tenebrito;
-        const { moduleName: viewName } = tenebrito;
+        const locationHashComponents = getLocationHashComponents(viewName);
+        this.tenebrito = locationHashComponents;
+        const { moduleName: relativePath } = locationHashComponents;
         const viewContainer = document.getElementById('viewContainer');
-        await loadViewComponent(viewName, viewContainer);
+        await loadViewComponent(relativePath, viewContainer);
         this.wire('#viewContainer a');
     }
 
@@ -48,18 +51,21 @@ class Main {
      */
     wire(selector = 'a') {
         const links = Array.from(document.querySelectorAll(selector));
+        this.wireNavigationLinks(links);
+    }
+
+    wireNavigationLinks(links) {
         links.forEach(element => {
             const href = element.getAttribute('href');
-            if (href?.startsWith('#')) {
+            if (href?.startsWith('#/')) {
                 element.onclick = (e) => {
-                    const moduleNameWithHash = e.target.getAttribute('href');
-                    this.navigateTo(moduleNameWithHash, true);
+                    const viewName = e.target.getAttribute('href');
+                    this.loadCentralView(viewName, true);
                     return false;
                 };
             }
         });
     }
-
 }
 
 export const conejito = new Main();
