@@ -58,8 +58,8 @@ class Main {
         links.forEach(element => {
             const href = element.getAttribute('href');
             if (href?.startsWith('#/')) {
-                element.onclick = (e) => {
-                    const viewName = e.target.getAttribute('href');
+                element.onclick = () => {
+                    const viewName = element.getAttribute('href');
                     this.loadCentralView(viewName, true);
                     return false;
                 };
