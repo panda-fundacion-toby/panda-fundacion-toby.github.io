@@ -1,6 +1,6 @@
 import { conejito } from '../../main/src/panda/conejito.js';
-import { datosPerritos } from './datosPerritos.js';
-import { TIPO_ADOPCION } from './filtrosTipoAdopcion.js';
+import { datosPerritos } from './galerias/datosPerritos.js';
+import { TIPO_ADOPCION } from './galerias/filtrosTipoAdopcion.js';
 const { createApp } = Vue;
 
 conejito.onBeforeNavigate(() => {

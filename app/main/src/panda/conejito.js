@@ -77,6 +77,9 @@ class Main {
             }
         });
     }
+
+    registerComponent() {
+    }
 }
 
 export const conejito = new Main();

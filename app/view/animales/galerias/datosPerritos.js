@@ -1,7 +1,6 @@
-import { datos } from "./datos.js";
-import { Card } from './card.js';
-import { getImageFromDriveId, getPictureIdFrom, getPicturesFromCellValue } from './dataHelpers.js';
-import { map } from './map-datos-fundacion.js';
+import { datos } from "../datos.js";
+import { Card } from '../card.js';
+import { map } from '../map-datos-fundacion.js';
 
 /**
  * DataTable:

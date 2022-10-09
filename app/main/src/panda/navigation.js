@@ -15,7 +15,6 @@ export function processNavigationLinks(callback, rootElement = document, selecto
             element.onclick = () => {
                 const viewName = element.getAttribute('href');
                 callback(viewName);
-                // this.loadCentralView(viewName, true);
                 return false;
             };
         }

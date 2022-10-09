@@ -252,34 +252,35 @@
                     </div>
                 </div>
                 <div class="adopta-modal-adopcion">
-                    <!-- <p class="pt-2 h5 text-center">
-                        <strong>¿Te interesa adoptar a {{currentDog.nombre}}?</strong>
-                    </p>
+                    <h4 class="text-center">
+                        Como ayudar a {{currentDog.nombre}}
+                    </h4>
                     <div class="px-4 py-2">
-                        <button class="btn btn-outline-secondary btn-block text-uppercase">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCgL_KuKijB7UepleLYvJus_IhawXHYGSJd6oT4qR-RaOE0w/viewform"
+                            target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
                             <span class="adopta-modal-btn-icon"><i class="small fas fa-dog"></i></span>
                             Adopción física
-                        </button>
+                        </a>
                     </div>
                     <div class="px-4 py-2">
-                        <button class="btn btn-outline-secondary btn-block text-uppercase">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyWDsjKM0z_jt8pWtamcIEzKyq7YMltWVGiOHweBkqJBnsAA/viewform"
+                            target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
                             <i class="small fas fa-desktop"></i>
                             Amigo Virtual
-                        </button>
+                        </a>
                     </div>
                     <div class="px-4 py-2">
-                        <button class="btn btn-outline-secondary btn-block text-uppercase">
-                            <i class="small fab fa-paypal"></i>
-                            Paypal de {{currentDog.nombre}}
-                        </button>
-                    </div> -->
-                    <p class="pt-2 h5 text-center">
-                        <strong>comparte a {{currentDog.nombre}}</strong>
+                        <a href="/#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
+                            Formas de ayudar
+                        </a>
+                    </div>
+                    <p class="pt-2 h4 text-center">
+                        Comparte a {{currentDog.nombre}}
                     </p>
                     <p class="text-center">
                         ¡Si compartes en redes sociales también le das una oportunidad!
                     </p>
-                    <div class="text-center">
+                    <div class="text-center pb-3">
                         <a class="btn btn-light adopta-modal-btn-share mx-2" target="_blank"
                             :href="currentDog.twitterLink">
                             <i class="fab fa-twitter" aria-hidden="true"></i>

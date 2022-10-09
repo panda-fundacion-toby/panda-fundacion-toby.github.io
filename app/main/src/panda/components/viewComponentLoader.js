@@ -8,6 +8,9 @@ function removeAllChildNodes(parent) {
 }
 
 export async function loadViewComponent(relativePath, containerElement) {
+    if (relativePath.indexOf('?') >= 0) {
+        relativePath = relativePath.substring(0, relativePath.indexOf('?'));
+    }
     const template = await agua.getTemplate(`${relativePath}.html`);
     removeAllChildNodes(containerElement);
     const newView = document.createElement('div');
