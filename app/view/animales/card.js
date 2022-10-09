@@ -2,34 +2,17 @@ import { pmod } from "../../main/src/panda/untercio.js";
 
 export class Card {
     constructor(data) {
-        this.key = data.key;
-        this.conviveCon = data.conviveCon;
-        this.nombre = data.nombre;
-        this.nivelDeEnergia = data.nivelDeEnergia;
-        this.energiaString = data.energiaString;
-        this.energiaRemain = data.energiaRemain;
-        this.edad = data.edad;
-        this.talentos = data.talentos;
-        this.tamano = data.tamano;
-        this.tamanoString = data.tamanoString;
-        this.temperamento = data.temperamento;
-        this.sexo = data.sexo;
-        this.sexoString = data.sexoString;
-        this.salud = data.salud;
-        this.historia = data.historia;
-        this.historiaEncoded = encodeURI(data.historia);
-        this.busca = data.busca;
-        this.pictureurl = data.pictureurl;
-        this.pictures = data.pictures;
-        this.demoPictureIndex = data.demoPictureIndex;
+        Object.assign(this, data);
+        this.pictureurl = this.pictures[0] ?? './resources/images/nia.png';
         this.loading = true;
+        this.demoPictureIndex = 0;
     }
 
     get twitterLink() {
         const href = `https://fundacion-toby.org/#animales/adopta/${this.key}`;
         const encodedHref = encodeURIComponent(href);
         const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
-        const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby`;
+        const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby #adopta-ft`;
         const textEncoded = encodeURIComponent(text);
         return `https://twitter.com/intent/tweet?original_referer=${encodedHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
     }

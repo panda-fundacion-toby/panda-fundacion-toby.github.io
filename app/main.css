@@ -35,14 +35,6 @@
     min-height: 4rem;
 }
 
-.app-hide {
-    display: none;
-}
-
-.app-show {
-    display: block;
-}
-
 .adopta-vanish {
 
     /* This timing applies on the way OUT */
@@ -74,7 +66,7 @@
 
 .adopta-foto {
     min-height: 26em;
-    width: 100%;
+    object-fit: cover;
 }
 
 .adopta-header {
@@ -363,4 +355,41 @@
     display: flex;
     width: 100%;
     justify-content: center;
+}
+
+.memorial-bordercard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.bordercard {
+    display: flex;
+    width: 22rem;
+    padding: 3px;
+    border-radius: 5px;
+    justify-content: center;
+    background-image: linear-gradient(45deg, #EC3C27, #EB7C48, #ECDB55, #96CD61, #3CB7E6, #6560BF);
+}
+
+.filtersepia {
+    filter: grayscale(90%);
+}
+
+.plecanegra {
+    display: flex;
+    background-color: #464646;
+    color: white;
+    height: 60px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-hide {
+    display: none;
+}
+
+.app-show {
+    display: block;
 }

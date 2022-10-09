@@ -8,6 +8,9 @@ function removeAllChildNodes(parent) {
 }
 
 export async function loadViewComponent(relativePath, containerElement) {
+    if (relativePath.indexOf('?') >= 0) {
+        relativePath = relativePath.substring(0, relativePath.indexOf('?'));
+    }
     const template = await agua.getTemplate(`${relativePath}.html`);
     removeAllChildNodes(containerElement);
     const newView = document.createElement('div');
@@ -25,12 +28,13 @@ export async function loadViewComponent(relativePath, containerElement) {
     document.body.appendChild(viewModelScript);
 }
 
-export function findViewComponents() {
-    return document.querySelectorAll('[data-load-view-component]');
+export function findViewComponents(rootElement = null) {
+    const root = rootElement || document;
+    return root.querySelectorAll('[data-load-view-component]');
 }
 
-export function loadViewComponents(callback) {
-    const viewComponents = findViewComponents();
+export function loadDataViewComponents(rootElement = null, callback) {
+    const viewComponents = findViewComponents(rootElement);
     viewComponents.forEach(async (element) => {
         const viewComponentName = element.dataset.loadViewComponent;
         const viewComponent = parseViewComponentName(viewComponentName);
