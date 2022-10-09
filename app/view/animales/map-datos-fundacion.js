@@ -139,7 +139,6 @@ const sexo = {
 
 const IMAGE_FILE_PREFIX = 'https://drive.google.com/file/d/';
 const IMAGE_FILE_SUFIX = '/view?usp=sharing';
-
 const IMAGE_OPEN_PREFIX = 'https://drive.google.com/open?id=';
 
 const pictures = {

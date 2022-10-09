@@ -3,7 +3,6 @@ import { pmod } from "../../main/src/panda/untercio.js";
 export class Card {
     constructor(data) {
         Object.assign(this, data);
-        console.log(this.pictures);
         this.pictureurl = this.pictures[0] ?? './resources/images/nia.png';
         this.loading = true;
         this.demoPictureIndex = 0;
