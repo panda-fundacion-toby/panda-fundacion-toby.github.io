@@ -35,14 +35,6 @@
     min-height: 4rem;
 }
 
-.app-hide {
-    display: none;
-}
-
-.app-show {
-    display: block;
-}
-
 .adopta-vanish {
 
     /* This timing applies on the way OUT */
@@ -365,25 +357,39 @@
     justify-content: center;
 }
 
-.bordercard{
+.memorial-bordercard-container {
     display: flex;
-    width:22rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.bordercard {
+    display: flex;
+    width: 22rem;
     padding: 3px;
-    border-radius:5px;
+    border-radius: 5px;
     justify-content: center;
-    background-image: linear-gradient(45deg, #EC3C27, #EB7C48, #ECDB55, #96CD61,#3CB7E6,#6560BF);
+    background-image: linear-gradient(45deg, #EC3C27, #EB7C48, #ECDB55, #96CD61, #3CB7E6, #6560BF);
 }
 
-.filtersepia{
-    filter:grayscale(90%);
+.filtersepia {
+    filter: grayscale(90%);
 }
 
-.plecanegra{
+.plecanegra {
     display: flex;
     background-color: #464646;
-    color:white;
+    color: white;
     height: 60px;
-    border-radius:5px;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
+}
+
+.app-hide {
+    display: none;
+}
+
+.app-show {
+    display: block;
 }

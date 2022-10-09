@@ -27,21 +27,9 @@ class DatosPerritos {
         this.dataTable = await this.datos.load(query);
         const cards = [];
         for (let index = 0; index < this.dataTable.getNumberOfRows(); index++) {
-            const nombre = this.dataTable.getValue(index, 1);
-            if (!nombre || nombre.trim() === '') {
-                continue;
-            }
-            const sexo = this.dataTable.getValue(index, 5) || '?';
-            const pictures = getPicturesFromCellValue(this.dataTable.getValue(index, 2)) || [];
-            const pictureurl = pictures.length ? getImageFromDriveId(getPictureIdFrom(pictures[0])) : './resources/images/nia.png';
             const mappings = map(this.dataTable, index);
             cards.push(new Card({
                 key: index,
-                nombre,
-                pictureurl,
-                pictures: pictures.map(p => getImageFromDriveId(getPictureIdFrom(p))),
-                sexo,
-                demoPictureIndex: 0,
                 ...mappings
             }));
         }
@@ -75,11 +63,3 @@ class DatosPerritos {
 }
 
 export const datosPerritos = new DatosPerritos(datos);
-
-export const TIPO_ADOPCION = {
-    DISPONIBLE: {
-        COLUMN_ID: 'X',
-        OPERATION: '=',
-        VALUE: "'Disponible'"
-    }
-};

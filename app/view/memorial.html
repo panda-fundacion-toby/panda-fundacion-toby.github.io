@@ -1,13 +1,27 @@
-<div class="bordercard">
-    <div class="card" style="width: 22rem;">
-        <div class="card-header text-center">
-            <h5 class="card-title plecanegra">YOKO</h5>
-            <h6 class="card-title">2020 - 2022</h6>
+<!DOCTYPE html>
+<div id="memorial-app">
+    <div class="cargando" :class="{ 'app-hide': ready }">
+        Cargando...
+    </div>
+    <div class="app-hide" :class="{ 'app-show': ready }">
+        <div class="text-muted">
+            Perritos fallecidos: {{total}}
         </div>
-        <img src="/resources/images/Yoko.jpg" class="card-img-top filtersepia adopta-foto" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+        <div class="memorial-bordercard-container">
+            <div class="bordercard mt-4 mb-4" v-for="card in cards">
+                <div class="card" style="width: 22rem;">
+                    <div class="card-header text-center">
+                        <h5 class="card-title plecanegra">{{card.nombre}}</h5>
+                        <h6 class="card-title">{{card.anoNacimientoAproximado}} - 2022</h6>
+                    </div>
+                    <img class="card-img-top filtersepia adopta-foto" :src="card.pictureurl" loading="lazy"
+                        @load="()=>{card.onImageLoaded()}">
+                    <!-- <img src="/resources/images/Yoko.jpg" class="card-img-top filtersepia adopta-foto" alt="..."> -->
+                    <div class="card-body">
+                        <p class="card-text">{{card.historia}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

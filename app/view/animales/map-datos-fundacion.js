@@ -122,19 +122,68 @@ const edad = {
     }
 };
 
+const anoNacimientoAproximado = {
+    columnNumber: 3,
+    map(value) {
+        return `${value}`;
+    }
+};
+
+const nombre = {
+    columnNumber: 1
+};
+
+const sexo = {
+    columnNumber: 5
+};
+
+const IMAGE_FILE_PREFIX = 'https://drive.google.com/file/d/';
+const IMAGE_FILE_SUFIX = '/view?usp=sharing';
+
+const IMAGE_OPEN_PREFIX = 'https://drive.google.com/open?id=';
+
+const pictures = {
+    columnNumber: 25,
+    defaultValue: '',
+    map(value) {
+        let imageIds = [];
+        // https://drive.google.com/file/d/1XWRm4Z7cQK-Zv4pv1GcEaNgZzc8nZW53/view?usp=sharing
+        if (value.indexOf('usp=sharing') >= 0) {
+            const items = value.split(',').
+                map(v => v.trim()).
+                map(i => i.substring(IMAGE_FILE_PREFIX.length)).
+                map(i => i.substring(0, i.indexOf(IMAGE_FILE_SUFIX)));
+            imageIds.push(...items);
+        } else {
+            // https://drive.google.com/open?id=1fQjlr-a2ljlCWhWEDmGcy_1_UC4EX49O
+            const items = value.split(',').
+                map(v => v.trim()).
+                map(i => i.substring(IMAGE_OPEN_PREFIX.length));
+            imageIds.push(...items);
+        }
+        // https://drive.google.com/uc?export=view&id=1XWRm4Z7cQK-Zv4pv1GcEaNgZzc8nZW53
+        const result = imageIds.map(imageId => `https://drive.google.com/uc?export=view&id=${imageId}`);
+        return result;
+    }
+};
+
 const mappers = {
+    anoNacimientoAproximado,
+    busca,
     conviveCon,
-    historia,
-    nivelDeEnergia,
     energiaRemain,
     energiaString,
-    tamano,
     edad,
-    busca,
+    historia,
+    nivelDeEnergia,
+    nombre,
+    salud,
+    sexo,
+    sexoString,
+    pictures,
+    tamano,
     tamanoString,
     temperamento,
-    salud,
-    sexoString,
     talentos
 };
 

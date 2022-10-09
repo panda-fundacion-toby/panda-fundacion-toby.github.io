@@ -1,12 +1,13 @@
-import { Navigation } from './navigation.js';
+import { Navigation, processNavigationLinks } from './navigation.js';
 import { getLocationHashComponents } from './navigationUtils.js';
-import { loadViewComponent, loadViewComponents } from './components/viewComponentLoader.js';
+import { loadViewComponent, loadDataViewComponents } from './components/viewComponentLoader.js';
 
 /**
  * Main entry point of panda application.
  */
 class Main {
     constructor() {
+        this.visitedDataViewComponents = new Map();
         this.beforeNavigationCallbacks = [];
         const navigation = new Navigation();
         this.loadCentralView(navigation.viewName, true);
@@ -15,14 +16,11 @@ class Main {
                 this.loadCentralView(event.state.moduleName, false);
             }
         });
-        loadViewComponents((element) => {
-            const links = Array.from(element.querySelectorAll('a'));
-            this.wireNavigationLinks(links);
-        });
+        this.allDataViewComponents(document);
         this.wire();
     }
 
-    async loadCentralView(viewName, pushState) {
+    async loadCentralView(viewName, pushState = true) {
         this.beforeNavigationCallbacks.forEach(callback => {
             callback();
         });
@@ -35,6 +33,19 @@ class Main {
         const viewContainer = document.getElementById('viewContainer');
         await loadViewComponent(relativePath, viewContainer);
         this.wire('#viewContainer a');
+        this.allDataViewComponents(viewContainer);
+    }
+
+    allDataViewComponents(rootElement) {
+        if (this.visitedDataViewComponents.get(rootElement)) {
+            throw Error('Data view component already visited. Verify that you are have not cycles in your data view component dependencies.', this.visitedDataViewComponents);
+        }
+        loadDataViewComponents(rootElement, (element) => {
+            processNavigationLinks((viewName) => {
+                this.loadCentralView(viewName);
+            }, element);
+            this.allDataViewComponents(element);
+        });
     }
 
     onBeforeNavigate(callback) {
@@ -60,7 +71,7 @@ class Main {
             if (href?.startsWith('#/')) {
                 element.onclick = () => {
                     const viewName = element.getAttribute('href');
-                    this.loadCentralView(viewName, true);
+                    this.loadCentralView(viewName);
                     return false;
                 };
             }
