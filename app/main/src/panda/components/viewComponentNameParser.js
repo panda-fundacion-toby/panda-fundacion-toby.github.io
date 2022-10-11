@@ -1,7 +1,7 @@
 
 export const VIEW_NAME_INITIAL_TOKEN = '#/';
 
-function cleanViewComponent(viewComponentName) {
+export function getRelativePath(viewComponentName) {
     if (viewComponentName.indexOf(VIEW_NAME_INITIAL_TOKEN) === 0) {
         viewComponentName = viewComponentName.substring(VIEW_NAME_INITIAL_TOKEN.length);
     }
@@ -9,7 +9,7 @@ function cleanViewComponent(viewComponentName) {
 }
 
 export function parseViewComponentName(viewComponentName) {
-    const trimed = cleanViewComponent(viewComponentName);
+    const trimed = getRelativePath(viewComponentName);
     return {
         relativePath: trimed,
     };;

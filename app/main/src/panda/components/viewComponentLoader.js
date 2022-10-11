@@ -1,5 +1,5 @@
 import { agua } from '../agua.js';
-import { parseViewComponentName } from './viewComponentNameParser.js';
+import { getRelativePath, parseViewComponentName } from './viewComponentNameParser.js';
 
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
@@ -41,4 +41,31 @@ export function loadDataViewComponents(rootElement = null, callback) {
         await loadViewComponent(viewComponent.relativePath, element);
         callback(element);
     });
+}
+
+export class ViewComponentLoader {
+    constructor(viewContainerId) {
+        this.viewContainerId = viewContainerId;
+        this.viewContainer = document.getElementById(this.viewContainerId);
+    }
+
+    async load(viewName) {
+        const viewTemplateRelativePath = getRelativePath(viewName);
+        const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
+        removeAllChildNodes(this.viewContainer);
+        const newView = document.createElement('div');
+        newView.innerHTML = template;
+        this.viewContainer.appendChild(newView);
+        const viewModelScriptId = 'view-model-script';
+        let viewModelScript = document.getElementById(viewModelScriptId);
+        if (viewModelScript) {
+            viewModelScript.remove();
+        }
+        viewModelScript = document.createElement('script');
+        viewModelScript.setAttribute('id', viewModelScriptId);
+        viewModelScript.setAttribute('type', 'module');
+        viewModelScript.setAttribute('src', `app/view/${viewTemplateRelativePath}.js?t=${Date.now()}`);
+        document.body.appendChild(viewModelScript);
+    }
+
 }

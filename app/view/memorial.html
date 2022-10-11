@@ -11,8 +11,8 @@
                         <h5 class="card-title plecanegra">{{card.nombre}}</h5>
                         <h6 class="card-title">{{card.anoNacimientoAproximado}} - 2022</h6>
                     </div>
-                    <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
-                        :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
+                    <!-- <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
+                        :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}"> -->
                     <div class="card-body pt-1">
                         <div class="row p-1">
                             <div class="col">
@@ -208,7 +208,7 @@
                             <i class="small fas fa-desktop"></i>
                             Amigo Virtual
                         </a>
-                        <a href="/#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
+                        <a href="#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
                             Formas de ayudar
                         </a>
                     </div>

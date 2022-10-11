@@ -1,5 +1,6 @@
 import { conejito } from "../../../main/src/panda/conejito.js";
 import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
+import { pushView, replaceView } from "../../../main/src/panda/navigation/polar.js";
 import { datosPerritos } from "./datosPerritos.js";
 import { TIPO_ADOPCION } from "./filtrosTipoAdopcion.js";
 
@@ -26,7 +27,7 @@ export class Galeria {
                         this.currentDog = found;
                         this.currentDog.showLoading(true);
                         $('#perritoModal').modal('toggle');
-                        conejito.pushNavigationPath(`#/memorial?id=${key}`);
+                        replaceView(`#/memorial?id=${key}`);
                     },
                     preview() {
                         this.currentDog.previous();
@@ -36,6 +37,7 @@ export class Galeria {
                     }
                 },
                 mounted() {
+                    conejito.wire('#perritoModal a');
                     const modalImg = document.getElementById('adopta-modal-img');
                     modalImg.addEventListener('load', () => {
                         this.currentDog.showLoading(false);
@@ -48,7 +50,7 @@ export class Galeria {
                         }
                     });
                     $('#perritoModal').on('hidden.bs.modal', function (e) {
-                        conejito.pushNavigationPath(`#/memorial`);
+                        pushView('#/memorial');
                     })
                     document.onkeydown = (e) => {
                         if (!this.currentDog) {

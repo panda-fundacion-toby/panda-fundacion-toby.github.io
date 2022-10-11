@@ -29,8 +29,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img class="img-thumbnail adopta-foto" :src="card.pictureurl" loading="lazy"
-                                        @load="()=>{card.onImageLoaded()}">
+                                    <!-- <img class="img-thumbnail adopta-foto" :src="card.pictureurl" loading="lazy"
+                                        @load="()=>{card.onImageLoaded()}"> -->
                                 </div>
                             </div>
                         </div>
@@ -116,9 +116,12 @@
                                 </div>
                                 <div>
                                     <img class="img-fluid rounded mx-auto adopta-modal-img" id="adopta-modal-img"
+                                        loading="lazy">
+                                    <img loading="lazy" style="width: 0px; height: 0px;">
+                                    <!-- <img class="img-fluid rounded mx-auto adopta-modal-img" id="adopta-modal-img"
                                         loading="lazy" :src="currentDog.modalPicture">
                                     <img loading="lazy" style="width: 0px; height: 0px;"
-                                        :src="currentDog.modalPictureCache">
+                                        :src="currentDog.modalPictureCache"> -->
                                     <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
                                         <i class="fas fa-chevron-left"></i>
                                     </button>
@@ -270,9 +273,10 @@
                         </a>
                     </div>
                     <div class="px-4 py-2">
-                        <a href="/#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
+                        <button class="btn btn-outline-secondary btn-block text-uppercase"
+                            @click.stop="navigateToDonaciones">
                             Formas de ayudar
-                        </a>
+                        </button>
                     </div>
                     <p class="pt-2 h4 text-center">
                         Comparte a {{currentDog.nombre}}

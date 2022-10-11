@@ -1,16 +1,19 @@
 import { conejito } from '../../main/src/panda/conejito.js';
+import { hideModal } from '../../main/src/panda/extensions/bt.js';
+import { replaceViewHistory } from '../../main/src/panda/navigation/polar.js';
 import { datosPerritos } from './galerias/datosPerritos.js';
 import { TIPO_ADOPCION } from './galerias/filtrosTipoAdopcion.js';
 const { createApp } = Vue;
 
-conejito.onBeforeNavigate(() => {
-    $('#perritoModal').modal('hide');
-});
+// conejito.onBeforeNavigate(() => {
+//     $('#perritoModal').modal('hide');
+// });
 
 datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
     const adoptaAppElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 500;
+    let navigateTo = null;
     const app = createApp({
         data() {
             return {
@@ -40,17 +43,21 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                 this.currentDog = found;
                 this.currentDog.showLoading(true);
                 $('#perritoModal').modal('toggle');
-                conejito.pushNavigationPath(`#/animales/adopta/${key}`);
+                replaceViewHistory(`#/animales/adopta/${key}`);
             },
             preview() {
                 this.currentDog.previous();
             },
             next() {
                 this.currentDog.next();
+            },
+            async navigateToDonaciones(event) {
+                // $('#perritoModal').modal('hide');
+                await hideModal(document.getElementById('perritoModal'));
+                alert(1);
             }
         },
         mounted() {
-            conejito.wire('.app-rewire');
             const modalImg = document.getElementById('adopta-modal-img');
             modalImg.addEventListener('load', () => {
                 this.currentDog.showLoading(false);
@@ -63,8 +70,13 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                 }
             });
             $('#perritoModal').on('hidden.bs.modal', function (e) {
-                conejito.pushNavigationPath(`#/animales/adopta`);
-            })
+                // if (navigateTo) {
+                //     conejito.loadCentralView(navigateTo);
+                //     navigateTo = null;
+                // } else {
+                // replaceView('#/animales/adopta');
+                // }
+            });
             document.onkeydown = (e) => {
                 if (!this.currentDog) {
                     return;
@@ -92,7 +104,6 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
 }).catch(error => {
     console.trace(error);
     const elements = document.getElementsByClassName('cargando');
-    console.log(elements);
     Array.from(elements).forEach(e => {
         e.classList.add('app-hide');
     });

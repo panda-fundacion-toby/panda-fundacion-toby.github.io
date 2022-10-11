@@ -1,6 +1,8 @@
-import { Navigation, processNavigationLinks } from './navigation.js';
+import { processNavigationLinks } from './navigation.js';
 import { getLocationHashComponents } from './navigationUtils.js';
 import { loadViewComponent, loadDataViewComponents } from './components/viewComponentLoader.js';
+import { pushViewHistory } from './navigation/polar.js';
+import { WindowNavigationController } from './navigation/windowNavigationController.js';
 
 /**
  * Main entry point of panda application.
@@ -9,15 +11,16 @@ class Main {
     constructor() {
         this.visitedDataViewComponents = new Map();
         this.beforeNavigationCallbacks = [];
-        const navigation = new Navigation();
-        this.loadCentralView(navigation.viewName, true);
-        window.addEventListener('popstate', event => {
-            if (event.state) {
-                this.loadCentralView(event.state.moduleName, false);
-            }
-        });
-        this.allDataViewComponents(document);
-        this.wire();
+        // const navigation = new Navigation();
+        this.windowNavigationController = new WindowNavigationController('viewContainer');
+        // this.loadCentralView(navigation.viewName, false);
+        // window.addEventListener('popstate', event => {
+        //     if (event.state) {
+        //         this.loadCentralView(event.state.viewName, false);
+        //     }
+        // });
+        // this.allDataViewComponents(document);
+        // this.wire();
     }
 
     async loadCentralView(viewName, pushState = true) {
@@ -25,8 +28,18 @@ class Main {
             callback();
         });
         if (pushState) {
-            history.pushState({ moduleName: viewName }, '', viewName);
+            pushViewHistory(viewName);
+            // history.pushState({ viewName }, '', viewName);
         }
+        this.updateCentralView(viewName);
+    }
+
+    async replaceCentralView(viewName) {
+        history.replaceState({ moduleName: viewName }, '', viewName);
+        this.updateCentralView(viewName);
+    }
+
+    async updateCentralView(viewName) {
         const locationHashComponents = getLocationHashComponents(viewName);
         this.tenebrito = locationHashComponents;
         const { moduleName: relativePath } = locationHashComponents;
@@ -48,12 +61,8 @@ class Main {
         });
     }
 
-    onBeforeNavigate(callback) {
-        this.beforeNavigationCallbacks.push(callback);
-    }
-
-    pushNavigationPath(path) {
-        history.pushState({ moduleName: path }, '', path);
+    onBeforeWindowPushView(callback) {
+        this.windowNavigationController.onBeforePushView.push(callback);
     }
 
     /**
