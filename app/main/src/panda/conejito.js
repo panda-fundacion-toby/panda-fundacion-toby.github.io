@@ -1,8 +1,11 @@
-import { processNavigationLinks } from './navigation.js';
+import { processNavigationLinks } from './navigation/navigation.js';
 import { getLocationHashComponents } from './navigationUtils.js';
-import { loadViewComponent, loadDataViewComponents } from './components/viewComponentLoader.js';
+import { loadViewComponent, loadDataViewComponents, ViewComponentLoader } from './components/viewComponentLoader.js';
 import { pushViewHistory } from './navigation/polar.js';
 import { WindowNavigationController } from './navigation/windowNavigationController.js';
+import { HtmlViewComponentsLoader } from './components/htmlViewComponentsLoader.js';
+import { NavigationElementsFinder } from './components/navigationElementsFinder.js';
+import { NavigationElementsInitializer } from './extensions/navigationElementsInitializer.js';
 
 /**
  * Main entry point of panda application.
@@ -11,16 +14,16 @@ class Main {
     constructor() {
         this.visitedDataViewComponents = new Map();
         this.beforeNavigationCallbacks = [];
-        // const navigation = new Navigation();
-        this.windowNavigationController = new WindowNavigationController('viewContainer');
-        // this.loadCentralView(navigation.viewName, false);
-        // window.addEventListener('popstate', event => {
-        //     if (event.state) {
-        //         this.loadCentralView(event.state.viewName, false);
-        //     }
-        // });
-        // this.allDataViewComponents(document);
-        // this.wire();
+        const centralViewContainer = document.getElementById('viewContainer');
+        this.centralViewComponentLoader = new ViewComponentLoader(centralViewContainer);
+        this.windowNavigationController = new WindowNavigationController(this.centralViewComponentLoader);
+        this.htmlViewComponentsLoader = new HtmlViewComponentsLoader();
+        this.navigationElementsFinder = new NavigationElementsFinder(document);
+        this.navigationElementsInitializer = new NavigationElementsInitializer(this.windowNavigationController);
+        const navigationElements = this.navigationElementsFinder.find();
+        this.navigationElementsInitializer.initialize(navigationElements);
+        this.htmlViewComponentsLoader.load();
+        this.windowNavigationController.mount();
     }
 
     async loadCentralView(viewName, pushState = true) {

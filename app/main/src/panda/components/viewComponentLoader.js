@@ -1,4 +1,4 @@
-import { agua } from '../agua.js';
+import { agua } from './agua.js';
 import { getRelativePath, parseViewComponentName } from './viewComponentNameParser.js';
 
 function removeAllChildNodes(parent) {
@@ -44,11 +44,14 @@ export function loadDataViewComponents(rootElement = null, callback) {
 }
 
 export class ViewComponentLoader {
-    constructor(viewContainerId) {
-        this.viewContainerId = viewContainerId;
-        this.viewContainer = document.getElementById(this.viewContainerId);
+    constructor(viewContainer) {
+        this.viewContainer = viewContainer;
     }
 
+    /**
+     * 
+     * @param {string} viewName String with format '#/relative-path-to-view/view-name'
+     */
     async load(viewName) {
         const viewTemplateRelativePath = getRelativePath(viewName);
         const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
@@ -67,5 +70,4 @@ export class ViewComponentLoader {
         viewModelScript.setAttribute('src', `app/view/${viewTemplateRelativePath}.js?t=${Date.now()}`);
         document.body.appendChild(viewModelScript);
     }
-
 }

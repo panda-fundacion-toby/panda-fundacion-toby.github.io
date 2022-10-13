@@ -1,6 +1,6 @@
 import { conejito } from "../../../main/src/panda/conejito.js";
 import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
-import { pushView, replaceView } from "../../../main/src/panda/navigation/polar.js";
+import { pushViewHistory, replaceViewHistory } from "../../../main/src/panda/navigation/polar.js";
 import { datosPerritos } from "./datosPerritos.js";
 import { TIPO_ADOPCION } from "./filtrosTipoAdopcion.js";
 
@@ -27,7 +27,7 @@ export class Galeria {
                         this.currentDog = found;
                         this.currentDog.showLoading(true);
                         $('#perritoModal').modal('toggle');
-                        replaceView(`#/memorial?id=${key}`);
+                        replaceViewHistory(`#/memorial?id=${key}`);
                     },
                     preview() {
                         this.currentDog.previous();
@@ -50,7 +50,7 @@ export class Galeria {
                         }
                     });
                     $('#perritoModal').on('hidden.bs.modal', function (e) {
-                        pushView('#/memorial');
+                        pushViewHistory('#/memorial');
                     })
                     document.onkeydown = (e) => {
                         if (!this.currentDog) {
@@ -67,7 +67,6 @@ export class Galeria {
                         }
                     };
                     const fotoId = getParamValue('id');
-                    console.log(fotoId);
                     if (fotoId) {
                         this.showPhoto(parseInt(getParamValue('id')));
                         const cardElement = document.getElementById(`card-${fotoId}`);

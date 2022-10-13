@@ -91,13 +91,13 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                     default: return;
                 }
             };
-            if (conejito.tenebrito.queryString) {
-                this.showPhoto(parseInt(conejito.tenebrito.queryString));
-                const cardElement = document.getElementById(`card-${conejito.tenebrito.queryString}`);
-                if (cardElement) {
-                    cardElement.scrollIntoView(true);
-                }
-            }
+            // if (conejito.tenebrito.queryString) {
+            //     this.showPhoto(parseInt(conejito.tenebrito.queryString));
+            //     const cardElement = document.getElementById(`card-${conejito.tenebrito.queryString}`);
+            //     if (cardElement) {
+            //         cardElement.scrollIntoView(true);
+            //     }
+            // }
         }
     }).mount(adoptaAppElement);
     adoptaAppElement.classList.remove('adopta-init');
