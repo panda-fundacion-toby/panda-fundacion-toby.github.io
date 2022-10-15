@@ -1,6 +1,5 @@
 import { pushViewHistory, replaceViewHistory } from "./polar.js";
 
-
 export class WindowNavigationController {
 
     constructor(viewComponentLoader) {

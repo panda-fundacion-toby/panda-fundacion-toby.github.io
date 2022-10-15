@@ -68,30 +68,30 @@ class Main {
         this.windowNavigationController.onBeforePushView.push(callback);
     }
 
-    /**
-     * Select a group of elements in html and 
-     * @param {string} selector 
-     */
-    wire(selector = 'a') {
-        const links = Array.from(document.querySelectorAll(selector));
-        this.wireNavigationLinks(links);
-    }
+    // /**
+    //  * Select a group of elements in html and 
+    //  * @param {string} selector 
+    //  */
+    // wire(selector = 'a') {
+    //     const links = Array.from(document.querySelectorAll(selector));
+    //     this.wireNavigationLinks(links);
+    // }
 
-    wireNavigationLinks(links) {
-        links.forEach(element => {
-            const href = element.getAttribute('href');
-            if (href?.startsWith('#/')) {
-                element.onclick = () => {
-                    const viewName = element.getAttribute('href');
-                    this.loadCentralView(viewName);
-                    return false;
-                };
-            }
-        });
-    }
+    // wireNavigationLinks(links) {
+    //     links.forEach(element => {
+    //         const href = element.getAttribute('href');
+    //         if (href?.startsWith('#/')) {
+    //             element.onclick = () => {
+    //                 const viewName = element.getAttribute('href');
+    //                 this.loadCentralView(viewName);
+    //                 return false;
+    //             };
+    //         }
+    //     });
+    // }
 
-    registerComponent() {
-    }
+    // registerComponent() {
+    // }
 }
 
 export const conejito = new Main();

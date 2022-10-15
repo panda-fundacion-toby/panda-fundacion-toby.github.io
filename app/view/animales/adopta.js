@@ -83,10 +83,10 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                 }
                 switch (e.key) {
                     case 'ArrowLeft':
-                        this.currentDog.previous();
+                        this.currentDog.previous && this.currentDog.previous();
                         break;
                     case 'ArrowRight':
-                        this.currentDog.next();
+                        this.currentDog.next && this.currentDog.next();
                         break;
                     default: return;
                 }
