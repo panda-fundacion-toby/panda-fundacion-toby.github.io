@@ -58,8 +58,9 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                     this.currentDog.previous();
                 }
             });
-            conejito.navigationElementsInitializer.init(rootElement);
-            $('#perritoModal').on('hidden.bs.modal', function (e) {
+            conejito.bindLinks(rootElement);
+            $('#perritoModal').on('hidden.bs.modal', (e) => {
+                console.log(e);
                 replaceViewHistory('#/animales/adopta');
             });
             document.onkeydown = (e) => {

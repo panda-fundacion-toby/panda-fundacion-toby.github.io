@@ -6,12 +6,18 @@ export function findViewComponents(rootElement) {
 }
 
 export class HtmlViewComponentsLoader {
-    init() {
+
+    constructor(navigationController) {
+        this.navigationController = navigationController;
+    }
+
+    async loadDataViewComponents() {
         const viewComponentsElements = findViewComponents(document);
-        viewComponentsElements.forEach((element) => {
+        for (const element of viewComponentsElements) {
             const viewComponentLoader = new ViewComponentLoader(element);
             const viewComponentName = element.dataset.loadViewComponent;
-            viewComponentLoader.load(viewComponentName);
-        });
+            const viewComponent = await viewComponentLoader.load(viewComponentName);
+            this.navigationController.bindLinks(viewComponent.rootElement);
+        }
     }
 }
