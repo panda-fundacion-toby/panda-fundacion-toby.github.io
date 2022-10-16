@@ -1,9 +1,9 @@
 export async function hideModal(modalElement) {
     return new Promise((resolve) => {
         $(modalElement).on('hidden.bs.modal', (e) => {
-            console.log(`bt.js`, e);
             resolve(e);
         });
+        modalElement.dataset.ignoreHidenEvent = true;
         $(modalElement).modal('hide');
     });
 }
