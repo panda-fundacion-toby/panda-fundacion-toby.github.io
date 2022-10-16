@@ -1,19 +1,13 @@
 import { conejito } from '../../main/src/panda/conejito.js';
-import { hideModal } from '../../main/src/panda/extensions/bt.js';
 import { replaceViewHistory } from '../../main/src/panda/navigation/polar.js';
 import { datosPerritos } from './galerias/datosPerritos.js';
 import { TIPO_ADOPCION } from './galerias/filtrosTipoAdopcion.js';
 const { createApp } = Vue;
 
-// conejito.onBeforeNavigate(() => {
-//     $('#perritoModal').modal('hide');
-// });
-
 datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
-    const adoptaAppElement = document.getElementById('adopta-app');
+    const rootElement = document.getElementById('adopta-app');
     const currentPage = 0;
     const pageSize = 500;
-    let navigateTo = null;
     const app = createApp({
         data() {
             return {
@@ -51,11 +45,6 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
             next() {
                 this.currentDog.next();
             },
-            async navigateToDonaciones(event) {
-                // $('#perritoModal').modal('hide');
-                await hideModal(document.getElementById('perritoModal'));
-                alert(1);
-            }
         },
         mounted() {
             const modalImg = document.getElementById('adopta-modal-img');
@@ -69,13 +58,9 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
                     this.currentDog.previous();
                 }
             });
+            conejito.navigationElementsInitializer.init(rootElement);
             $('#perritoModal').on('hidden.bs.modal', function (e) {
-                // if (navigateTo) {
-                //     conejito.loadCentralView(navigateTo);
-                //     navigateTo = null;
-                // } else {
-                // replaceView('#/animales/adopta');
-                // }
+                replaceViewHistory('#/animales/adopta');
             });
             document.onkeydown = (e) => {
                 if (!this.currentDog) {
@@ -99,8 +84,8 @@ datosPerritos.load([TIPO_ADOPCION.DISPONIBLE]).then(() => {
             //     }
             // }
         }
-    }).mount(adoptaAppElement);
-    adoptaAppElement.classList.remove('adopta-init');
+    }).mount(rootElement);
+    rootElement.classList.remove('adopta-init');
 }).catch(error => {
     console.trace(error);
     const elements = document.getElementsByClassName('cargando');

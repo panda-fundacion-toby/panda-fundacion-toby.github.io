@@ -2,26 +2,16 @@ import { pushViewHistory, replaceViewHistory } from "./polar.js";
 
 export class WindowNavigationController {
 
-    constructor(viewComponentLoader) {
+    constructor(viewComponentLoader, navigationElementsFinder) {
         this.viewComponentLoader = viewComponentLoader;
+        this.navigationElementsFinder = navigationElementsFinder;
         this.beforePushViewListeners = [];
-        window.addEventListener('popstate', event => {
-            if (event.state) {
-                this.loadViewComponentFromUrl(event.state.url);
-            }
-        });
     }
 
-    async loadViewComponentFromUrl(url) {
-        const urlSplit = url.split('?');
-        const [viewName] = urlSplit;
-        await this.viewComponentLoader.load(viewName);
-    }
-
-    async mount() {
+    async init() {
         const url = window.location.hash || '#/home';
         replaceViewHistory(url);
-        await this.loadViewComponentFromUrl(url);
+        return await this.viewComponentLoader.load(url);
     }
 
     onBeforePushView(callback) {
@@ -29,8 +19,9 @@ export class WindowNavigationController {
     }
 
     async pushView(url) {
-        this.beforePushViewListeners.forEach(cb => cb(url));
         pushViewHistory(url);
-        await this.loadViewComponentFromUrl(url);
+        this.beforePushViewListeners.forEach(cb => cb(url));
+        return await this.viewComponentLoader.load(url);
     }
+
 }

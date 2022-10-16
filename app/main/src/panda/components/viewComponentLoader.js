@@ -44,21 +44,24 @@ export function loadDataViewComponents(rootElement = null, callback) {
 }
 
 export class ViewComponentLoader {
-    constructor(viewContainer) {
-        this.viewContainer = viewContainer;
+
+    constructor(rootElement) {
+        this.rootElement = rootElement;
     }
 
     /**
      * 
-     * @param {string} viewName String with format '#/relative-path-to-view/view-name'
+     * @param {string} url String with format '#/relative-path-to-view/view-name?param=value'
      */
-    async load(viewName) {
+    async load(url) {
+        const urlSplit = url.split('?');
+        const [viewName, queryString] = urlSplit;
         const viewTemplateRelativePath = getRelativePath(viewName);
         const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
-        removeAllChildNodes(this.viewContainer);
+        removeAllChildNodes(this.rootElement);
         const newView = document.createElement('div');
         newView.innerHTML = template;
-        this.viewContainer.appendChild(newView);
+        this.rootElement.appendChild(newView);
         const viewModelScriptId = 'view-model-script';
         let viewModelScript = document.getElementById(viewModelScriptId);
         if (viewModelScript) {
@@ -69,5 +72,10 @@ export class ViewComponentLoader {
         viewModelScript.setAttribute('type', 'module');
         viewModelScript.setAttribute('src', `app/view/${viewTemplateRelativePath}.js?t=${Date.now()}`);
         document.body.appendChild(viewModelScript);
+        return {
+            queryString,
+            rootElement: this.rootElement,
+            viewName,
+        };
     }
 }

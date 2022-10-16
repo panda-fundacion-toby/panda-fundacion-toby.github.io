@@ -1,11 +1,5 @@
-
-
 export class NavigationElementsFinder {
-    constructor(rootElement) {
-        this.rootElement = rootElement;
-    }
-
-    find() {
-        return this.rootElement.querySelectorAll('a[href]');
+    find(rootElement) {
+        return rootElement.querySelectorAll('a[href]');
     }
 }

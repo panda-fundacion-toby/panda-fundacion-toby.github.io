@@ -5,10 +5,8 @@ export function findViewComponents(rootElement) {
     return root.querySelectorAll('[data-load-view-component]');
 }
 
-
 export class HtmlViewComponentsLoader {
-
-    load() {
+    init() {
         const viewComponentsElements = findViewComponents(document);
         viewComponentsElements.forEach((element) => {
             const viewComponentLoader = new ViewComponentLoader(element);
