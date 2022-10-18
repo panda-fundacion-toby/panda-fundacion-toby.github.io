@@ -1,11 +1,11 @@
 export const TIPO_ADOPCION = {
     DISPONIBLE: {
-        COLUMN_ID: 'X',
+        COLUMN_ID: 'G',
         OPERATION: '=',
         VALUE: "'Disponible'"
     },
     FACELLIDO: {
-        COLUMN_ID: 'X',
+        COLUMN_ID: 'G',
         OPERATION: '=',
         VALUE: "'Fallecido'"
     }
