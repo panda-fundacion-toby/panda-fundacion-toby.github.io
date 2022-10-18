@@ -4,37 +4,17 @@
         Cargando...
     </div>
     <div class="app-hide" :class="{ 'app-show': ready }">
-        <div class="text-muted">
-            Total de perritos en adopcion: {{total}}
-        </div>
-        <div class="row" style="justify-content: center;" v-for="card in cards" :key="card.key"
-            :id="`card-${card.key}`">
-            <div class="col-sm-12 col-lg-6 col-xl-4 mt-2 mb-2">
-                <div class="card adopta-card" style="padding: 0" :class="{'adopta-isHidden': vanish}">
-                    <div class="card-body">
-                        <div class="card-title h3 text-center adopta-header p-2">
-                            <strong>{{card.nombre}}</strong>
-                        </div>
-                        <div class="row">
-                            <div class="col" role="button" @click="showPhoto(card.key)">
-                                <div class="adopta-foto-container">
-                                    <div v-if="card.loading" class="adopta-modal-cargando">
-                                        <div>
-                                            Cargando
-                                            <div class="text-center">
-                                                <div class="spinner-grow spinner-grow-sm" role="status"
-                                                    style="width: 1.2rem; height: 1.2rem;">
-                                                    <span class="sr-only">Loading...</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img class="img-thumbnail adopta-foto" :src="card.pictureurl" loading="lazy"
-                                        @load="()=>{card.onImageLoaded()}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row p-2">
+        <div class="memorial-bordercard-container">
+            <div class="bordercard mt-4 mb-4" v-for="card in cards">
+                <div class="card" style="width: 22rem;">
+                    <div class="card-header text-center">
+                        <h5 class="card-title plecanegra">{{card.nombre}}</h5>
+                        <h6 class="card-title">{{card.anoNacimientoAproximado}} - 2022</h6>
+                    </div>
+                    <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
+                        :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
+                    <div class="card-body pt-1">
+                        <div class="row p-1">
                             <div class="col">
                                 <div class="text-secondary">
                                     <strong>tamaño</strong>
@@ -63,20 +43,12 @@
                                 </strong>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="adopta-historia p-3">
-                                    {{card.historia}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
-                                    <i class="small fas fa-plus"></i> más detalles
-                                </button>
-                            </div>
-                        </div>
+                        <p class="card-text">{{card.historia}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
+                            <i class="small fas fa-plus"></i> más detalles
+                        </button>
                     </div>
                 </div>
             </div>
@@ -182,16 +154,6 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <strong>
-                                convive con
-                            </strong>
-                            <p>
-                                <i class="espinitas-icons fas fa-check-circle"></i> {{currentDog.conviveCon}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
                             <p class="text-secondary">
                                 <strong>
                                     Su historia
@@ -199,28 +161,6 @@
                             </p>
                             <p>
                                 {{currentDog.historia}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="text-secondary">
-                                <strong>
-                                    Busca a quién (quiénes)
-                                </strong>
-                            </p>
-                            <p>
-                                {{currentDog.busca}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="h5">
-                                <i class="espinitas-icons small fas fa-spa"></i> Salud
-                            </p>
-                            <p>
-                                {{currentDog.salud}}
                             </p>
                         </div>
                     </div>
@@ -252,29 +192,27 @@
                     </div>
                 </div>
                 <div class="adopta-modal-adopcion">
-                    <h4 class="text-center">
+                    <h4 class="text-center pt-3">
                         Como ayudar a {{currentDog.nombre}}
                     </h4>
                     <div class="px-4 py-2">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCgL_KuKijB7UepleLYvJus_IhawXHYGSJd6oT4qR-RaOE0w/viewform"
-                            target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
-                            <span class="adopta-modal-btn-icon"><i class="small fas fa-dog"></i></span>
-                            Adopción física
-                        </a>
-                    </div>
-                    <div class="px-4 py-2">
+                        <p>
+                            A pesar de que {{currentDog.nombre}} ya no está con nosotros, aún hay muchos perritos que
+                            necesitan de tu ayuda.
+                        </p>
+                        <p>
+                            Ayúdanos para que otros perritos puedan tener un hogar.
+                        </p>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyWDsjKM0z_jt8pWtamcIEzKyq7YMltWVGiOHweBkqJBnsAA/viewform"
                             target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
                             <i class="small fas fa-desktop"></i>
                             Amigo Virtual
                         </a>
-                    </div>
-                    <div class="px-4 py-2">
                         <a href="#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
                             Formas de ayudar
                         </a>
                     </div>
-                    <p class="pt-2 h4 text-center">
+                    <!-- <p class="pt-2 h4 text-center">
                         Comparte a {{currentDog.nombre}}
                     </p>
                     <p class="text-center">
@@ -285,7 +223,7 @@
                             :href="currentDog.twitterLink">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

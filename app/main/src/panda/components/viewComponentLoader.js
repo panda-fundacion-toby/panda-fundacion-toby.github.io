@@ -1,52 +1,33 @@
 import { agua } from './agua.js';
 import { getRelativePath, parseViewComponentName } from './viewComponentNameParser.js';
-
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-}
-
-export async function loadViewComponent(relativePath, containerElement) {
-    if (relativePath.indexOf('?') >= 0) {
-        relativePath = relativePath.substring(0, relativePath.indexOf('?'));
-    }
-    const template = await agua.getTemplate(`${relativePath}.html`);
-    removeAllChildNodes(containerElement);
-    const newView = document.createElement('div');
-    newView.innerHTML = template;
-    containerElement.appendChild(newView);
-    const viewModelScriptId = 'view-model-script';
-    let viewModelScript = document.getElementById(viewModelScriptId);
-    if (viewModelScript) {
-        viewModelScript.remove();
-    }
-    viewModelScript = document.createElement('script');
-    viewModelScript.setAttribute('id', viewModelScriptId);
-    viewModelScript.setAttribute('type', 'module');
-    viewModelScript.setAttribute('src', `app/view/${relativePath}.js?t=${Date.now()}`);
-    document.body.appendChild(viewModelScript);
-}
-
-export function findViewComponents(rootElement = null) {
-    const root = rootElement || document;
-    return root.querySelectorAll('[data-load-view-component]');
-}
-
-export function loadDataViewComponents(rootElement = null, callback) {
-    const viewComponents = findViewComponents(rootElement);
-    viewComponents.forEach(async (element) => {
-        const viewComponentName = element.dataset.loadViewComponent;
-        const viewComponent = parseViewComponentName(viewComponentName);
-        await loadViewComponent(viewComponent.relativePath, element);
-        callback(element);
-    });
-}
+import { templatesFinder } from './templatesFinder.js';
 
 export class ViewComponentLoader {
 
     constructor(rootElement) {
         this.rootElement = rootElement;
+    }
+
+    removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
+    async loadTemplates(viewTemplateRelativePath, viewRootElement) {
+        const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
+        this.removeAllChildNodes(viewRootElement);
+        const newView = document.createElement('div');
+        newView.innerHTML = template;
+        viewRootElement.appendChild(newView);
+        const templates = templatesFinder.findTemplates(newView);
+        for (const template of templates) {
+            const nextUrl = template.dataset.template;
+            const urlSplit = nextUrl.split('?');
+            const [viewName] = urlSplit;
+            const relativePath = getRelativePath(viewName);
+            await this.loadTemplates(relativePath, newView);
+        }
     }
 
     /**
@@ -57,11 +38,7 @@ export class ViewComponentLoader {
         const urlSplit = url.split('?');
         const [viewName, queryString] = urlSplit;
         const viewTemplateRelativePath = getRelativePath(viewName);
-        const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
-        removeAllChildNodes(this.rootElement);
-        const newView = document.createElement('div');
-        newView.innerHTML = template;
-        this.rootElement.appendChild(newView);
+        this.loadTemplates(viewTemplateRelativePath, this.rootElement);
         const viewModelScriptId = 'view-model-script';
         let viewModelScript = document.getElementById(viewModelScriptId);
         if (viewModelScript) {

@@ -1,15 +1,15 @@
 import { conejito } from "../../../main/src/panda/conejito.js";
 import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
-import { pushViewHistory, replaceViewHistory } from "../../../main/src/panda/navigation/polar.js";
+import { replaceViewHistory } from "../../../main/src/panda/navigation/polar.js";
 import { datosPerritos } from "./datosPerritos.js";
-import { TIPO_ADOPCION } from "./filtrosTipoAdopcion.js";
 
 const { createApp } = Vue;
 export class Galeria {
-    constructor() {
+    constructor(params) {
+        const { filtroInicial, baseNavigationUrl } = params;
         (async () => {
-            await datosPerritos.load([TIPO_ADOPCION.FACELLIDO]);
-            const appContainer = document.getElementById('memorial-app');
+            await datosPerritos.load([filtroInicial]);
+            const appContainer = document.getElementById('galeria-app');
             const currentPage = 0;
             const pageSize = 500;
             const app = createApp({
@@ -27,7 +27,7 @@ export class Galeria {
                         this.currentDog = found;
                         this.currentDog.showLoading(true);
                         $('#perritoModal').modal('toggle');
-                        replaceViewHistory(`#/memorial?id=${key}`);
+                        replaceViewHistory(`${baseNavigationUrl}?id=${key}`);
                     },
                     preview() {
                         this.currentDog.previous();
@@ -37,7 +37,6 @@ export class Galeria {
                     }
                 },
                 mounted() {
-                    conejito.wire('#perritoModal a');
                     const modalImg = document.getElementById('adopta-modal-img');
                     modalImg.addEventListener('load', () => {
                         this.currentDog.showLoading(false);
@@ -49,9 +48,14 @@ export class Galeria {
                             this.currentDog.previous();
                         }
                     });
-                    $('#perritoModal').on('hidden.bs.modal', function (e) {
-                        pushViewHistory('#/memorial');
-                    })
+                    conejito.bindLinks(appContainer);
+                    const perritoModal = document.getElementById('perritoModal');
+                    $(perritoModal).on('hidden.bs.modal', (e) => {
+                        if (perritoModal.dataset.ignoreHidenEvent) {
+                            return;
+                        }
+                        replaceViewHistory(baseNavigationUrl);
+                    });
                     document.onkeydown = (e) => {
                         if (!this.currentDog) {
                             return;
