@@ -352,9 +352,7 @@
 }
 
 .justify-center {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+
 }
 
 .memorial-bordercard-container {
@@ -384,6 +382,76 @@
     border-radius: 5px;
     justify-content: center;
     align-items: center;
+}
+
+.parentcontainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.soncontainerYE{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    background-color: #F2F1CD;
+    justify-content: center;
+    
+}
+
+.rowTwins{
+   display: flex;
+   flex-direction: row;
+   margin:14px 14px 14px 14px;
+}
+
+.rowYE{
+    background-color: #FFFFFF;
+    opacity: .7;
+    text-align: center;
+    width: 100px;
+    margin-right: 14px;
+}
+
+.rowYEicon{
+    opacity: .7;
+    filter: drop-shadow(3px 5px 2px rgba(97, 97, 97, 0.4));
+    position: relative;
+}
+
+.banner{
+    width: 140px;
+}
+
+.relative{
+    position: absolute;
+    top: 8px;
+    left:8px;
+}
+.rowtextYE{
+    margin:14px 14px 14px 14px;
+    padding-top: 7px;
+}
+
+.textYE{
+    text-align: center;
+    width:268px;
+    height: 100%;
+    padding: 0px;
+}
+
+.verticalcenter{
+    position:relative;
+    top: 30%;
+}
+
+.soncontainersOR{
+    display: flex;
+    flex-direction: row;
+    background-color: #F8CF8E;
+    padding: 12px;
+    margin-bottom: 20px;
 }
 
 .app-hide {
