@@ -352,9 +352,7 @@
 }
 
 .justify-center {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+
 }
 
 .memorial-bordercard-container {
@@ -398,26 +396,26 @@
     flex-wrap: wrap;
     margin-bottom: 20px;
     background-color: #F2F1CD;
-    justify-content:space-evenly;
+    justify-content: center;
     
 }
 
 .rowTwins{
    display: flex;
+   flex-direction: row;
+   margin:14px 14px 14px 14px;
 }
 
 .rowYE{
     background-color: #FFFFFF;
     opacity: .7;
-    padding:20px;
-    margin:10px 5px 10px 10px;
     text-align: center;
-    width: 140px;
+    width: 100px;
+    margin-right: 14px;
 }
 
 .rowYEicon{
     opacity: .7;
-    margin:10px;
     filter: drop-shadow(3px 5px 2px rgba(97, 97, 97, 0.4));
     position: relative;
 }
@@ -428,18 +426,19 @@
 
 .relative{
     position: absolute;
-    top: 20px;
-    left:16px;
+    top: 8px;
+    left:8px;
 }
 .rowtextYE{
-    padding: 10px;
-    background-color: #96CD61;
+    margin:14px 14px 14px 14px;
+    padding-top: 7px;
 }
 
 .textYE{
-    background-color: #3CB7E6;
-    text-align: justify;
-    width:300px;
+    text-align: center;
+    width:268px;
+    height: 100%;
+    padding: 0px;
 }
 
 .verticalcenter{
