@@ -115,9 +115,17 @@ const edad = {
 };
 
 const anoNacimientoAproximado = {
-    columnIdentifier: 'E',
+    columnIdentifier: 'R',
     map(value) {
         return `${value}`;
+    }
+};
+
+const anoFallecimiento = {
+    columnIdentifier: 'S',
+    defaultValue: `${new Date().getFullYear()}`,
+    map(value) {
+        return parseInt(value);
     }
 };
 
@@ -160,6 +168,7 @@ const pictures = {
 
 const mappers = {
     anoNacimientoAproximado,
+    anoFallecimiento,
     busca,
     conviveCon,
     energiaString,
