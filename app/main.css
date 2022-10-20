@@ -65,7 +65,7 @@
 }
 
 .adopta-foto {
-    min-height: 26em;
+    height: 26em;
     object-fit: cover;
 }
 
