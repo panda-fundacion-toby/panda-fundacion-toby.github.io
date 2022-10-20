@@ -54,9 +54,7 @@
 }
 
 .adopta-card {
-    transition: left 0.143s, width 2s, height 2s, background-color 2s, transform 2s, opacity 0.143s;
-    top: 0;
-    left: 0;
+    width: 22rem;
 }
 
 .adopta-foto-container {
