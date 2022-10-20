@@ -9,7 +9,7 @@
                 <div class="card" style="width: 22rem;">
                     <div class="card-header text-center">
                         <h5 class="card-title plecanegra">{{card.nombre}}</h5>
-                        <h6 class="card-title">{{card.anoNacimientoAproximado}} - 2022</h6>
+                        <h6 class="card-title">{{card.anoNacimientoAproximado}} - {{card.anoFallecimiento}}</h6>
                     </div>
                     <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
                         :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">

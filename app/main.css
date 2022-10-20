@@ -58,9 +58,26 @@
 }
 
 .adopta-card {
-    transition: left 0.143s, width 2s, height 2s, background-color 2s, transform 2s, opacity 0.143s;
-    top: 0;
-    left: 0;
+    width: 22rem;
+}
+
+.adopta-card-header {
+    background-color: white;
+    border-bottom: 0;
+}
+
+.adopta-card-body {
+    background-color: white;
+}
+
+.adopta-card-footer {
+    background-color: white;
+    border-top: 0;
+}
+
+.adopta-card-datos {
+    display: flex;
+    justify-content: space-between;
 }
 
 .adopta-foto-container {
@@ -69,8 +86,9 @@
 }
 
 .adopta-foto {
-    min-height: 26em;
+    height: 26em;
     object-fit: cover;
+    border-radius: 3px;
 }
 
 .adopta-header {
@@ -93,6 +111,7 @@
 
 .adopta-icon {
     color: var(--espinitas-dorado);
+    padding-right: 4px;
 }
 
 .adopta-modal-adopcion {
@@ -179,6 +198,7 @@
 .adopta-pill {
     color: var(--espinitas-grisoscuro);
     background-color: var(--espinitas-hueso);
+    font-size: 95%;
 }
 
 .arrow-right {
@@ -355,8 +375,6 @@
     margin: 0 30px;
 }
 
-.justify-center {}
-
 .memorial-bordercard-container {
     display: flex;
     flex-wrap: wrap;
@@ -374,6 +392,16 @@
 
 .filtersepia {
     filter: grayscale(90%);
+}
+
+.pleca {
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.pleca-header {
+    background-color: #06858D;
 }
 
 .plecanegra {
