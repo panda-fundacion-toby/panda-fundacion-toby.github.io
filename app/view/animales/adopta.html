@@ -9,22 +9,24 @@
         </div>
         <div class="memorial-bordercard-container">
             <div class="card adopta-card mt-4 mb-4" v-for="card in cards">
-                <div class="card-header text-center">
-                    <h5 class="card-title plecanegra">{{card.nombre}}</h5>
+                <div class="card-header text-center adopta-card-header">
+                    <div class="pleca pleca-header p-3">
+                        <h5 class="card-title m-0">{{card.nombre}}</h5>
+                    </div>
                 </div>
-                <img role="button" @click="showPhoto(card.key)" class="card-img-top adopta-foto" :src="card.pictureurl"
-                    loading="lazy" @load="()=>{card.onImageLoaded()}">
-                <div class="card-body pt-1">
-                    <div class="row p-1">
-                        <div class="col">
+                <div class="card-body adopta-card-body pt-1">
+                    <img role="button" @click="showPhoto(card.key)" class="card-img-top adopta-foto"
+                        :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
+                    <div class="adopta-card-datos p-1 px-3 pt-3">
+                        <div>
                             <div class="text-secondary">
-                                <strong>tamaño</strong>
+                                <strong>Tamaño</strong>
                             </div>
                             <i class="fas fa-paw adopta-icon" v-for="item in card.tamano"></i>
                         </div>
-                        <div class="col">
+                        <div>
                             <div class="text-secondary">
-                                <strong>sexo</strong>
+                                <strong>Sexo</strong>
                             </div>
                             <div>
                                 <strong>
@@ -34,9 +36,9 @@
                                 </strong>
                             </div>
                         </div>
-                        <div class="col">
+                        <div>
                             <div class="text-secondary">
-                                <strong>edad</strong>
+                                <strong>Edad</strong>
                             </div>
                             <strong>
                                 <div class="adopta-icon" :class="['adopta-edad-' + card.edad]">{{card.edad}} (años)
@@ -44,9 +46,9 @@
                             </strong>
                         </div>
                     </div>
-                    <p class="card-text p-1">{{card.historia}}</p>
+                    <p class="card-text adopta-historia p-3 mt-2">{{card.historia}}</p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer adopta-card-footer">
                     <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
                         <i class="small fas fa-plus"></i> más detalles
                     </button>
@@ -109,7 +111,7 @@
                     <div class="row">
                         <div class="col">
                             <strong>
-                                tamaño
+                                Tamaño
                             </strong>
                             <div>
                                 <i class="p-1 fas fa-paw adopta-icon" v-for="item in currentDog.tamano"></i>
@@ -120,7 +122,7 @@
                         </div>
                         <div class="col">
                             <strong>
-                                sexo
+                                Sexo
                             </strong>
                             <div>
                                 <i class="fas adopta-icon"
@@ -135,14 +137,14 @@
                     <div class="row">
                         <div class="col">
                             <strong>
-                                edad
+                                Edad
                             </strong>
                             <div>
                                 {{currentDog.edad}} (años)
                             </div>
                         </div>
                         <div class="col">
-                            <strong>nivel de energía</strong>
+                            <strong>Nivel de energía</strong>
                             <div>
                                 <i class="p-1 fas fa-star adopta-icon" v-for="item in currentDog.nivelDeEnergia"></i>
                                 <i class="p-1 far fa-star adopta-icon" v-for="item in currentDog.energiaRemain"></i>
@@ -154,11 +156,13 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <strong>
-                                convive con
-                            </strong>
+                            <p class="text-secondary">
+                                <strong>
+                                    Convive con
+                                </strong>
+                            </p>
                             <p>
-                                <i class="espinitas-icons fas fa-check-circle"></i> {{currentDog.conviveCon}}
+                                {{currentDog.conviveCon}}
                             </p>
                         </div>
                     </div>
@@ -202,7 +206,7 @@
                                 <i class="espinitas-icons small fas fa-heart" aria-hidden="true"></i> Temperamento
                             </p>
                             <div style="display: inline-flex; flex-wrap: wrap;">
-                                <span class="badge badge-pill m-1 font-weight-light adopta-pill"
+                                <span class="badge badge-pill m-1 adopta-pill"
                                     v-for="temp in currentDog.temperamento">
                                     {{temp}}
                                 </span>
@@ -211,11 +215,11 @@
                     </div>
                     <div class="row" v-if="currentDog.talentos && (currentDog.talentos.length > 0)">
                         <div class="col">
-                            <p class="h5">
+                            <p class="h5 pt-3">
                                 <i class="espinitas-icons small fas fa-star"></i> Talentos
                             </p>
                             <div style="display: inline-flex; flex-wrap: wrap;">
-                                <span class="badge badge-pill m-1 font-weight-light adopta-pill"
+                                <span class="badge badge-pill m-1 adopta-pill"
                                     v-for="talento in currentDog.talentos">
                                     {{talento}}
                                 </span>
@@ -223,7 +227,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="adopta-modal-adopcion">
+                <div class="adopta-modal-adopcion mt-2 pt-2">
                     <h4 class="text-center">
                         Como ayudar a {{currentDog.nombre}}
                     </h4>
