@@ -57,6 +57,25 @@
     width: 22rem;
 }
 
+.adopta-card-header {
+    background-color: white;
+    border-bottom: 0;
+}
+
+.adopta-card-body {
+    background-color: white;
+}
+
+.adopta-card-footer {
+    background-color: white;
+    border-top: 0;
+}
+
+.adopta-card-datos {
+    display: flex;
+    justify-content: space-between;
+}
+
 .adopta-foto-container {
     position: relative;
     scroll-snap-align: center;
@@ -65,6 +84,7 @@
 .adopta-foto {
     height: 26em;
     object-fit: cover;
+    border-radius: 3px;
 }
 
 .adopta-header {
@@ -87,6 +107,7 @@
 
 .adopta-icon {
     color: var(--espinitas-dorado);
+    padding-right: 4px;
 }
 
 .adopta-modal-adopcion {
@@ -173,6 +194,7 @@
 .adopta-pill {
     color: var(--espinitas-grisoscuro);
     background-color: var(--espinitas-hueso);
+    font-size: 95%;
 }
 
 .arrow-right {
@@ -372,6 +394,16 @@
 
 .filtersepia {
     filter: grayscale(90%);
+}
+
+.pleca {
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.pleca-header {
+    background-color: #06858D;
 }
 
 .plecanegra {
