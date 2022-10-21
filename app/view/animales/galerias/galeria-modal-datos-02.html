@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col">
+        <p class="h5">
+            <i class="espinitas-icons small fas fa-heart" aria-hidden="true"></i> Temperamento
+        </p>
+        <div style="display: inline-flex; flex-wrap: wrap;">
+            <span class="badge badge-pill m-1 font-weight-light adopta-pill" v-for="temp in currentDog.temperamento">
+                {{temp}}
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row mt-3" v-if="currentDog.talentos && (currentDog.talentos.length > 0)">
+    <div class="col">
+        <p class="h5">
+            <i class="espinitas-icons small fas fa-star"></i> Talentos
+        </p>
+        <div style="display: inline-flex; flex-wrap: wrap;">
+            <span class="badge badge-pill m-1 font-weight-light adopta-pill" v-for="talento in currentDog.talentos">
+                {{talento}}
+            </span>
+        </div>
+    </div>
+</div>

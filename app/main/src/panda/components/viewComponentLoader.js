@@ -17,16 +17,14 @@ export class ViewComponentLoader {
     async loadTemplates(viewTemplateRelativePath, viewRootElement) {
         const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
         this.removeAllChildNodes(viewRootElement);
-        const newView = document.createElement('div');
-        newView.innerHTML = template;
-        viewRootElement.appendChild(newView);
-        const templates = templatesFinder.findTemplates(newView);
+        viewRootElement.innerHTML = template;
+        const templates = templatesFinder.findTemplates(viewRootElement);
         for (const template of templates) {
             const nextUrl = template.dataset.template;
             const urlSplit = nextUrl.split('?');
             const [viewName] = urlSplit;
             const relativePath = getRelativePath(viewName);
-            await this.loadTemplates(relativePath, newView);
+            await this.loadTemplates(relativePath, template);
         }
     }
 
@@ -38,7 +36,7 @@ export class ViewComponentLoader {
         const urlSplit = url.split('?');
         const [viewName, queryString] = urlSplit;
         const viewTemplateRelativePath = getRelativePath(viewName);
-        this.loadTemplates(viewTemplateRelativePath, this.rootElement);
+        await this.loadTemplates(viewTemplateRelativePath, this.rootElement);
         const viewModelScriptId = 'view-model-script';
         let viewModelScript = document.getElementById(viewModelScriptId);
         if (viewModelScript) {

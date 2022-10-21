@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<div>
+    <div class="text-secondary">
+        <strong>Tamaño</strong>
+    </div>
+    <i class="fas fa-paw adopta-icon" v-for="item in card.tamano"></i>
+</div>
+<div>
+    <div class="text-secondary">
+        <strong>Sexo</strong>
+    </div>
+    <div>
+        <strong>
+            <i class="fas adopta-icon" :class="{'fa-mars': card.sexo === 'Macho', 'fa-venus': card.sexo === 'Hembra'}">
+            </i>
+        </strong>
+    </div>
+</div>
+<div>
+    <div class="text-secondary">
+        <strong>Edad</strong>
+    </div>
+    <strong>
+        <div class="adopta-icon" :class="['adopta-edad-' + card.edad]">{{card.edad}} (años)
+        </div>
+    </strong>
+</div>
