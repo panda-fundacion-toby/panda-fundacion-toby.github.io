@@ -8,6 +8,7 @@
     --espinitas-primary: var(--espinitas-azulbrillante);
     --espinitas-secondary: var(--espinitas-naranja);
     --espinitas-amarillo: #F2F6D0;
+    --espinitas-morado: #A57197;
 }
 
 .espinitas-primary {
@@ -21,9 +22,6 @@
 .espinitas-icons {
     color: var(--espinitas-dorado);
 }
-
-
-
 
 #viewContainer {
     margin-top: 1rem;
@@ -432,7 +430,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: var(--espinitas-amarillo);
     border-radius: 20px;
     justify-content: center;
     margin-bottom: 20px;
@@ -446,13 +443,13 @@
 
 
 .rowYE {
-    background-color: var(--espinitas-azulclaro);
+    background: linear-gradient(360deg, #a57197, #d06b77, #f0b070);
     text-align: center;
     width: 100px;
-    margin-right: 14px;
+    margin-right: 21px;
     border-radius: 10px 0px 0px 10px;
     color: white;
-    font-weight: bold;
+    font-weight:bolder;
 }
 
 .rowYEicon {
@@ -466,14 +463,26 @@
 
 .relative {
     position: absolute;
-    top: 25px;
-    left: 26px;
+    top: 40px;
+    left: 36px;
 }
 
 .relative2 {
     position: absolute;
-    top: 30px;
-    left: 40px;
+    top: 40px;
+    left: 45px;
+}
+
+.relative3{
+        position: absolute;
+        top: 40px;
+        left: 42px;
+}
+
+.relative4{
+    position: absolute;
+        top: 40px;
+        left: 40px;
 }
 
 .rowtextYE {
@@ -492,7 +501,7 @@
 }
 
 .textYE>h4 {
-    color: var(--espinitas-grisoscuro);
+    color: var(--espinitas-morado);
     font-weight: bold;
 }
 
@@ -507,3 +516,4 @@
     background-size: 7px 7px;
     background-image: repeating-linear-gradient(45deg, #e9e8e9 0, #e9e8e9 0.7000000000000001px, #fafafa 0, #fafafa 50%);
 }
+
