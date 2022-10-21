@@ -68,6 +68,8 @@
 
 .adopta-card-body {
     background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .adopta-card-footer {
@@ -101,6 +103,7 @@
 .adopta-historia {
     background-color: #F4F2E8;
     border-radius: 5px;
+    flex: 1;
 }
 
 .adopta-isHidden {
@@ -139,7 +142,6 @@
 
 .adopta-modal-nombre {
     color: var(--espinitas-primary);
-    text-transform: uppercase;
     font-weight: 900;
 }
 
@@ -397,7 +399,6 @@
 .pleca {
     color: white;
     border-radius: 5px;
-    text-transform: uppercase;
 }
 
 .pleca-header {

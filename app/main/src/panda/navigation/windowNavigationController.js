@@ -13,7 +13,6 @@ export class WindowNavigationController {
     }
 
     // Views
-
     onBeforePushView(asyncCallBack) {
         this.beforePushViewListeners.push(asyncCallBack);
     }
