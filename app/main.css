@@ -244,7 +244,7 @@
 }
 
 .home-encabezado {
-    background-color: rgb(157, 210, 214);
+    background: linear-gradient(45deg, #a57197, #b7b0da, #9ed2d6);
     margin: 0;
 }
 
@@ -279,7 +279,7 @@
 
 .home-button-card {
     display: flex;
-    border: 10px solid #A57196;
+    border: 10px solid var(--espinitas-morado);
     border-radius: 50%;
     height: 12.5rem;
     width: 12.5rem;
@@ -296,7 +296,7 @@
 }
 
 .home-button-v2 {
-    border-color: #A57197;
+    border-color: var(--espinitas-morado);
 }
 
 .home-button-v3 {
@@ -332,7 +332,7 @@
 
 .index-footer-nuestras-redes {
     border-radius: 5px;
-    background-color: #FFBA69;
+    background-color: var(--espinitas-azulbrillante);
     color: #FFFFFF;
     padding: .5rem;
 }
@@ -365,7 +365,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    background-color: #3CA5AC;
+    background-color: var(--espinitas-azulbrillante);
     background-size: 10px 10px;
     background-image: repeating-linear-gradient(45deg, #AF9265 0, #AF9265 0.25px, white 0, white 50%);
 }
@@ -402,7 +402,7 @@
 }
 
 .pleca-header {
-    background-color: #06858D;
+    background-color: var(--espinitas-azulbrillante);
 }
 
 .plecanegra {
@@ -446,7 +446,7 @@
 
 
 .rowYE {
-    background: linear-gradient(0deg, #a57197, #d06b77, #f0b070);
+    background: linear-gradient(45deg, #a57197, #d06b77, #f0b070);
     text-align: center;
     width: 100px;
     margin-right: 21px;
@@ -456,7 +456,7 @@
 }
 
 .rowYEgradient {
-    background: linear-gradient(0deg, #a57197, #b7b0da, #9ed2d6);
+    background: linear-gradient(45deg, #a57197, #b7b0da, #9ed2d6);
 }
 
 .rowYEicon {
