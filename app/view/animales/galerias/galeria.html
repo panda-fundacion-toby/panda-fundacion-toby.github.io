@@ -4,31 +4,25 @@
         Cargando...
     </div>
     <div class="app-hide" :class="{ 'app-show': ready }">
-        <div class="text-muted">
-            Total de perritos en adopcion: {{total}}
-        </div>
         <div class="memorial-bordercard-container">
-            <div class="card adopta-card mt-4 mb-4" v-for="card in cards">
-                <div class="card-header text-center adopta-card-header">
-                    <div class="pleca pleca-header p-3">
-                        <h5 class="card-title m-0">{{card.nombre}}</h5>
+            <div class="bordercard mt-4 mb-4" v-for="card in cards">
+                <div class="card" style="width: 22rem;">
+                    <div class="card-header text-center">
+                        <h5 class="card-title plecanegra">{{card.nombre}}</h5>
+                        <h6 class="card-title">{{card.anoNacimientoAproximado}} - {{card.anoFallecimiento}}</h6>
                     </div>
-                </div>
-                <div class="card-body adopta-card-body pt-1">
-                    <div>
-                        <img role="button" @click="showPhoto(card.key)" class="card-img-top adopta-foto"
-                            :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
-                    </div>
-                    <div class="adopta-card-datos p-1 px-3 pt-3" data-template="#/animales/galerias/galeria-card-datos">
-                    </div>
-                    <div class="adopta-historia p-3 mt-2">
+                    <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
+                        :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
+                    <div class="card-body adopta-card-body pt-1">
+                        <div class="adopta-card-datos p-1 px-2 pt-3" data-template="#/animales/galerias/galeria-card-datos">
+                        </div>
                         <p class="card-text">{{card.historia}}</p>
                     </div>
-                </div>
-                <div class="card-footer adopta-card-footer">
-                    <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
-                        <i class="small fas fa-plus"></i> más detalles
-                    </button>
+                    <div class="card-footer">
+                        <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
+                            <i class="small fas fa-plus"></i> más detalles
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,18 +84,6 @@
                         <div class="col">
                             <p class="text-secondary">
                                 <strong>
-                                    Convive con
-                                </strong>
-                            </p>
-                            <p>
-                                {{currentDog.conviveCon}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="text-secondary">
-                                <strong>
                                     Su historia
                                 </strong>
                             </p>
@@ -110,54 +92,30 @@
                             </p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="text-secondary">
-                                <strong>
-                                    Busca a quién (quiénes)
-                                </strong>
-                            </p>
-                            <p>
-                                {{currentDog.busca}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="h5">
-                                <i class="espinitas-icons small fas fa-spa"></i> Salud
-                            </p>
-                            <p>
-                                {{currentDog.salud}}
-                            </p>
-                        </div>
-                    </div>
                     <div data-template="#/animales/galerias/galeria-modal-datos-02"></div>
                 </div>
-                <div class="adopta-modal-adopcion mt-2 pt-2">
-                    <h4 class="text-center">
-                        Cómo ayudar a {{currentDog.nombre}}
+                <div class="adopta-modal-adopcion">
+                    <h4 class="text-center pt-3">
+                        Como ayudar a {{currentDog.nombre}}
                     </h4>
                     <div class="px-4 py-2">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCgL_KuKijB7UepleLYvJus_IhawXHYGSJd6oT4qR-RaOE0w/viewform"
-                            target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
-                            <span class="adopta-modal-btn-icon"><i class="small fas fa-dog"></i></span>
-                            Adopción física
-                        </a>
-                    </div>
-                    <div class="px-4 py-2">
+                        <p>
+                            A pesar de que {{currentDog.nombre}} ya no está con nosotros, aún hay muchos perritos que
+                            necesitan de tu ayuda.
+                        </p>
+                        <p>
+                            Ayúdanos para que otros perritos puedan tener un hogar.
+                        </p>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyWDsjKM0z_jt8pWtamcIEzKyq7YMltWVGiOHweBkqJBnsAA/viewform"
                             target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
                             <i class="small fas fa-desktop"></i>
                             Amigo Virtual
                         </a>
-                    </div>
-                    <div class="px-4 py-2">
                         <a href="#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
                             Formas de ayudar
                         </a>
                     </div>
-                    <p class="pt-2 h4 text-center">
+                    <!-- <p class="pt-2 h4 text-center">
                         Comparte a {{currentDog.nombre}}
                     </p>
                     <p class="text-center">
@@ -168,7 +126,7 @@
                             :href="currentDog.twitterLink">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

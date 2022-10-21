@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col">
+        <strong>
+            Tamaño
+        </strong>
+        <div>
+            <i class="p-1 fas fa-paw adopta-icon" v-for="item in currentDog.tamano"></i>
+        </div>
+        <p class="text-muted">
+            {{currentDog.tamanoString}}
+        </p>
+    </div>
+    <div class="col">
+        <strong>
+            Sexo
+        </strong>
+        <div>
+            <i class="fas adopta-icon"
+                :class="{'fa-mars': currentDog.sexo === 'Macho', 'fa-venus': currentDog.sexo === 'Hembra'}">
+            </i>
+        </div>
+        <p class="text-muted">
+            {{currentDog.sexoString}}
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <strong>
+            Edad
+        </strong>
+        <div>
+            {{currentDog.edad}} (años)
+        </div>
+    </div>
+    <div class="col">
+        <strong>Nivel de energía</strong>
+        <div>
+            <i class="p-1 fas fa-star adopta-icon" v-for="item in currentDog.nivelDeEnergia"></i>
+            <i class="p-1 far fa-star adopta-icon" v-for="item in currentDog.energiaRemain"></i>
+        </div>
+        <p class="text-muted">
+            {{currentDog.energiaString}}
+        </p>
+    </div>
+</div>

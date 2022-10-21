@@ -12,7 +12,7 @@ export class Card {
         const href = `https://fundacion-toby.org/#animales/adopta/${this.key}`;
         const encodedHref = encodeURIComponent(href);
         const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
-        const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby #adopta-ft`;
+        const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby #adoptaft`;
         const textEncoded = encodeURIComponent(text);
         return `https://twitter.com/intent/tweet?original_referer=${encodedHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
     }

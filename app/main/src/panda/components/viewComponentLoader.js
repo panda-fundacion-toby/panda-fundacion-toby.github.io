@@ -1,44 +1,56 @@
-import { agua } from '../agua.js';
-import { parseViewComponentName } from './viewComponentNameParser.js';
+import { agua } from './agua.js';
+import { getRelativePath, parseViewComponentName } from './viewComponentNameParser.js';
+import { templatesFinder } from './templatesFinder.js';
 
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+export class ViewComponentLoader {
+
+    constructor(rootElement) {
+        this.rootElement = rootElement;
     }
-}
 
-export async function loadViewComponent(relativePath, containerElement) {
-    if (relativePath.indexOf('?') >= 0) {
-        relativePath = relativePath.substring(0, relativePath.indexOf('?'));
+    removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
     }
-    const template = await agua.getTemplate(`${relativePath}.html`);
-    removeAllChildNodes(containerElement);
-    const newView = document.createElement('div');
-    newView.innerHTML = template;
-    containerElement.appendChild(newView);
-    const viewModelScriptId = 'view-model-script';
-    let viewModelScript = document.getElementById(viewModelScriptId);
-    if (viewModelScript) {
-        viewModelScript.remove();
+
+    async loadTemplates(viewTemplateRelativePath, viewRootElement) {
+        const template = await agua.getTemplate(`${viewTemplateRelativePath}.html`);
+        this.removeAllChildNodes(viewRootElement);
+        viewRootElement.innerHTML = template;
+        const templates = templatesFinder.findTemplates(viewRootElement);
+        for (const template of templates) {
+            const nextUrl = template.dataset.template;
+            const urlSplit = nextUrl.split('?');
+            const [viewName] = urlSplit;
+            const relativePath = getRelativePath(viewName);
+            await this.loadTemplates(relativePath, template);
+        }
     }
-    viewModelScript = document.createElement('script');
-    viewModelScript.setAttribute('id', viewModelScriptId);
-    viewModelScript.setAttribute('type', 'module');
-    viewModelScript.setAttribute('src', `app/view/${relativePath}.js?t=${Date.now()}`);
-    document.body.appendChild(viewModelScript);
-}
 
-export function findViewComponents(rootElement = null) {
-    const root = rootElement || document;
-    return root.querySelectorAll('[data-load-view-component]');
-}
-
-export function loadDataViewComponents(rootElement = null, callback) {
-    const viewComponents = findViewComponents(rootElement);
-    viewComponents.forEach(async (element) => {
-        const viewComponentName = element.dataset.loadViewComponent;
-        const viewComponent = parseViewComponentName(viewComponentName);
-        await loadViewComponent(viewComponent.relativePath, element);
-        callback(element);
-    });
+    /**
+     * 
+     * @param {string} url String with format '#/relative-path-to-view/view-name?param=value'
+     */
+    async load(url) {
+        const urlSplit = url.split('?');
+        const [viewName, queryString] = urlSplit;
+        const viewTemplateRelativePath = getRelativePath(viewName);
+        await this.loadTemplates(viewTemplateRelativePath, this.rootElement);
+        const viewModelScriptId = 'view-model-script';
+        let viewModelScript = document.getElementById(viewModelScriptId);
+        if (viewModelScript) {
+            viewModelScript.remove();
+        }
+        viewModelScript = document.createElement('script');
+        viewModelScript.setAttribute('id', viewModelScriptId);
+        viewModelScript.setAttribute('type', 'module');
+        viewModelScript.setAttribute('src', `app/view/${viewTemplateRelativePath}.js?t=${Date.now()}`);
+        document.body.appendChild(viewModelScript);
+        return {
+            queryString,
+            rootElement: this.rootElement,
+            viewName,
+        };
+    }
 }

@@ -1,7 +1,7 @@
 
 const conviveCon = {
     defaultValue: '',
-    columnNumber: 10,
+    columnIdentifier: 'N',
     map(value) {
         return value;
     }
@@ -15,23 +15,15 @@ const nivelEnergiaMappings = {
 
 const nivelDeEnergia = {
     defaultValue: 1,
-    columnNumber: 7,
+    columnIdentifier: 'L',
     map(value) {
         return nivelEnergiaMappings[value];
     }
 };
 
-const energiaRemain = {
-    defaultValue: 0,
-    columnNumber: 7,
-    map(value) {
-        return ((Object.keys(nivelEnergiaMappings).length) - nivelEnergiaMappings[value]);
-    }
-};
-
 const energiaString = {
     defaultValue: '',
-    columnNumber: 7,
+    columnIdentifier: 'L',
     map(value) {
         return value;
     }
@@ -39,7 +31,7 @@ const energiaString = {
 
 const historia = {
     defaultValue: '',
-    columnNumber: 14,
+    columnIdentifier: 'I',
     map(value) {
         return value.trim();
     }
@@ -47,17 +39,17 @@ const historia = {
 
 const busca = {
     defaultValue: '',
-    columnNumber: 16
+    columnIdentifier: 'O'
 };
 
 const salud = {
     defaultValue: 'Ningún problema de salud relevante.',
-    columnNumber: 9
+    columnIdentifier: 'M'
 };
 
 const sexoString = {
     defaultValue: '',
-    columnNumber: 5
+    columnIdentifier: 'F'
 };
 
 function capitalizeFirstLetter(string) {
@@ -66,7 +58,7 @@ function capitalizeFirstLetter(string) {
 
 const talentos = {
     defaultValue: '',
-    columnNumber: 18,
+    columnIdentifier: 'K',
     map(value) {
         if (!value || value.trim().length === 0) {
             return [];
@@ -86,7 +78,7 @@ const tamanoMappings = {
 
 const tamano = {
     defaultValue: '',
-    columnNumber: 4,
+    columnIdentifier: 'E',
     map(value) {
         for (let key in tamanoMappings) {
             if (value.indexOf(key) >= 0) {
@@ -99,12 +91,12 @@ const tamano = {
 
 const tamanoString = {
     defaultValue: '',
-    columnNumber: 4
+    columnIdentifier: 'E',
 };
 
 const temperamento = {
     defaultValue: '',
-    columnNumber: 6,
+    columnIdentifier: 'J',
     map(value) {
         return value.split(',').filter(s => s.length > 0).map(v => v.trim()).sort();
     }
@@ -112,7 +104,7 @@ const temperamento = {
 
 const edad = {
     defaultValue: '',
-    columnNumber: 3,
+    columnIdentifier: 'R',
     map(value) {
         if (typeof value === 'number' && value > 2000) {
             const currentYear = new Date().getFullYear();
@@ -123,18 +115,26 @@ const edad = {
 };
 
 const anoNacimientoAproximado = {
-    columnNumber: 3,
+    columnIdentifier: 'R',
     map(value) {
         return `${value}`;
     }
 };
 
+const anoFallecimiento = {
+    columnIdentifier: 'S',
+    defaultValue: `${new Date().getFullYear()}`,
+    map(value) {
+        return parseInt(value);
+    }
+};
+
 const nombre = {
-    columnNumber: 1
+    columnIdentifier: 'C'
 };
 
 const sexo = {
-    columnNumber: 5
+    columnIdentifier: 'F',
 };
 
 const IMAGE_FILE_PREFIX = 'https://drive.google.com/file/d/';
@@ -142,7 +142,7 @@ const IMAGE_FILE_SUFIX = '/view?usp=sharing';
 const IMAGE_OPEN_PREFIX = 'https://drive.google.com/open?id=';
 
 const pictures = {
-    columnNumber: 25,
+    columnIdentifier: 'D',
     defaultValue: '',
     map(value) {
         let imageIds = [];
@@ -168,9 +168,9 @@ const pictures = {
 
 const mappers = {
     anoNacimientoAproximado,
+    anoFallecimiento,
     busca,
     conviveCon,
-    energiaRemain,
     energiaString,
     edad,
     historia,
@@ -189,7 +189,8 @@ const mappers = {
 export function map(dataTable, index) {
     const row = {};
     for (const [mapperName, mapper] of Object.entries(mappers)) {
-        const value = dataTable.getValue(index, mapper.columnNumber) || mapper.defaultValue;
+        const columnId = dataTable.getColumnIndex(mapper.columnIdentifier);
+        const value = dataTable.getValue(index, columnId) || mapper.defaultValue;
         const mappedValue = (mapper.map && mapper.map(value)) ?? value;
         row[mapperName] = mappedValue;
     }
