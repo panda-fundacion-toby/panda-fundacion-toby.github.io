@@ -38,7 +38,7 @@ export class ViewComponentLoader {
         const urlSplit = url.split('?');
         const [viewName, queryString] = urlSplit;
         const viewTemplateRelativePath = getRelativePath(viewName);
-        this.loadTemplates(viewTemplateRelativePath, this.rootElement);
+        await this.loadTemplates(viewTemplateRelativePath, this.rootElement);
         const viewModelScriptId = 'view-model-script';
         let viewModelScript = document.getElementById(viewModelScriptId);
         if (viewModelScript) {
