@@ -9,7 +9,7 @@ export class Card {
     }
 
     get twitterLink() {
-        const href = `https://fundacion-toby.org/#animales/adopta?id=${this.key}`;
+        const href = window.location.href;
         const encodedHref = encodeURIComponent(href);
         const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
         const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby #adoptaft`;
