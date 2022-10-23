@@ -24,8 +24,10 @@ export class Galeria {
                 methods: {
                     showPhoto(key) {
                         const found = datosPerritos.cards.find(c => c.key === key);
-                        this.currentDog = found;
-                        this.currentDog.showLoading(true);
+                        if (found.key !== this.currentDog.key) {
+                            this.currentDog = found;
+                            this.currentDog.showLoading(true);
+                        }
                         $('#perritoModal').modal('toggle');
                         replaceViewHistory(`${baseNavigationUrl}?id=${key}`);
                     },
@@ -34,6 +36,12 @@ export class Galeria {
                     },
                     next() {
                         this.currentDog.next();
+                    },
+                    imageLoaded(card) {
+                        card.showLoading(false);
+                    },
+                    imageError(card) {
+                        card.showLoading(false);
                     }
                 },
                 mounted() {
