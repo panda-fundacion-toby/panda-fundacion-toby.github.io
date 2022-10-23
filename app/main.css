@@ -57,6 +57,7 @@
 
 .adopta-card {
     width: 22rem;
+    position: relative;
 }
 
 .adopta-card-header {
@@ -78,6 +79,18 @@
 .adopta-card-datos {
     display: flex;
     justify-content: space-between;
+}
+
+.adopta-card-virtual {
+    border-color: var(--espinitas-secondary);
+}
+
+.adopta-card-virtual-icon {
+    position: absolute;
+    right: -1rem;
+    top: -1rem;
+    rotate: -45deg;
+    color: var(--espinitas-secondary)
 }
 
 .adopta-foto-container {
