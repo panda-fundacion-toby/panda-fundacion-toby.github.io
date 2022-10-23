@@ -12,9 +12,10 @@
                         <h6 class="card-title">{{card.anoNacimientoAproximado}} - {{card.anoFallecimiento}}</h6>
                     </div>
                     <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
-                        :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
+                        :src="card.pictureurl" loading="lazy" @load="imageLoaded(card)" @error="imageError(card)">
                     <div class="card-body adopta-card-body pt-1">
-                        <div class="adopta-card-datos p-1 px-2 pt-3" data-template="#/animales/galerias/galeria-card-datos">
+                        <div class="adopta-card-datos p-1 px-2 pt-3"
+                            data-template="#/animales/galerias/galeria-card-datos">
                         </div>
                         <p class="card-text">{{card.historia}}</p>
                     </div>
@@ -61,7 +62,8 @@
                                 </div>
                                 <div>
                                     <img class="img-fluid rounded mx-auto adopta-modal-img" id="adopta-modal-img"
-                                        loading="lazy" :src="currentDog.modalPicture">
+                                        loading="lazy" :src="currentDog.modalPicture" @load="imageLoaded(currentDog)"
+                                        @error="imageError(currentDog)">
                                     <img loading="lazy" style="width: 0px; height: 0px;"
                                         :src="currentDog.modalPictureCache">
                                     <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">

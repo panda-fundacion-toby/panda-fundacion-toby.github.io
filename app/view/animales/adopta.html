@@ -15,10 +15,8 @@
                     </div>
                 </div>
                 <div class="card-body adopta-card-body pt-1">
-                    <div>
-                        <img role="button" @click="showPhoto(card.key)" class="card-img-top adopta-foto"
-                            :src="card.pictureurl" loading="lazy" @load="()=>{card.onImageLoaded()}">
-                    </div>
+                    <img role="button" @click="showPhoto(card.key)" class="card-img-top adopta-foto"
+                        :src="card.pictureurl" loading="lazy" @load="imageLoaded(card)" @error="imageError(card)">
                     <div class="adopta-card-datos p-1 px-3 pt-3" data-template="#/animales/galerias/galeria-card-datos">
                     </div>
                     <div class="adopta-historia p-3 mt-2">
@@ -67,7 +65,8 @@
                                 </div>
                                 <div>
                                     <img class="img-fluid rounded mx-auto adopta-modal-img" id="adopta-modal-img"
-                                        loading="lazy" :src="currentDog.modalPicture">
+                                        loading="lazy" :src="currentDog.modalPicture" @load="imageLoaded(currentDog)"
+                                        @error="imageError(currentDog)">
                                     <img loading="lazy" style="width: 0px; height: 0px;"
                                         :src="currentDog.modalPictureCache">
                                     <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">

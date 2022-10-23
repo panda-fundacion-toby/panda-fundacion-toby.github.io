@@ -9,7 +9,7 @@ export class Card {
     }
 
     get twitterLink() {
-        const href = `https://fundacion-toby.org/#animales/adopta/${this.key}`;
+        const href = `https://fundacion-toby.org/#animales/adopta?id=${this.key}`;
         const encodedHref = encodeURIComponent(href);
         const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
         const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby #adoptaft`;
@@ -32,12 +32,8 @@ export class Card {
         return this.pictures[pmod(index, this.pictures.length)];
     }
 
-    onImageLoaded() {
-        this.showLoading(false);
-    }
-
     previous() {
-        if (this.pictures.length === 0 || this.loading) {
+        if (this.pictures.length <= 1 || this.loading) {
             return;
         }
         this.showLoading(true);
@@ -45,7 +41,7 @@ export class Card {
     }
 
     next() {
-        if (this.pictures.length === 0 || this.loading) {
+        if (this.pictures.length <= 1 || this.loading) {
             return;
         }
         this.showLoading(true);
