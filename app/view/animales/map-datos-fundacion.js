@@ -52,6 +52,14 @@ const sexoString = {
     columnIdentifier: 'F'
 };
 
+const soloAmigoVirtual = {
+    defaultValue: '',
+    columnIdentifier: 'H',
+    map(value) {
+        return value.localeCompare?.('si', 'es', { sensitivity: 'base' }) === 0;
+    }
+};
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -179,6 +187,7 @@ const mappers = {
     salud,
     sexo,
     sexoString,
+    soloAmigoVirtual,
     pictures,
     tamano,
     tamanoString,

@@ -8,10 +8,15 @@
             Total de perritos en adopcion: {{total}}
         </div>
         <div class="memorial-bordercard-container">
-            <div class="card adopta-card mt-4 mb-4" v-for="card in cards">
+            <div class="card adopta-card mt-4 mb-4" v-for="card in cards"
+                :class="{'adopta-card-virtual': card.soloAmigoVirtual}">
+                <i class="fa fa-star fa-2x adopta-card-virtual-icon" aria-hidden="true"
+                    v-if="card.soloAmigoVirtual"></i>
                 <div class="card-header text-center adopta-card-header">
                     <div class="pleca pleca-header p-3">
-                        <h5 class="card-title m-0">{{card.nombre}}</h5>
+                        <h5 class="card-title m-0">
+                            {{card.nombre}}
+                        </h5>
                     </div>
                 </div>
                 <div class="card-body adopta-card-body pt-1">
@@ -46,7 +51,11 @@
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <h2 class="adopta-modal-nombre"><b>{{currentDog.nombre}}</b></h2>
+                            <h2 class="adopta-modal-nombre">
+                                <b>
+                                    {{currentDog.nombre}}
+                                </b>
+                            </h2>
                         </div>
                     </div>
                     <div class="row">
@@ -137,7 +146,16 @@
                     <h4 class="text-center">
                         Cómo ayudar a {{currentDog.nombre}}
                     </h4>
-                    <div class="px-4 py-2">
+                    <div class="px-4 py-1" style="display: flex;" v-if="currentDog.soloAmigoVirtual">
+                        <i class="fa fa-star p-2 espinitas-secondary" aria-hidden="true"></i>
+                        <p>
+                            {{currentDog.nombre}} no
+                            está disponible para
+                            adopción física, sin embargo puedes ayudarle siendo su amigo virtual.
+                        </p>
+                        <i class="fa fa-star p-2 espinitas-secondary" aria-hidden="true"></i>
+                    </div>
+                    <div class="px-4 py-2" v-if="currentDog.soloAmigoVirtual === false">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCgL_KuKijB7UepleLYvJus_IhawXHYGSJd6oT4qR-RaOE0w/viewform"
                             target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
                             <span class="adopta-modal-btn-icon"><i class="small fas fa-dog"></i></span>
@@ -153,7 +171,7 @@
                     </div>
                     <div class="px-4 py-2">
                         <a href="#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
-                            Formas de ayudar
+                            Otras formas de ayudar
                         </a>
                     </div>
                     <p class="pt-2 h4 text-center">
