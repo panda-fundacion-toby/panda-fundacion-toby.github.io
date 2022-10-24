@@ -12,13 +12,6 @@ export class Galeria {
             const appContainer = document.getElementById('galeria-app');
             const currentPage = 0;
             const pageSize = 500;
-            // const share = navigator.share || function (params) {
-            //     return new Promise((accept, reject) => {
-            //         setTimeout(() => {
-            //             reject(new Error(`No share API enabled.`, params))
-            //         }, 1000);
-            //     });
-            // };
             const app = createApp({
                 data() {
                     return {
