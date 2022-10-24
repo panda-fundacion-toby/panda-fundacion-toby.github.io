@@ -179,11 +179,15 @@
                     <p class="text-center">
                         ¡Si compartes en redes sociales también le das una oportunidad!
                     </p>
-                    <div class="text-center pb-3">
-                        <a class="btn btn-light adopta-modal-btn-share mx-2" target="_blank"
+                    <div class="px-4 py-2">
+                        <a class="btn btn-outline-secondary btn-block" target="_blank"
                             :href="currentDog.twitterLink">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
+                        <button class="btn btn-outline-secondary btn-block text-uppercase" @click="compartir(currentDog)"
+                            v-if="shareButtonEnabled">
+                            <i class="fas fa-share-alt"></i> Compartir
+                        </button>
                     </div>
                 </div>
                 <div class="modal-footer">
