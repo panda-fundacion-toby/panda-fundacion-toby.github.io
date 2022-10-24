@@ -8,11 +8,20 @@ export class Card {
         this.demoPictureIndex = 0;
     }
 
+    getTemperamento() {
+        return (this.temperamento && this.temperamento.join(', ')) || '';
+    }
+
+    getTextCompartir() {
+        const temperamento = this.getTemperamento();
+        return `¡Adopta a ${this.nombre}!\n${temperamento}`;
+    }
+
     get twitterLink() {
         const href = window.location.href;
+        const textoCompartir = this.getTextCompartir();
+        const text = `${textoCompartir}\n${href}\n@FundacionToby #adoptaft`;
         const encodedHref = encodeURIComponent(href);
-        const temperamento = (this.temperamento && this.temperamento.join(', ')) || '';
-        const text = `¡Adopta a ${this.nombre}!\n${temperamento}\n${href}\n@FundacionToby #adoptaft`;
         const textEncoded = encodeURIComponent(text);
         return `https://twitter.com/intent/tweet?original_referer=${encodedHref}&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Eshare%7Ctwgr%5E&text=${textEncoded}`;
     }

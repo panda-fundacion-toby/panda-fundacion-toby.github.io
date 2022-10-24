@@ -99,9 +99,9 @@
 }
 
 .adopta-foto {
-    height: 26em;
-    object-fit: cover;
     border-radius: 3px;
+    height: 26em;
+    object-fit: contain;
 }
 
 .adopta-header {
@@ -161,7 +161,8 @@
 }
 
 .adopta-modal-img {
-    object-fit: cover;
+    background-color: black;
+    object-fit: contain;
     width: 40rem;
     height: 40rem;
 }
