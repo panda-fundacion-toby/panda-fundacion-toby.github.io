@@ -12,14 +12,6 @@ export class Galeria {
             const appContainer = document.getElementById('galeria-app');
             const currentPage = 0;
             const pageSize = 500;
-            const share = navigator.share;
-            // const share = navigator.share || function (params) {
-            //     return new Promise((accept, reject) => {
-            //         setTimeout(() => {
-            //             reject(new Error(`No share API enabled.`, params))
-            //         }, 1000);
-            //     });
-            // };
             const app = createApp({
                 data() {
                     return {
@@ -27,13 +19,13 @@ export class Galeria {
                         cards: datosPerritos.getCards(currentPage, pageSize),
                         ready: true,
                         currentDog: {},
-                        shareButtonEnabled: share,
+                        shareButtonEnabled: navigator.share,
                     };
                 },
                 methods: {
                     compartir(card) {
-                        if (share) {
-                            share({
+                        if (navigator.share) {
+                            navigator.share({
                                 title: 'Fundación Toby',
                                 text: card.getTextCompartir(),
                                 url: window.location.href,
