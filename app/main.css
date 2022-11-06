@@ -98,10 +98,33 @@
     scroll-snap-align: center;
 }
 
+
 .adopta-foto {
     border-radius: 3px;
     height: 26em;
-    object-fit: contain;
+    object-fit: 100%;
+}
+
+.memorial-card-container {
+    position: relative;
+}
+
+.memorial-card-overlay-flowers {
+    position: absolute;
+    top:65%;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    -moz-transition: transform 0.5s ease-out;
+    -o-transition: transform 0.5s ease-out; 
+    -webkit-transition: transform 0.5s ease-out;
+    transition: .5s ease-out;
+    background-image: url(/resources/images/flowers.svg);
+    background-repeat: no-repeat;
+}
+
+.memorial-card-container:hover .memorial-card-overlay-flowers {
+    opacity: 1;
 }
 
 .adopta-header {
@@ -409,6 +432,7 @@
 .filtersepia {
     filter: grayscale(90%);
 }
+
 
 .pleca {
     color: white;
