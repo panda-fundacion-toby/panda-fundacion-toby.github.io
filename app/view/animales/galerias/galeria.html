@@ -11,9 +11,12 @@
                         <h5 class="card-title plecanegra">{{card.nombre}}</h5>
                         <h6 class="card-title">{{card.anoNacimientoAproximado}} - {{card.anoFallecimiento}}</h6>
                     </div>
+                    <div class="memorial-card-container">
                     <img role="button" @click="showPhoto(card.key)" class="card-img-top filtersepia adopta-foto"
                         :src="card.pictureurl" loading="lazy" @load="imageLoaded(card)" @error="imageError(card)">
-                    <div class="card-body adopta-card-body pt-1">
+                    <div class="memorial-card-overlay-flowers"></div>
+                    </div>
+                        <div class="card-body adopta-card-body pt-1">
                         <div class="adopta-card-datos p-1 px-2 pt-3"
                             data-template="#/animales/galerias/galeria-card-datos">
                         </div>
