@@ -569,7 +569,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     background-color: #6560BF;
-    width:80%;
+    min-width: 310px;
+    max-width: 360px;
     text-align: center;
 }
 
@@ -578,7 +579,7 @@
     align-items: center;
     justify-content: center;
     height: 100px;
-    
+    width:100%;
 }
 
 .heroes-avatars-box {
@@ -586,50 +587,79 @@
     flex-direction: row;
     justify-content: center;
     background-color: #3CA5AC;
+    width: 100%;
 }
 
 .heroes-avatars-columns {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 240px;
-    width:240px;
 }
 
 .heroes-avatar-container{
     position: absolute;
-    background-color: #495057;
 }
 
 .heroes-circle-right{
     position: relative;
     background-color: white;
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    right:-35px;
+    right:-20px;
 }
 
 .heroes-circle-left {
     position: relative;
-    background-color: white;
-    width: 200px;
-    height: 200px;
+    background-color: #F8F8F0;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    left: -35px;
+    left: -20px;
+    border: 10px solid white;
+    background-image: url(/resources/images/Avatars/Avatar\ 5.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
 }
 
 .heroes-title-card {
     background-color: #96CD61;
+    width: 100%;
 }
 
-.heores-container-stickers {
+.heroes-container-column {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.heroes-container-stickers {
     display: flex;
     flex-direction: row;
-    background-color: #AF9265;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .heroes-stickers {
-    width: 30%;
+    width:100px;
+    height: 100px;
+    background-image: url(/resources/images/Stickers/Dog\ 4.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.heroes-stickers.sticker2 {
+    background-image: url(/resources/images/Stickers/Dog\ 2.svg);
+}
+
+.heroes-stickers.sticker3 {
+    background-image: url(/resources/images/Stickers/Dog\ 3.svg);
+}
+
+
+.heroes-stickers-text{
+    width: 120px;
+    padding: 5px;
+    background-color: #a57197;
 }
