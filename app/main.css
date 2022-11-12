@@ -562,3 +562,74 @@
     background-size: 7px 7px;
     background-image: repeating-linear-gradient(45deg, #e9e8e9 0, #e9e8e9 0.7000000000000001px, #fafafa 0, #fafafa 50%);
 }
+
+
+.heroes-cardcontainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #6560BF;
+    width:80%;
+    text-align: center;
+}
+
+.heroes-txt-thanks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    
+}
+
+.heroes-avatars-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #3CA5AC;
+}
+
+.heroes-avatars-columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 240px;
+    width:240px;
+}
+
+.heroes-avatar-container{
+    position: absolute;
+    background-color: #495057;
+}
+
+.heroes-circle-right{
+    position: relative;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    right:-35px;
+}
+
+.heroes-circle-left {
+    position: relative;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    left: -35px;
+}
+
+.heroes-title-card {
+    background-color: #96CD61;
+}
+
+.heores-container-stickers {
+    display: flex;
+    flex-direction: row;
+    background-color: #AF9265;
+    justify-content: space-around;
+}
+
+.heroes-stickers {
+    width: 30%;
+}
