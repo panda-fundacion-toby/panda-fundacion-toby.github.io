@@ -9,6 +9,7 @@
     --espinitas-secondary: var(--espinitas-naranja);
     --espinitas-amarillo: #F2F6D0;
     --espinitas-morado: #A57197;
+    --espinitas-moradoscuro: #584F7F;
 }
 
 .espinitas-primary {
@@ -568,32 +569,58 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: #6560BF;
-    min-width: 310px;
-    max-width: 360px;
-    text-align: center;
+    background: linear-gradient(180deg, #9ED2D6, #BDB0C8, #584F7F);
+    min-width: 350px;
+    width: 380px;
+    color: white;
+    border-radius: 14px;
+    padding: 8px;
 }
 
-.heroes-txt-thanks{
+.heroes-background{
+    background-image: url(/resources/images/backgroundhuellas.svg);
+    background-size: 55%;
+}
+
+.heroes-txt-thanks {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: 70px;
     width:100%;
+    color:  var( --espinitas-moradoscuro);
+    padding-top: 12px;
+}
+
+.heroes-encabezado {
+    font-weight:800;
+    letter-spacing: 0.2px;
+}
+
+h5 {
+    font-weight:700;
+    letter-spacing: 0.6px;
 }
 
 .heroes-avatars-box {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #3CA5AC;
     width: 100%;
+    font-weight: 600;
+    color: var(--espinitas-moradoscuro);
+    padding-bottom: 25px;
 }
 
 .heroes-avatars-columns {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
+}
+
+.top-bottompadding-center{
+    padding: 10px 20px;
+    width: 100%;
 }
 
 .heroes-avatar-container{
@@ -616,7 +643,7 @@
     height: 160px;
     border-radius: 50%;
     left: -20px;
-    border: 10px solid white;
+    border: 7px solid white;
     background-image: url(/resources/images/Avatars/Avatar\ 5.svg);
     background-position: center;
     background-repeat: no-repeat;
@@ -624,15 +651,21 @@
 }
 
 .heroes-title-card {
-    background-color: #96CD61;
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
     width: 100%;
+    padding: 5px 20px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.8px;
+    color: var(--espinitas-moradoscuro);
 }
 
 .heroes-container-column {
     display: flex;
     flex-direction: column;
-
-
+    margin: 5px;
 }
 
 .heroes-container-stickers {
@@ -657,9 +690,27 @@
     background-image: url(/resources/images/Stickers/Dog\ 3.svg);
 }
 
-
 .heroes-stickers-text{
-    width: 120px;
-    padding: 5px;
-    background-color: #a57197;
+    width: 100px;
+    font-weight: 600;
+    letter-spacing:0.4px;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.heroes-agradecimiento-box {
+    height: 100%;
+    padding:25px 32px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: justify;
+    text-align-last:left ;
+}
+
+.heroes-card-button {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 25px 20px 25px;
 }
