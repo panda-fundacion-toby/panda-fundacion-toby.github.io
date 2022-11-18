@@ -9,6 +9,7 @@
     --espinitas-secondary: var(--espinitas-naranja);
     --espinitas-amarillo: #F2F6D0;
     --espinitas-morado: #A57197;
+    --espinitas-moradoscuro: #584F7F;
 }
 
 .espinitas-primary {
@@ -351,6 +352,7 @@
 
 .home-button-text {
     margin-top: 2rem;
+
 }
 
 .index-footer {
@@ -561,4 +563,169 @@
     background-color: #fafafa;
     background-size: 7px 7px;
     background-image: repeating-linear-gradient(45deg, #e9e8e9 0, #e9e8e9 0.7000000000000001px, #fafafa 0, #fafafa 50%);
+}
+
+
+.heroes-cardcontainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: linear-gradient(180deg, #9ED2D6, #BDB0C8, #584F7F);
+    min-width: 350px;
+    width: 380px;
+    color: white;
+    border-radius: 14px;
+    padding: 8px;
+}
+
+.heroes-background{
+    background-image: url(/resources/images/backgroundhuellas.svg);
+    background-size: 55%;
+}
+
+.heroes-txt-thanks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width:100%;
+    color:  var( --espinitas-moradoscuro);
+    padding-top: 12px;
+}
+
+.heroes-encabezado {
+    font-weight:800;
+    letter-spacing: 0.2px;
+}
+
+h5 {
+    font-weight:700;
+    letter-spacing: 0.6px;
+}
+
+.heroes-avatars-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    font-weight: 600;
+    color: var(--espinitas-moradoscuro);
+    padding-bottom: 25px;
+}
+
+.heroes-avatars-columns {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.top-bottompadding-center{
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.heroes-avatar-container{
+    position: absolute;
+}
+
+.heroes-circle-right{
+    position: relative;
+    background-color: white;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    right:-20px;
+}
+
+.heroes-circle-left {
+    position: relative;
+    background-color: #F8F8F0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    left: -20px;
+    border: 7px solid white;
+    background-image: url(/resources/images/Avatars/Avatar\ 5.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+}
+
+.heroes-title-card {
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    width: 100%;
+    padding: 5px 20px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.8px;
+    color: var(--espinitas-moradoscuro);
+}
+
+.heroes-container-column {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.heroes-container-stickers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.heroes-stickers {
+    width:100px;
+    height: 100px;
+    background-image: url(/resources/images/Stickers/Dog\ 4.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.heroes-stickers.sticker2 {
+    background-image: url(/resources/images/Stickers/Dog\ 2.svg);
+}
+
+.heroes-stickers.sticker3 {
+    background-image: url(/resources/images/Stickers/Dog\ 3.svg);
+}
+
+.heroes-stickers-text{
+    width: 100px;
+    font-weight: 600;
+    letter-spacing:0.4px;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.heroes-agradecimiento-box {
+    height: 100%;
+    padding:25px 32px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: justify;
+    text-align-last:left ;
+}
+
+.heroes-card-button {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 25px 20px 25px;
+}
+
+
+.home-container-card{
+    display: flex;
+    flex-direction: column;
+    flex-direction: nowrap;
+    align-items: center;
+}
+
+.home-stretchcard{
+    display: flex;
+    flex-direction: column;
+    height: 100%
 }
