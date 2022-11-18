@@ -352,6 +352,7 @@
 
 .home-button-text {
     margin-top: 2rem;
+
 }
 
 .index-footer {
@@ -713,4 +714,18 @@ h5 {
     display: flex;
     justify-content: flex-end;
     padding: 0px 25px 20px 25px;
+}
+
+
+.home-container-card{
+    display: flex;
+    flex-direction: column;
+    flex-direction: nowrap;
+    align-items: center;
+}
+
+.home-stretchcard{
+    display: flex;
+    flex-direction: column;
+    height: 100%
 }
