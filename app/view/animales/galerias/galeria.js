@@ -1,14 +1,15 @@
 import { conejito } from "../../../main/src/panda/conejito.js";
-import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
 import { replaceViewHistory } from "../../../main/src/panda/navigation/polar.js";
+import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
 import { datosPerritos } from "./datosPerritos.js";
+import { filtros } from "./filtros.js";
 
 const { createApp } = Vue;
 export class Galeria {
     constructor(params) {
         const { filtroInicial, baseNavigationUrl } = params;
         (async () => {
-            await datosPerritos.load([filtroInicial]);
+            await datosPerritos.load([filtroInicial], filtros.getFiltros());
             const appContainer = document.getElementById('galeria-app');
             const currentPage = 0;
             const pageSize = 500;
@@ -23,6 +24,9 @@ export class Galeria {
                     };
                 },
                 methods: {
+                    filtra(event) {
+                        alert(event.target);
+                    },
                     compartir(card) {
                         if (navigator.share) {
                             navigator.share({

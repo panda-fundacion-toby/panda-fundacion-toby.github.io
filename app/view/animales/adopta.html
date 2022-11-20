@@ -8,8 +8,38 @@
         Cargando...
     </div>
     <div class="app-hide" :class="{ 'app-show': ready }">
-        <div class="text-muted">
-            Total de perritos en adopcion: {{total}}
+        <div class="btn-group" role="group">
+            <button id="btnSexo" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Sexo
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <button class="dropdown-item" @click="filtra" data-filtro="s:h">Hembra</button>
+                <button class="dropdown-item" @click="filtra" data-filtro="s:m">Macho</button>
+            </div>
+        </div>
+        <div class="btn-group" role="group">
+            <button id="btnNivelTamano" type="button" class="btn btn-info dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tamaño
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">Dropdown link</a>
+                <a class="dropdown-item" href="#">Dropdown link</a>
+            </div>
+        </div>
+        <div class="btn-group" role="group">
+            <button id="btnNivelEnergia" type="button" class="btn btn-info dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Nivel de energía
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">Dropdown link</a>
+                <a class="dropdown-item" href="#">Dropdown link</a>
+            </div>
+        </div>
+        <div class="text-info text-sm">
+            Total: {{total}}
         </div>
         <div class="memorial-bordercard-container">
             <div class="card adopta-card mt-4 mb-4" v-for="card in cards"
@@ -184,12 +214,11 @@
                         ¡Si compartes en redes sociales también le das una oportunidad!
                     </p>
                     <div class="px-4 py-2">
-                        <a class="btn btn-outline-secondary btn-block" target="_blank"
-                            :href="currentDog.twitterLink">
+                        <a class="btn btn-outline-secondary btn-block" target="_blank" :href="currentDog.twitterLink">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
-                        <button class="btn btn-outline-secondary btn-block text-uppercase" @click="compartir(currentDog)"
-                            v-if="shareButtonEnabled">
+                        <button class="btn btn-outline-secondary btn-block text-uppercase"
+                            @click="compartir(currentDog)" v-if="shareButtonEnabled">
                             <i class="fas fa-share-alt"></i> Compartir
                         </button>
                     </div>

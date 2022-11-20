@@ -2,12 +2,23 @@ import { VIEW_NAME_INITIAL_TOKEN } from "./components/viewComponentNameParser.js
 
 let searchParams = new URLSearchParams(window.location.hash);
 
-export function getParamValue(variable) {
+export function getParamValue(paramName) {
     var query = window.location.hash.substring(window.location.hash.indexOf('?') + 1);
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
+        if (decodeURIComponent(pair[0]) == paramName) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+}
+
+export function updateParamValue(paramName, value) {
+    var query = window.location.hash.substring(window.location.hash.indexOf('?') + 1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == paramName) {
             return decodeURIComponent(pair[1]);
         }
     }
