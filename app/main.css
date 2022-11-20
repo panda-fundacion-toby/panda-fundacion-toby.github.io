@@ -33,6 +33,12 @@
     background-color: white;
 }
 
+.index-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 .app-footer {
     margin: 0;
     min-height: 4rem;
@@ -112,12 +118,12 @@
 
 .memorial-card-overlay-flowers {
     position: absolute;
-    top:65%;
+    top: 65%;
     opacity: 0;
     height: 100%;
     width: 100%;
     -moz-transition: transform 0.5s ease-out;
-    -o-transition: transform 0.5s ease-out; 
+    -o-transition: transform 0.5s ease-out;
     -webkit-transition: transform 0.5s ease-out;
     transition: .5s ease-out;
     background-image: url(/resources/images/flowers.svg);
@@ -578,7 +584,7 @@
     padding: 8px;
 }
 
-.heroes-background{
+.heroes-background {
     background-image: url(/resources/images/backgroundhuellas.svg);
     background-size: 55%;
 }
@@ -588,18 +594,18 @@
     align-items: center;
     justify-content: center;
     height: 70px;
-    width:100%;
-    color:  var( --espinitas-moradoscuro);
+    width: 100%;
+    color: var(--espinitas-moradoscuro);
     padding-top: 12px;
 }
 
 .heroes-encabezado {
-    font-weight:800;
+    font-weight: 800;
     letter-spacing: 0.2px;
 }
 
 h5 {
-    font-weight:700;
+    font-weight: 700;
     letter-spacing: 0.6px;
 }
 
@@ -619,22 +625,22 @@ h5 {
     text-align: center;
 }
 
-.top-bottompadding-center{
+.top-bottompadding-center {
     padding: 10px 20px;
     width: 100%;
 }
 
-.heroes-avatar-container{
+.heroes-avatar-container {
     position: absolute;
 }
 
-.heroes-circle-right{
+.heroes-circle-right {
     position: relative;
     background-color: white;
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    right:-20px;
+    right: -20px;
 }
 
 .heroes-circle-left {
@@ -653,7 +659,7 @@ h5 {
 
 .heroes-title-card {
     display: flex;
-    align-items:flex-end;
+    align-items: flex-end;
     justify-content: center;
     width: 100%;
     padding: 5px 20px;
@@ -676,7 +682,7 @@ h5 {
 }
 
 .heroes-stickers {
-    width:100px;
+    width: 100px;
     height: 100px;
     background-image: url(/resources/images/Stickers/Dog\ 4.svg);
     background-repeat: no-repeat;
@@ -691,10 +697,10 @@ h5 {
     background-image: url(/resources/images/Stickers/Dog\ 3.svg);
 }
 
-.heroes-stickers-text{
+.heroes-stickers-text {
     width: 100px;
     font-weight: 600;
-    letter-spacing:0.4px;
+    letter-spacing: 0.4px;
     font-size: 14px;
     line-height: 1;
     text-align: center;
@@ -703,11 +709,11 @@ h5 {
 
 .heroes-agradecimiento-box {
     height: 100%;
-    padding:25px 32px;
+    padding: 25px 32px;
     font-weight: 500;
     letter-spacing: 0.3px;
     text-align: justify;
-    text-align-last:left ;
+    text-align-last: left;
 }
 
 .heroes-card-button {
@@ -717,14 +723,14 @@ h5 {
 }
 
 
-.home-container-card{
+.home-container-card {
     display: flex;
     flex-direction: column;
     flex-direction: nowrap;
     align-items: center;
 }
 
-.home-stretchcard{
+.home-stretchcard {
     display: flex;
     flex-direction: column;
     height: 100%
