@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<h3>Galería de adoptados</h3>
+<p>Amigos que han sido adoptados.
+</p>
+<div id="galeria-app">
+    <div class="cargando" :class="{ 'app-hide': ready }">
+        Cargando...
+    </div>
+    <div class="app-hide" :class="{ 'app-show': ready }">
+        <div class="text-muted">
+            Total de perritos en adopcion: {{total}}
+        </div>
+        <div class="memorial-bordercard-container">
+            <div class="card adopta-card mt-4 mb-4" v-for="card in cards"
+                :class="{'adopta-card-virtual': card.soloAmigoVirtual}">
+                <i class="fa fa-star fa-2x adopta-card-virtual-icon" aria-hidden="true"
+                    v-if="card.soloAmigoVirtual"></i>
+                <div class="card-header text-center adopta-card-header">
+                    <div class="pleca pleca-header p-3">
+                        <h5 class="card-title m-0">
+                            {{card.nombre}}
+                        </h5>
+                    </div>
+                </div>
+                <div class="card-body adopta-card-body pt-1">
+                    <img role="button" @click="showPhoto(card.key)" class="card-img-top adopta-foto"
+                        :src="card.pictureurl" loading="lazy" @load="imageLoaded(card)" @error="imageError(card)">
+                    <div class="adopta-card-datos p-1 px-3 pt-3" data-template="#/animales/galerias/galeria-card-datos">
+                    </div>
+                    <div class="adopta-historia p-3 mt-2">
+                        <p class="card-text">{{card.historia}}</p>
+                    </div>
+                </div>
+                <div class="card-footer adopta-card-footer">
+                    <button class="btn btn-outline-secondary btn-block" @click="showPhoto(card.key)">
+                        <i class="small fas fa-plus"></i> más detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="perritoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-sm adopta-modal-close" data-dismiss="modal"
+                                aria-label="Close">
+                                <i class="h3 fas fa-times-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2 class="adopta-modal-nombre">
+                                <b>
+                                    {{currentDog.nombre}}
+                                </b>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div style="position: relative;">
+                                <div v-if="currentDog.loading" class="adopta-modal-cargando">
+                                    <div>
+                                        Cargando
+                                        <div class="text-center">
+                                            <div class="spinner-grow spinner-grow-sm" role="status"
+                                                style="width: 1.2rem; height: 1.2rem;">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img class="img-fluid rounded mx-auto adopta-modal-img" id="adopta-modal-img"
+                                        loading="lazy" :src="currentDog.modalPicture" @load="imageLoaded(currentDog)"
+                                        @error="imageError(currentDog)">
+                                    <img loading="lazy" style="width: 0px; height: 0px;"
+                                        :src="currentDog.modalPictureCache">
+                                    <button class="btn btn-secondary adopta-modal-btn-left" @click="preview">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button class="btn btn-secondary adopta-modal-btn-right" @click="next">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-center m-2">
+                                <i class="fas fa-circle m-1" v-for="(item, index) in currentDog.pictures" :class="{'adopta-modal-circulo-activo': currentDog.demoPictureIndex === index,
+                                            'adopta-modal-circulo-inactivo': currentDog.demoPictureIndex !== index}">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-template="#/animales/galerias/galeria-modal-datos-01"></div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-secondary">
+                                <strong>
+                                    Convive con
+                                </strong>
+                            </p>
+                            <p>
+                                {{currentDog.conviveCon}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-secondary">
+                                <strong>
+                                    Su historia
+                                </strong>
+                            </p>
+                            <p>
+                                {{currentDog.historia}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-secondary">
+                                <strong>
+                                    Busca a quién (quiénes)
+                                </strong>
+                            </p>
+                            <p>
+                                {{currentDog.busca}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="h5">
+                                <i class="espinitas-icons small fas fa-spa"></i> Salud
+                            </p>
+                            <p>
+                                {{currentDog.salud}}
+                            </p>
+                        </div>
+                    </div>
+                    <div data-template="#/animales/galerias/galeria-modal-datos-02"></div>
+                </div>
+                <div class="adopta-modal-adopcion mt-2 pt-2">
+                    <h4 class="text-center">
+                        Cómo ayudar a {{currentDog.nombre}}
+                    </h4>
+                    <div class="px-4 py-1" style="display: flex;" v-if="currentDog.soloAmigoVirtual">
+                        <i class="fa fa-star p-2 espinitas-secondary" aria-hidden="true"></i>
+                        <p>
+                            {{currentDog.nombre}} no está disponible para adopción física, sin embargo puedes ayudarle
+                            siendo su amigo virtual.
+                        </p>
+                        <i class="fa fa-star p-2 espinitas-secondary" aria-hidden="true"></i>
+                    </div>
+                    <div class="px-4 py-2" v-if="currentDog.soloAmigoVirtual === false">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdCgL_KuKijB7UepleLYvJus_IhawXHYGSJd6oT4qR-RaOE0w/viewform"
+                            target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
+                            <span class="adopta-modal-btn-icon"><i class="small fas fa-dog"></i></span>
+                            Adopción física
+                        </a>
+                    </div>
+                    <div class="px-4 py-2">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyWDsjKM0z_jt8pWtamcIEzKyq7YMltWVGiOHweBkqJBnsAA/viewform"
+                            target="_blank" class="btn btn-outline-secondary btn-block text-uppercase">
+                            <i class="small fas fa-desktop"></i>
+                            Amigo Virtual
+                        </a>
+                    </div>
+                    <div class="px-4 py-2">
+                        <a href="#/donaciones" class="btn btn-outline-secondary btn-block text-uppercase">
+                            Otras formas de ayudar
+                        </a>
+                    </div>
+                    <p class="pt-2 h4 text-center">
+                        Comparte a {{currentDog.nombre}}
+                    </p>
+                    <p class="text-center">
+                        ¡Si compartes en redes sociales también le das una oportunidad!
+                    </p>
+                    <div class="px-4 py-2">
+                        <a class="btn btn-outline-secondary btn-block" target="_blank"
+                            :href="currentDog.twitterLink">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <button class="btn btn-outline-secondary btn-block text-uppercase" @click="compartir(currentDog)"
+                            v-if="shareButtonEnabled">
+                            <i class="fas fa-share-alt"></i> Compartir
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
