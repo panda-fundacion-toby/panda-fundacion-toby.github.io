@@ -330,7 +330,7 @@
 }
 
 .home-button-v1 {
-    border-color: #F2F6D0;
+    border-color: var(--espinitas-naranja);
 }
 
 .home-button-v2 {
@@ -338,7 +338,7 @@
 }
 
 .home-button-v3 {
-    border-color: #FFBB6A;
+    border-color: var(--espinitas-azulclaro);
 }
 
 .home-card {
