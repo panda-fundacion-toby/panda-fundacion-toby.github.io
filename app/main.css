@@ -340,7 +340,7 @@
 }
 
 .home-button-v1 {
-    border-color: #F2F6D0;
+    border-color: var(--espinitas-naranja);
 }
 
 .home-button-v2 {
@@ -348,7 +348,7 @@
 }
 
 .home-button-v3 {
-    border-color: #FFBB6A;
+    border-color: var(--espinitas-azulclaro);
 }
 
 .home-card {
@@ -691,6 +691,7 @@ h5 {
     background-image: url(/resources/images/Stickers/Dog\ 4.svg);
     background-repeat: no-repeat;
     background-position: center;
+    filter: drop-shadow(3px 5px 2px rgba(97, 97, 97, 0.4));
 }
 
 .heroes-stickers.sticker2 {
