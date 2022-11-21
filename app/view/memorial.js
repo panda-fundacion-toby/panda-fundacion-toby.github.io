@@ -1,4 +1,4 @@
-import { TIPO_ADOPCION } from "./animales/galerias/filtrosTipoAdopcion.js";
+import { TIPO_ADOPCION } from "./animales/galerias/filtrosPerritos.js";
 import { Galeria } from "./animales/galerias/galeria.js";
 
 const galeria = new Galeria({

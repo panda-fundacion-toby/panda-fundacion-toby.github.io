@@ -31,6 +31,10 @@ class Main {
         this.windowNavigationController.onBeforePushView(asyncCall);
     }
 
+    onAfterPushView(asyncCall) {
+        this.windowNavigationController.onAfterPushView(asyncCall);
+    }
+
     bindLinks(rootElement) {
         this.windowNavigationController.bindLinks(rootElement);
     }
