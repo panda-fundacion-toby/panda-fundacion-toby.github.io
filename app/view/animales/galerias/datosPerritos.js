@@ -1,6 +1,8 @@
 import { datos } from "../datos.js";
 import { Card } from '../card.js';
 import { map } from '../map-datos-fundacion.js';
+import { filtros } from "./filtros.js";
+import { SEXO, TAMANO } from "./filtrosPerritos.js";
 
 /**
  * DataTable:
@@ -15,13 +17,17 @@ class DatosPerritos {
         this.datos = datos;
     }
 
-    async load(filtros = []) {
+    async load(filtrosIniciales = [], mapByColumnId = new Map()) {
         let query = 'select *';
-        const whereCondition = filtros.map(filtro => {
+        const whereCondition = filtrosIniciales.map(filtro => {
             return `${filtro.COLUMN_ID} ${filtro.OPERATION} ${filtro.VALUE}`;
         });
         if (whereCondition.length > 0) {
             query = `select * where ${whereCondition}`;
+        }
+        if (mapByColumnId.size > 0) {
+            const opcionales = filtros.query(mapByColumnId);
+            query = `${query} AND (${opcionales})`;
         }
         this.dataTable = await this.datos.load(query);
         const cards = [];

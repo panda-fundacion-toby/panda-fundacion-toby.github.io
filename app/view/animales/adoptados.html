@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<h3>Galería de adoptables</h3>
-<p>
-    Aquí encontrarás a quienes podrían ser parte de tu familia. Recuerda que también puedes ser su amigo
-    virtual ¡No dejes de visitarlos a todos!
+<h3>Galería de adoptados</h3>
+<p>Amigos que han sido adoptados.
 </p>
 <div id="galeria-app">
     <div class="cargando" :class="{ 'app-hide': ready }">
         Cargando...
     </div>
     <div class="app-hide" :class="{ 'app-show': ready }">
-        <div data-template="#/animales/galerias/filtros">
-        </div>
         <div class="memorial-bordercard-container">
             <div class="card adopta-card mt-4 mb-4" v-for="card in cards"
                 :class="{'adopta-card-virtual': card.soloAmigoVirtual}">
@@ -184,11 +180,12 @@
                         ¡Si compartes en redes sociales también le das una oportunidad!
                     </p>
                     <div class="px-4 py-2">
-                        <a class="btn btn-outline-secondary btn-block" target="_blank" :href="currentDog.twitterLink">
+                        <a class="btn btn-outline-secondary btn-block" target="_blank"
+                            :href="currentDog.twitterLink">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
-                        <button class="btn btn-outline-secondary btn-block text-uppercase"
-                            @click="compartir(currentDog)" v-if="shareButtonEnabled">
+                        <button class="btn btn-outline-secondary btn-block text-uppercase" @click="compartir(currentDog)"
+                            v-if="shareButtonEnabled">
                             <i class="fas fa-share-alt"></i> Compartir
                         </button>
                     </div>
