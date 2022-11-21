@@ -13,14 +13,21 @@ export function getParamValue(paramName) {
     }
 }
 
+export function hasParams() {
+    return window.location.hash.indexOf('?') >= 0;
+}
+
+/**
+ * localhost:8082/#/animales/adopta?f=s:m,s:h,t:0,t:1,ne:0,ne:1&af=123
+ * @param {*} paramName 
+ * @param {*} value 
+ */
 export function updateParamValue(paramName, value) {
-    var query = window.location.hash.substring(window.location.hash.indexOf('?') + 1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == paramName) {
-            return decodeURIComponent(pair[1]);
-        }
+    if (!hasParams()) {
+        const params = `?${paramName}=${value}`;
+        window.location.hash = `${window.location.hash}${params}`
+    } else {
+
     }
 }
 

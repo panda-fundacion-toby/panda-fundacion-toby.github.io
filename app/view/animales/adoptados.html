@@ -7,8 +7,7 @@
         Cargando...
     </div>
     <div class="app-hide" :class="{ 'app-show': ready }">
-        <div class="text-muted">
-            Total de perritos en adopcion: {{total}}
+        <div data-template="#/animales/galerias/filtros">
         </div>
         <div class="memorial-bordercard-container">
             <div class="card adopta-card mt-4 mb-4" v-for="card in cards"

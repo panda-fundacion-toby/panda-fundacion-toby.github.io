@@ -5,6 +5,7 @@ export class WindowNavigationController {
     constructor(viewComponentLoader) {
         this.viewComponentLoader = viewComponentLoader;
         this.beforePushViewListeners = [];
+        this.afterPushViewListeners = [];
         window.addEventListener('popstate', event => {
             if (event.state) {
                 this.loadView(event.state.url);
@@ -15,6 +16,10 @@ export class WindowNavigationController {
     // Views
     onBeforePushView(asyncCallBack) {
         this.beforePushViewListeners.push(asyncCallBack);
+    }
+    
+    onAfterPushView(asyncCallBack) {
+        this.afterPushViewListeners.push(asyncCallBack);
     }
 
     async loadView(url) {
@@ -32,6 +37,7 @@ export class WindowNavigationController {
         this.beforePushViewListeners.forEach(cb => cb(url));
         const viewComponent = await this.viewComponentLoader.load(url);
         this.bindLinks(viewComponent.rootElement);
+        this.afterPushViewListeners.forEach(cb => cb(url));
     }
 
     // Links

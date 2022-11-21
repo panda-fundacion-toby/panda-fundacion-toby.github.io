@@ -1,5 +1,5 @@
-import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
-import { SEXO, TAMANO } from "./filtrosPerritos.js";
+import { hashParams } from "../../../main/src/panda/hashParams.js";
+import { NIVEL_ENERGIA, SEXO, TAMANO } from "./filtrosPerritos.js";
 
 const MAP_URL_FILTROS = {
     's:m': SEXO.MACHO,
@@ -8,21 +8,35 @@ const MAP_URL_FILTROS = {
     't:1': TAMANO.MEDIANO,
     't:2': TAMANO.GRANDE,
     't:3': TAMANO.EXTRA_GRANDE,
+    'ne:0': NIVEL_ENERGIA.BAJO,
+    'ne:1': NIVEL_ENERGIA.MEDIO,
+    'ne:2': NIVEL_ENERGIA.ALTO
 };
 
 class Filtros {
 
+    getFiltrosUrl() {
+        return hashParams.get('f');
+    }
+
+    urlContains(filtro) {
+        const urlValue = this.getFiltrosUrl();
+        return urlValue ? urlValue.indexOf(filtro) >= 0 : false;
+    }
+
     /**
      * Returns a list of filters from the URL.
-     * localhost:8082/#/animales/adopta&f=s:m,s:h,t:0,t:1,ne:0,ne:1
+     * localhost:8082/#/animales/adopta?f=s:m,s:h,t:0,t:1,ne:0,ne:1
      * @returns 
      */
     getFiltros() {
-        const url = getParamValue('f');
+        const url = hashParams.get('f');
         if (!url) {
             return new Map();
         }
-        const filtrosByColumnId = url.split(',').map(token => MAP_URL_FILTROS[token]).reduce((map, filtro) => {
+        const filtrosByColumnId = url.split(',').map(
+            token => MAP_URL_FILTROS[token]
+        ).reduce((map, filtro) => {
             const list = map.get(filtro.COLUMN_ID) || [];
             list.push(filtro);
             map.set(filtro.COLUMN_ID, list);
@@ -31,8 +45,16 @@ class Filtros {
         return filtrosByColumnId;
     }
 
-    updateFiltros(filtro) {
-
+    toggleFiltro(filtro) {
+        let currentValue = hashParams.get('f');
+        let filtros = currentValue ? currentValue.split(',') : [];
+        if (filtros.some(f => f === filtro)) {
+            filtros = filtros.filter(f => f !== filtro);
+        } else {
+            filtros.push(filtro);
+        }
+        hashParams.set('f', filtros.join(','));
+        hashParams.updateUrl();
     }
 
     mapFiltroToString(filtro) {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<div class="btn-group" role="group">
+    <button id="btnSexo" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Sexo
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <div>
+            <button class="dropdown-item" @click="filtra" data-filtro="s:h">
+                <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('s:h')"></i> Hembra
+            </button>
+        </div>
+        <button class="dropdown-item" @click="filtra" data-filtro="s:m">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('s:m')"></i> Macho
+        </button>
+    </div>
+</div>
+<div class="btn-group" role="group">
+    <button id="btnNivelTamano" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Tamaño
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <button class="dropdown-item" @click="filtra" data-filtro="t:0">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('t:0')"></i> Chico
+        </button>
+        <button class="dropdown-item" @click="filtra" data-filtro="t:1">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('t:1')"></i> Mediano
+        </button>
+        <button class="dropdown-item" @click="filtra" data-filtro="t:2">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('t:2')"></i> Grande
+        </button>
+        <button class="dropdown-item" @click="filtra" data-filtro="t:3">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('t:3')"></i> Extra grande
+        </button>
+    </div>
+</div>
+<div class="btn-group" role="group">
+    <button id="btnNivelEnergia" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Nivel de energía
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <button class="dropdown-item" @click="filtra" data-filtro="ne:0">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('ne:0')"></i> Bajo
+        </button>
+        <button class="dropdown-item" @click="filtra" data-filtro="ne:1">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('ne:1')"></i> Medio
+        </button>
+        <button class="dropdown-item" @click="filtra" data-filtro="ne:2">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('ne:2')"></i> Alto
+        </button>
+    </div>
+</div>
+<div class="text-info text-sm">
+    Total: {{total}}
+</div>

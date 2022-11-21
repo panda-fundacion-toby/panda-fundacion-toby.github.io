@@ -113,7 +113,7 @@
 .adopta-foto {
     border-radius: 3px;
     height: 26em;
-    object-fit: 100%;
+    object-fit: contain;
 }
 
 .memorial-card-container {

@@ -1,4 +1,5 @@
 import { conejito } from "../../../main/src/panda/conejito.js";
+import { hashParams } from "../../../main/src/panda/hashParams.js";
 import { replaceViewHistory } from "../../../main/src/panda/navigation/polar.js";
 import { getParamValue } from "../../../main/src/panda/navigationUtils.js";
 import { datosPerritos } from "./datosPerritos.js";
@@ -21,11 +22,21 @@ export class Galeria {
                         ready: true,
                         currentDog: {},
                         shareButtonEnabled: navigator.share,
+                        filtros: filtros.getFiltros()
                     };
                 },
                 methods: {
-                    filtra(event) {
-                        alert(event.target);
+                    filtroChecked(filtro) {
+                        return filtros.urlContains(filtro);
+                    },
+                    async filtra(event) {
+                        const filtro = event.target.dataset.filtro;
+                        filtros.toggleFiltro(filtro);
+                        this.ready = false;
+                        await datosPerritos.load([filtroInicial], filtros.getFiltros());
+                        this.total = datosPerritos.count();
+                        this.cards = datosPerritos.getCards(currentPage, pageSize);
+                        this.ready = true;
                     },
                     compartir(card) {
                         if (navigator.share) {

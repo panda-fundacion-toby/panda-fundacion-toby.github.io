@@ -28,7 +28,6 @@ export const SEXO = {
         VALUE: "'Macho'",
     },
 };
-
 export const TAMANO = {
     CHICO: {
         COLUMN_ID: 'E',
@@ -43,11 +42,28 @@ export const TAMANO = {
     GRANDE: {
         COLUMN_ID: 'E',
         OPERATION: 'contains',
-        VALUE: "'entre 16 y 29 kg'",
+        VALUE: "'entre 30 a 39 kg'",
     },
     EXTRA_GRANDE: {
         COLUMN_ID: 'E',
         OPERATION: 'contains',
-        VALUE: "'entre 16 y 29 kg'",
+        VALUE: "'40 kg'",
     },
+};
+export const NIVEL_ENERGIA = {
+    BAJO: {
+        COLUMN_ID: 'L',
+        OPERATION: 'contains',
+        VALUE: "'bajo'",
+    },
+    MEDIO: {
+        COLUMN_ID: 'L',
+        OPERATION: 'contains',
+        VALUE: "'medio'",
+    },
+    ALTO: {
+        COLUMN_ID: 'L',
+        OPERATION: 'contains',
+        VALUE: "'alto'",
+    }
 };
