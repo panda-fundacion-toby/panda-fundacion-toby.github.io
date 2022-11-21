@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <div class="btn-group" role="group">
-    <button id="btnSexo" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+    <button id="btnSexo" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         Sexo
     </button>
     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <div>
-            <button class="dropdown-item" @click="filtra" data-filtro="s:h">
-                <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('s:h')"></i> Hembra
-            </button>
-        </div>
+        <button class="dropdown-item" @click="filtra" data-filtro="s:h">
+            <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('s:h')"></i> Hembra
+        </button>
         <button class="dropdown-item" @click="filtra" data-filtro="s:m">
             <i class="fa fa-check" aria-hidden="true" v-if="filtroChecked('s:m')"></i> Macho
         </button>
     </div>
 </div>
 <div class="btn-group" role="group">
-    <button id="btnNivelTamano" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+    <button id="btnNivelTamano" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         Tamaño
     </button>
@@ -36,7 +34,7 @@
     </div>
 </div>
 <div class="btn-group" role="group">
-    <button id="btnNivelEnergia" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+    <button id="btnNivelEnergia" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         Nivel de energía
     </button>
@@ -52,6 +50,6 @@
         </button>
     </div>
 </div>
-<div class="text-info text-sm">
+<div class="text-info">
     Total: {{total}}
 </div>
