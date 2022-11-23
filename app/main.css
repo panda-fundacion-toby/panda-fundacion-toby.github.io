@@ -747,9 +747,38 @@ h5 {
     justify-content: space-evenly;
 }
 
-.nosotros-columns{
-    background-color: #96CD61;
-    min-width: 200px;
+.nosotros-columns {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    align-content: stretch;
+    min-width: 180px;
     max-width: 240px;
-    margin: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
 }
+
+.nosotros-video {
+    aspect-ratio: 16 / 9;
+    width: 70%;
+    height: 100%;
+    background-color: #3CA5AC;
+    margin: 10px;
+
+}
+
+.nosotros-text{
+    background: linear-gradient(45deg, #a57197, #d06b77, #f0b070);
+    border-radius: 4px;
+    padding: 6px 20px;
+    color: white;
+    text-align: center;
+    width: 90%;
+}
+
+.nosotros-shape {
+    clip-path: circle(50% at 50% 50%);
+    width: 160px;
+    margin: 16px;
+}
+
